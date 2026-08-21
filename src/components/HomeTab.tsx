@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { HERO_IMAGE_URL, DAYS_DATA } from '../data/orientationData';
 import { DaySchedule, TabType } from '../types';
 
@@ -14,276 +14,280 @@ interface HomeTabProps {
 export const HomeTab: React.FC<HomeTabProps> = ({
   currentDay,
   onSelectDay,
-  onNavigateTab,
   onOpenScheduleModal,
   onOpenLocationModal,
   onSearchStudent,
 }) => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [attributesChecked, setAttributesChecked] = useState<Record<string, boolean>>({
-    'att-2-1': true,
-    'att-2-2': true,
-  });
-
-  const handleSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      onSearchStudent(searchQuery.trim());
-    }
-  };
-
-  const toggleAttribute = (id: string) => {
-    setAttributesChecked(prev => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
-
   const remainingDays = 5 - currentDay.dayNumber;
 
   return (
-    <div className="flex flex-col gap-4 pb-4">
-      {/* Hero Section */}
-      <section className="flex flex-col gap-2 mb-1 relative z-10">
-        <div className="inline-block bg-[#b02a3e] text-white font-bold text-xs sm:text-sm px-3 py-1 border-2 border-[#191c1d] neu-shadow w-max rounded-sm mb-1 transform -rotate-2 select-none">
-          PKKMB Politeknik Semen Indonesia 2026
-        </div>
-
-        <h1 
-          className="font-display text-[32px] sm:text-[40px] font-black text-[#5b0617] leading-[1.08] uppercase tracking-tighter"
-          style={{ textShadow: '2px 2px 0px #191c1d' }}
-        >
-          Bangun Fondasi,<br />Wujudkan Karya!
-        </h1>
-
-        <p className="text-[15px] sm:text-[17px] text-[#564242] max-w-md mt-1 bg-[#f8f9fa] p-2 border-2 border-[#191c1d] neu-shadow rounded-sm inline-block font-semibold">
-          5 Hari untuk Memulai Perjalananmu di Dunia Vokasi
-        </p>
-
-        {/* Hero Illustration Banner */}
-        <div className="mt-3 border-2 border-[#191c1d] neu-shadow rounded-lg overflow-hidden bg-[#f8f9fa] relative h-48 sm:h-56 w-full">
-          <img
-            src={HERO_IMAGE_URL}
-            alt="Orientasi Vokasional 2026 - Ilustrasi Konstruksi Kampus"
-            className="w-full h-full object-cover mix-blend-multiply opacity-95"
-            referrerPolicy="no-referrer"
-          />
-          {/* Subtle ghost block */}
-          <div className="absolute inset-0 bg-[#5b0617] opacity-5 pointer-events-none" />
+    <div className="tab-fade-in flex flex-col gap-6 pb-6">
+      
+      {/* Top Asymmetric Grid: Hero + Live Stepper & Search (Left) & Today's Highlights (Right) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        {/* Left Column (lg:col-span-7): Hero + Status & Day Stepper + Search CTA */}
+        <div className="lg:col-span-7 flex flex-col gap-6">
           
-          <div className="absolute bottom-2 right-2 bg-white/90 backdrop-blur-xs px-2 py-0.5 border border-[#191c1d] rounded text-[11px] font-bold text-[#5b0617]">
-            ORVOKS EXPO & PRAKTIK
-          </div>
-        </div>
-      </section>
+          {/* Hero Section */}
+          <section className="campus-card bg-gradient-to-br from-white via-slate-50/50 to-red-50/20 dark:from-slate-900 dark:via-slate-900/90 dark:to-red-950/25 p-6 sm:p-7 relative overflow-hidden border border-slate-200/80 dark:border-slate-800 shadow-xs">
+            {/* Subtle blueprint decorative background */}
+            <div className="absolute top-0 right-0 w-64 h-64 opacity-5 dark:opacity-10 bg-[radial-gradient(#5b0617_1px,transparent_1px)] dark:bg-[radial-gradient(#ff6473_1px,transparent_1px)] [background-size:12px_12px] pointer-events-none rounded-full" />
+            
+            <div className="flex flex-col gap-3 relative z-10">
+              <div className="inline-flex items-center gap-2 bg-[#b02a3e]/10 dark:bg-[#b02a3e]/20 text-[#b02a3e] dark:text-[#ff8595] font-bold text-xs px-3 py-1 rounded-full w-max border border-[#b02a3e]/20 dark:border-[#b02a3e]/30">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#b02a3e] dark:bg-[#ff6473] animate-pulse" />
+                PKKMB Politeknik Semen Indonesia 2026
+              </div>
 
-      {/* Status Card */}
-      <section className="bg-[#f8f9fa] border-2 border-[#191c1d] neu-shadow rounded-lg p-4 sm:p-5 flex flex-col gap-3 relative overflow-hidden z-10">
-        {/* LIVE Badge */}
-        <div className="absolute -top-1 -right-1 bg-[#002a5b] text-white font-bold text-xs px-3 py-1 border-2 border-[#191c1d] neu-shadow transform rotate-3 select-none flex items-center gap-1">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          LIVE
+              <h1 className="font-display text-[28px] sm:text-[36px] font-black text-slate-900 dark:text-white leading-[1.12] tracking-tight">
+                Bangun Fondasi,<br />
+                <span className="bg-gradient-to-r from-[#5b0617] via-[#b02a3e] to-[#002a5b] dark:from-[#ff8595] dark:via-[#ff6473] dark:to-[#aac7ff] bg-clip-text text-transparent">
+                  Wujudkan Karya!
+                </span>
+              </h1>
+
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-medium leading-relaxed max-w-lg">
+                5 Hari untuk Memulai Perjalananmu di Dunia Vokasi
+              </p>
+
+              {/* Hero Banner Showcase */}
+              <div className="mt-2 rounded-2xl overflow-hidden bg-slate-900 relative h-44 sm:h-52 w-full border border-slate-200/60 dark:border-slate-800 shadow-inner group">
+                <img
+                  src={HERO_IMAGE_URL}
+                  alt="Orientasi Vokasional 2026 - Ilustrasi Konstruksi Kampus"
+                  className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500 ease-out"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+                
+                <div className="absolute bottom-3 right-3 campus-glass dark:bg-slate-900/90 dark:border-slate-700 px-3 py-1 rounded-full text-[11px] font-bold text-[#5b0617] dark:text-[#ffdada] shadow-sm flex items-center gap-1.5">
+                  <span className="material-symbols-outlined text-[14px]">architecture</span>
+                  ORVOKS EXPO & PRAKTIK
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Live Status & Day Stepper */}
+          <section className="campus-card bg-white dark:bg-slate-900 p-6 relative overflow-hidden border border-slate-200/80 dark:border-slate-800 shadow-xs">
+            <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-[#002a5b]/10 dark:bg-[#002a5b]/40 text-[#002a5b] dark:text-[#aac7ff] flex items-center justify-center font-bold">
+                  <span className="material-symbols-outlined text-[22px]">event_available</span>
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h2 className="font-display text-xl font-bold text-slate-900 dark:text-white">
+                      {currentDay.dayName}
+                    </h2>
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+                      LIVE
+                    </span>
+                  </div>
+                  <p className="text-[11px] font-bold text-[#5b0617] dark:text-[#ff8595] uppercase tracking-wider font-headline">
+                    HARI KE-{currentDay.dayNumber} DARI 5
+                  </p>
+                </div>
+              </div>
+
+              <div className="text-right">
+                <span className="inline-block px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs border border-transparent dark:border-slate-700">
+                  {remainingDays > 0 ? `${remainingDays} hari lagi` : 'Hari Terakhir!'}
+                </span>
+              </div>
+            </div>
+
+            {/* Interactive Day Stepper Timeline */}
+            <div className="py-4">
+              <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-2.5">
+                Pilih Hari Orientasi:
+              </span>
+              <div className="grid grid-cols-5 gap-1.5 sm:gap-2">
+                {DAYS_DATA.map((d) => {
+                  const isActive = currentDay.dayNumber === d.dayNumber;
+                  const isPast = d.dayNumber < currentDay.dayNumber;
+                  return (
+                    <button
+                      key={d.dayNumber}
+                      onClick={() => onSelectDay(d.dayNumber)}
+                      className={`p-2.5 rounded-xl border text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-0.5 ${
+                        isActive
+                          ? 'bg-[#5b0617] dark:bg-[#7a1f2b] text-white border-[#5b0617] dark:border-[#ff6473] shadow-sm scale-102 font-bold ring-2 ring-[#5b0617]/20 dark:ring-[#ff6473]/30'
+                          : isPast
+                          ? 'bg-slate-50 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold'
+                          : 'bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/60 font-medium'
+                      }`}
+                    >
+                      <span className={`text-[10px] uppercase font-bold tracking-wider ${isActive ? 'text-[#ffdada]' : 'text-slate-400 dark:text-slate-500'}`}>
+                        H-{d.dayNumber}
+                      </span>
+                      <span className="text-xs font-bold line-clamp-1">
+                        {d.dayName}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Animated Progress Gauge */}
+            <div className="pt-2 flex flex-col gap-1.5">
+              <div className="flex justify-between items-center text-xs">
+                <span className="font-semibold text-slate-500 dark:text-slate-400">Progress Orientasi</span>
+                <span className="font-bold text-[#5b0617] dark:text-[#ff8595]">{currentDay.progressPercent}%</span>
+              </div>
+              <div className="w-full h-2.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden p-0.5">
+                <div
+                  className="h-full bg-gradient-to-r from-[#5b0617] to-[#b02a3e] dark:from-[#b02a3e] dark:to-[#ff6473] rounded-full transition-all duration-500 ease-out"
+                  style={{ width: `${currentDay.progressPercent}%` }}
+                />
+              </div>
+            </div>
+          </section>
+
+          {/* Cari Kelompokmu Button Card */}
+          <button
+            onClick={() => onSearchStudent('')}
+            className="campus-card campus-card-hover bg-white dark:bg-slate-900 p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-xs flex items-center justify-between gap-4 cursor-pointer text-left w-full group"
+          >
+            <div className="flex items-center gap-3.5">
+              <div className="w-11 h-11 rounded-xl bg-[#5b0617]/10 dark:bg-[#5b0617]/30 text-[#5b0617] dark:text-[#ff8595] flex items-center justify-center shrink-0 group-hover:bg-[#5b0617] group-hover:text-white transition-colors">
+                <span className="material-symbols-outlined text-[24px]">person_search</span>
+              </div>
+              <div>
+                <h3 className="font-display font-bold text-sm sm:text-base text-slate-900 dark:text-white leading-snug">
+                  Cari Kelompokmu
+                </h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">
+                  Klik untuk mencari nama lengkap, NIM, prodi, atau kelompok mahasiswa
+                </p>
+              </div>
+            </div>
+            
+            <div className="bg-[#5b0617] dark:bg-[#7a1f2b] text-white px-4 py-2 rounded-xl text-xs font-bold shrink-0 flex items-center gap-1.5 group-hover:bg-[#7a1f2b] dark:group-hover:bg-[#b02a3e] transition-colors shadow-xs">
+              <span>Buka Pencarian</span>
+              <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </div>
+          </button>
+
         </div>
 
-        <div className="flex justify-between items-end border-b-2 border-[#191c1d] pb-3">
-          <div>
-            <h2 className="font-display text-[22px] font-bold text-[#191c1d]">
-              {currentDay.dayName}
-            </h2>
-            <p className="text-[13px] font-bold text-[#5b0617] tracking-widest uppercase mt-0.5 font-headline">
-              HARI KE-{currentDay.dayNumber} DARI 5
-            </p>
-          </div>
-          <div className="text-right">
-            <span className="text-[13px] font-bold text-[#564242]">
-              {remainingDays > 0 ? `${remainingDays} hari lagi` : 'Hari Terakhir!'}
-            </span>
-          </div>
-        </div>
+        {/* Right Column (lg:col-span-5): Quick Action & Info Cards Grid */}
+        <div className="lg:col-span-5 flex flex-col gap-4">
+          
+          {/* Card 1: Agenda Hari Ini */}
+          <div className="campus-card campus-card-hover bg-white dark:bg-slate-900 p-5 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between gap-3 shadow-xs">
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2.5">
+              <div className="flex items-center gap-2 text-[#b02a3e] dark:text-[#ff8595]">
+                <span className="material-symbols-outlined text-[20px]">event</span>
+                <span className="font-bold text-xs uppercase tracking-wider">
+                  Agenda {currentDay.dayName}
+                </span>
+              </div>
+              <span className="text-[10px] bg-red-50 dark:bg-red-950/60 text-red-700 dark:text-red-300 font-bold px-2 py-0.5 rounded-full border border-red-200 dark:border-red-900">
+                {currentDay.sessions.length} Sesi
+              </span>
+            </div>
 
-        {/* Day Selector Pills */}
-        <div className="flex items-center gap-1.5 overflow-x-auto py-1">
-          {DAYS_DATA.map((d) => (
+            <div>
+              <h3 className="font-display font-bold text-[16px] text-slate-900 dark:text-white leading-snug">
+                {currentDay.theme}
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1 font-medium">
+                <span className="material-symbols-outlined text-[14px]">location_on</span>
+                {currentDay.primaryLocation}
+              </p>
+            </div>
+
             <button
-              key={d.dayNumber}
-              onClick={() => onSelectDay(d.dayNumber)}
-              className={`px-2.5 py-1 text-xs font-bold rounded border-2 transition-all shrink-0 ${
-                currentDay.dayNumber === d.dayNumber
-                  ? 'bg-[#5b0617] text-white border-[#191c1d] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]'
-                  : 'bg-white text-[#191c1d] border-[#191c1d] hover:bg-[#e7e8e9]'
-              }`}
+              id="btn-see-schedule"
+              onClick={() => onOpenScheduleModal(currentDay)}
+              className="w-full bg-[#5b0617]/10 dark:bg-[#5b0617]/25 hover:bg-[#5b0617]/15 dark:hover:bg-[#5b0617]/40 text-[#5b0617] dark:text-[#ff8595] font-bold text-xs py-2.5 rounded-xl border border-[#5b0617]/20 dark:border-[#5b0617]/40 transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-98"
             >
-              H-{d.dayNumber}: {d.dayName}
+              <span>Lihat Jadwal Lengkap</span>
+              <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
             </button>
-          ))}
-        </div>
-
-        {/* Progress Bar */}
-        <div className="flex flex-col gap-1.5 pt-1">
-          <div className="flex justify-between items-center text-xs">
-            <span className="font-semibold text-[#564242]">Progress Orientasi</span>
-            <span className="font-bold text-[#5b0617]">{currentDay.progressPercent}%</span>
           </div>
-          <div className="w-full h-4 bg-[#e7e8e9] border-2 border-[#191c1d] rounded-full overflow-hidden p-0.5">
-            <div
-              className="h-full bg-[#5b0617] border-r-2 border-[#191c1d] rounded-full transition-all duration-500"
-              style={{ width: `${currentDay.progressPercent}%` }}
-            />
-          </div>
-        </div>
-      </section>
 
-      {/* Search Section */}
-      <section className="bg-[#edeeef] p-4 border-2 border-[#191c1d] neu-shadow rounded-lg flex flex-col gap-2 z-10">
-        <label htmlFor="search-input" className="font-bold text-sm text-[#191c1d]">
-          Cari Kelompokmu
-        </label>
-        <form onSubmit={handleSearchSubmit} className="flex gap-2">
-          <input
-            id="search-input"
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Masukkan nama lengkap kamu..."
-            className="flex-1 bg-[#f8f9fa] border-2 border-[#191c1d] p-2.5 text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-[#5b0617] focus:border-[#5b0617] placeholder:text-[#897172] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-medium"
-          />
-          <button
-            type="submit"
-            id="btn-search-group"
-            className="bg-[#5b0617] text-white border-2 border-[#191c1d] neu-shadow neu-button-active px-4 rounded-md flex items-center justify-center transition-transform hover:bg-[#7a1f2b]"
-          >
-            <span className="material-symbols-outlined text-[20px]">search</span>
-          </button>
-        </form>
-      </section>
-
-      {/* Quick Info Cards Grid */}
-      <section className="grid grid-cols-2 gap-3.5 z-10">
-        {/* Card 1: Jadwal */}
-        <div className="bg-[#f8f9fa] border-2 border-[#191c1d] neu-shadow rounded-lg p-4 flex flex-col justify-between hover:bg-white transition-colors h-full">
-          <div className="flex flex-col gap-1 mb-3">
-            <div className="flex items-center gap-1.5 text-[#b02a3e] mb-0.5">
-              <span className="material-symbols-outlined text-[20px]">event</span>
-              <span className="font-bold text-xs uppercase tracking-wider">
-                {currentDay.dayName}
+          {/* Card 2: Atribut Hari Ini (Informational Only) */}
+          <div className="campus-card bg-white dark:bg-slate-900 p-5 border border-slate-200/80 dark:border-slate-800 flex flex-col gap-3 shadow-xs">
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2.5">
+              <div className="flex items-center gap-1.5 text-[#5b0617] dark:text-[#ff8595]">
+                <span className="material-symbols-outlined text-[20px]">checkroom</span>
+                <span className="font-bold text-xs uppercase tracking-wider">
+                  Atribut {currentDay.dayName}
+                </span>
+              </div>
+              <span className="text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700">
+                Ketentuan Wajib
               </span>
             </div>
-            <h3 className="font-display font-bold text-[17px] text-[#191c1d] leading-tight">
-              {currentDay.theme}
-            </h3>
-          </div>
-          <button
-            id="btn-see-schedule"
-            onClick={() => onOpenScheduleModal(currentDay)}
-            className="w-full bg-[#e1e3e4] border-2 border-[#191c1d] text-[#191c1d] font-bold text-xs py-2 rounded-md hover:bg-[#d9dadb] neu-shadow neu-button-active transition-all"
-          >
-            Lihat Jadwal
-          </button>
-        </div>
 
-        {/* Card 2: Kelompok Saya */}
-        <div 
-          onClick={() => onNavigateTab('kelompok')}
-          className="bg-[#002a5b] text-white border-2 border-[#191c1d] neu-shadow rounded-lg p-4 flex flex-col justify-between h-full cursor-pointer hover:bg-[#00387a] transition-colors"
-        >
-          <div className="flex flex-col gap-1">
-            <div className="flex items-center gap-1.5 text-[#aac7ff] mb-0.5">
-              <span className="material-symbols-outlined text-[20px]">groups_2</span>
-              <span className="font-bold text-xs uppercase tracking-wider">
-                Kelompok Saya
-              </span>
-            </div>
-            <h3 className="font-display font-bold text-[18px] leading-tight text-white">
-              Kelompok Beton
-            </h3>
-            <p className="text-xs text-[#aac7ff] font-semibold mt-1">
-              15 anggota terdaftar
-            </p>
-          </div>
-          <div className="mt-3 flex items-center justify-between text-[11px] font-bold text-white/90 border-t border-white/20 pt-2">
-            <span>Kak Dimas P.</span>
-            <span className="underline">Detail &rarr;</span>
-          </div>
-        </div>
-
-        {/* Card 3: Atribut Hari Ini */}
-        <div className="bg-[#f8f9fa] border-2 border-[#191c1d] neu-shadow rounded-lg p-4 flex flex-col col-span-2">
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-1.5 text-[#5b0617]">
-              <span className="material-symbols-outlined text-[20px]">checkroom</span>
-              <span className="font-bold text-xs uppercase tracking-wider">
-                Atribut Hari Ini
-              </span>
-            </div>
-            <span className="text-[11px] font-semibold text-[#897172]">
-              Ketuk untuk centang
-            </span>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            {currentDay.attributes.slice(0, 2).map((attr) => {
-              const isChecked = attributesChecked[attr.id] ?? attr.checked;
-              return (
+            <div className="flex flex-col gap-2.5">
+              {currentDay.attributes.map((attr) => (
                 <div
                   key={attr.id}
-                  onClick={() => toggleAttribute(attr.id)}
-                  className={`border-2 border-[#191c1d] p-2.5 rounded-md flex items-start gap-3 cursor-pointer transition-all ${
-                    isChecked ? 'bg-[#f3f4f5]' : 'bg-white'
-                  }`}
+                  className="p-3 rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-800/40 flex items-start gap-3 transition-all"
                 >
-                  <div
-                    className={`w-6 h-6 border-2 border-[#191c1d] rounded-sm flex items-center justify-center shrink-0 mt-0.5 transition-colors ${
-                      isChecked ? 'bg-[#b02a3e]' : 'bg-white'
-                    }`}
-                  >
-                    {isChecked && (
-                      <span
-                        className="material-symbols-outlined text-[16px] text-white"
-                        style={{ fontVariationSettings: "'FILL' 1" }}
-                      >
-                        check
-                      </span>
-                    )}
+                  <div className="w-6 h-6 rounded-lg bg-[#5b0617]/10 dark:bg-[#5b0617]/30 text-[#5b0617] dark:text-[#ff8595] flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="material-symbols-outlined text-[15px]">
+                      check_circle
+                    </span>
                   </div>
                   <div className="flex-1">
-                    <p className={`text-sm font-semibold ${isChecked ? 'text-[#191c1d]' : 'text-[#564242]'}`}>
-                      {attr.name}
-                    </p>
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <p className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">
+                        {attr.name}
+                      </p>
+                      {attr.mandatory && (
+                        <span className="text-[9px] bg-red-100 dark:bg-red-950/70 text-red-700 dark:text-red-300 font-bold px-1.5 py-0.2 rounded-full border border-red-200 dark:border-red-900">
+                          Wajib
+                        </span>
+                      )}
+                    </div>
                     {attr.note && (
-                      <p className="text-[11px] text-[#897172] mt-0.5">{attr.note}</p>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">{attr.note}</p>
                     )}
                   </div>
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Card 4: Lokasi */}
-        <div className="bg-[#f8f9fa] border-2 border-[#191c1d] neu-shadow rounded-lg p-4 flex flex-col justify-between col-span-2">
-          <div className="flex flex-col gap-1 mb-3">
-            <div className="flex items-center gap-1.5 text-[#564242] mb-0.5">
-              <span className="material-symbols-outlined text-[20px]">pin_drop</span>
+          {/* Card 3: Lokasi Utama Hari Ini */}
+          <div className="campus-card bg-slate-50/70 dark:bg-slate-900/90 p-5 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between gap-3 shadow-xs">
+            <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400 border-b border-slate-200/60 dark:border-slate-800 pb-2">
+              <span className="material-symbols-outlined text-[18px]">pin_drop</span>
               <span className="font-bold text-xs uppercase tracking-wider">
                 Lokasi Utama Hari Ini
               </span>
             </div>
-            <h3 className="font-display font-bold text-[18px] text-[#191c1d] leading-tight">
-              {currentDay.primaryLocation}
-            </h3>
-            <p className="text-xs text-[#564242]">
-              Gedung Utama (Gedung A) Lt. 3 Politeknik Semen Indonesia
-            </p>
+
+            <div>
+              <h3 className="font-display font-bold text-base text-slate-900 dark:text-white leading-snug">
+                {currentDay.primaryLocation}
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 font-medium">
+                Gedung Utama (Gedung A) Lt. 3 Politeknik Semen Indonesia
+              </p>
+            </div>
+
+            <button
+              id="btn-see-location"
+              onClick={() => onOpenLocationModal(currentDay.primaryLocation)}
+              className="w-full bg-[#002a5b] dark:bg-[#00387a] hover:bg-[#00387a] dark:hover:bg-[#004b9e] text-white font-bold text-xs py-2.5 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer active:scale-98"
+            >
+              <span className="material-symbols-outlined text-[16px]">directions</span>
+              <span>Lihat Lokasi & Petunjuk Arah</span>
+            </button>
           </div>
-          <button
-            id="btn-see-location"
-            onClick={() => onOpenLocationModal(currentDay.primaryLocation)}
-            className="w-full bg-[#5b0617] text-white border-2 border-[#191c1d] font-bold text-xs py-2 rounded-md hover:bg-[#7a1f2b] neu-shadow neu-button-active transition-all"
-          >
-            Lihat Lokasi & Petunjuk Arah
-          </button>
+
         </div>
-      </section>
+
+      </div>
+
     </div>
   );
 };

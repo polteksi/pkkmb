@@ -32,54 +32,58 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 dark:bg-black/80 backdrop-blur-xs animate-in fade-in duration-150"
+      onClick={onClose}
+    >
       <div 
-        className="bg-[#f8f9fa] border-2 border-[#191c1d] neu-shadow-lg rounded-xl max-w-md w-full max-h-[85vh] flex flex-col overflow-hidden"
+        className="bg-white dark:bg-slate-900 rounded-2xl max-w-md w-full max-h-[85vh] flex flex-col overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 animate-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="bg-[#5b0617] text-white p-4 border-b-2 border-[#191c1d] flex items-center justify-between">
+        <div className="bg-gradient-to-r from-[#5b0617] to-[#7a1f2b] dark:from-[#7a1f2b] dark:to-[#002a5b] text-white p-5 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="material-symbols-outlined text-[24px]">person_search</span>
-            <h3 className="font-display font-black text-lg text-white">
+            <h3 className="font-display font-bold text-lg text-white">
               Cari Data Mahasiswa / Kelompok
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 bg-white text-[#191c1d] border-2 border-[#191c1d] rounded-md flex items-center justify-center font-bold hover:bg-[#ffdada] active:scale-95 transition-transform"
+            aria-label="Tutup Pencarian"
+            className="w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-all cursor-pointer border border-white/20"
           >
-            <span className="material-symbols-outlined text-[20px]">close</span>
+            <span className="material-symbols-outlined text-[18px]">close</span>
           </button>
         </div>
 
         {/* Input Bar */}
-        <div className="p-4 border-b-2 border-[#191c1d] bg-[#edeeef]">
+        <div className="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-800/50">
           <div className="relative">
+            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 dark:text-slate-500 text-[20px]">
+              search
+            </span>
             <input
               type="text"
               autoFocus
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Ketik nama / NIM / jurusan..."
-              className="w-full bg-white border-2 border-[#191c1d] py-2.5 pl-3 pr-9 text-sm rounded-md shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] focus:outline-none focus:ring-2 focus:ring-[#5b0617] font-medium"
+              placeholder="Ketik nama / NIM / prodi / kelompok..."
+              className="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 py-2.5 pl-10 pr-9 text-xs sm:text-sm rounded-xl shadow-xs focus:outline-none focus:ring-2 focus:ring-[#5b0617]/20 dark:focus:ring-[#ff8595]/30 focus:border-[#5b0617] dark:focus:border-[#ff8595] text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 font-medium"
             />
             {query && (
               <button
                 onClick={() => setQuery('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-500 hover:text-black"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer"
               >
-                <span className="material-symbols-outlined text-[18px]">clear</span>
+                <span className="material-symbols-outlined text-[18px]">close</span>
               </button>
             )}
           </div>
-          <p className="text-[11px] text-[#564242] mt-1.5 font-medium">
-            Contoh: <span className="underline cursor-pointer" onClick={() => setQuery('Farhan')}>Farhan</span>, <span className="underline cursor-pointer" onClick={() => setQuery('Beton')}>Beton</span>, <span className="underline cursor-pointer" onClick={() => setQuery('Otomasi')}>Otomasi</span>
-          </p>
         </div>
 
         {/* Result List */}
-        <div className="p-4 overflow-y-auto flex flex-col gap-2 flex-1 max-h-[50vh]">
+        <div className="p-4 overflow-y-auto flex flex-col gap-2.5 flex-1 max-h-[50vh]">
           {searchResults.length > 0 ? (
             searchResults.map((student) => (
               <div
@@ -88,50 +92,54 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   onSelectStudent?.(student);
                   onClose();
                 }}
-                className="bg-white border-2 border-[#191c1d] rounded-md p-3 flex items-center justify-between hover:bg-[#ffdada]/30 cursor-pointer shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] transition-all"
+                className="bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl p-3.5 flex items-center justify-between hover:border-[#5b0617]/30 dark:hover:border-[#ff8595]/40 hover:bg-slate-50/80 dark:hover:bg-slate-800 cursor-pointer transition-all shadow-xs group"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 min-w-0">
                   <div
-                    className="w-9 h-9 rounded border-2 border-[#191c1d] flex items-center justify-center font-bold text-white text-xs shrink-0"
+                    className="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-white text-xs shrink-0 shadow-xs"
                     style={{ backgroundColor: student.avatarColor }}
                   >
                     {student.name.slice(0, 2).toUpperCase()}
                   </div>
-                  <div>
-                    <h4 className="font-bold text-xs sm:text-sm text-[#191c1d]">
+                  <div className="min-w-0">
+                    <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white truncate">
                       {student.name}
                     </h4>
-                    <p className="text-[11px] text-[#564242]">
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate mt-0.5">
                       NIM: {student.nim} &bull; {student.major}
                     </p>
-                    <span className="inline-block mt-0.5 text-[10px] bg-[#002a5b] text-white font-bold px-1.5 py-0.2 rounded">
+                    <span className="inline-block mt-1 text-[10px] bg-[#002a5b]/10 dark:bg-[#002a5b]/40 text-[#002a5b] dark:text-[#aac7ff] font-bold px-2 py-0.2 rounded-full border border-[#002a5b]/20 dark:border-[#002a5b]/40">
                       {student.groupName} ({student.role})
                     </span>
                   </div>
                 </div>
 
-                <span className="text-xs text-[#5b0617] font-bold">&rarr;</span>
+                <span className="material-symbols-outlined text-[18px] text-slate-300 dark:text-slate-600 group-hover:text-[#5b0617] dark:group-hover:text-[#ff8595] group-hover:translate-x-0.5 transition-all shrink-0">
+                  chevron_right
+                </span>
               </div>
             ))
           ) : query.trim() ? (
-            <div className="text-center py-8 text-xs text-[#897172] flex flex-col items-center gap-1">
-              <span className="material-symbols-outlined text-[32px] text-gray-400">
+            <div className="text-center py-8 text-xs text-slate-400 dark:text-slate-500 flex flex-col items-center gap-2">
+              <span className="material-symbols-outlined text-[36px] text-slate-300 dark:text-slate-600">
                 search_off
               </span>
-              <span>Tidak ada mahasiswa ditemukan untuk "{query}".</span>
+              <span>Tidak ada data mahasiswa ditemukan untuk "{query}".</span>
             </div>
           ) : (
-            <div className="flex flex-col gap-2">
-              <span className="text-xs font-bold text-[#564242]">Grup Orientasi Terdaftar:</span>
+            <div className="flex flex-col gap-2.5">
+              <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+                Grup Orientasi Terdaftar:
+              </span>
               <div className="grid grid-cols-2 gap-2">
                 {GROUPS_DATA.map((grp) => (
                   <button
                     key={grp.id}
                     onClick={() => setQuery(grp.name)}
-                    className="bg-white border-2 border-[#191c1d] p-2 rounded text-left text-xs font-bold hover:bg-[#e7e8e9] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+                    className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-2.5 rounded-xl text-left text-xs font-bold hover:bg-slate-50 dark:hover:bg-slate-700/80 transition-all cursor-pointer shadow-xs flex flex-col justify-between"
                   >
-                    {grp.name}
-                    <span className="block text-[10px] text-[#897172] font-normal">
+                    <span className="text-slate-900 dark:text-white">{grp.name}</span>
+                    <span className="text-[10px] text-slate-400 dark:text-slate-400 font-normal mt-0.5">
                       {grp.members.length} Mahasiswa
                     </span>
                   </button>

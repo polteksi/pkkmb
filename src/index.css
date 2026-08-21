@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
     --primary: #5b0617;
@@ -11,72 +13,220 @@
     --tertiary-container: #004083;
     --tertiary-fixed-dim: #aac7ff;
     --background: #f8f9fa;
-    --surface: #f8f9fa;
-    --surface-container: #edeeef;
-    --surface-container-low: #f3f4f5;
-    --surface-container-high: #e7e8e9;
-    --surface-container-highest: #e1e3e4;
-    --surface-dim: #d9dadb;
-    --on-surface: #191c1d;
-    --on-surface-variant: #564242;
+    --surface: #ffffff;
+    --surface-container: #f1f3f5;
+    --surface-container-low: #f8f9fa;
+    --surface-container-high: #e9ecef;
+    --on-surface: #0f172a;
+    --on-surface-variant: #334155;
+  }
+
+  .dark {
+    --primary: #ffb3ba;
+    --primary-container: #5b0617;
+    --primary-fixed: #ffdada;
+    --secondary: #ff8595;
+    --secondary-container: #7a1f2b;
+    --tertiary: #a1c8ff;
+    --tertiary-container: #002a5b;
+    --tertiary-fixed-dim: #004083;
+    --background: #080c14;
+    --surface: #111827;
+    --surface-container: #1e293b;
+    --surface-container-low: #0b0f19;
+    --surface-container-high: #334155;
+    --on-surface: #f8fafc;
+    --on-surface-variant: #cbd5e1;
   }
 
   body {
     font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: #f8f9fa;
-    color: #191c1d;
+    background-color: #f8fafc;
+    color: #0f172a;
     min-height: 100vh;
     min-height: 100dvh;
     overflow-x: hidden;
   }
 
-  h1, h2, h3, h4, h5, h6, .font-display, .font-headline {
+  .dark body {
+    background-color: #080c14;
+    color: #f8fafc;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .font-display,
+  .font-headline {
     font-family: 'Montserrat', sans-serif;
   }
 }
 
-/* Neubrutalism decorative background pattern with Mesh Gradient & Engineering blueprint grid */
+/* Light Mode Animated Red Grid Background */
 .bg-architectural {
-  background-color: #f8f9fa;
+  background-color: #f8fafc;
   background-image: 
-    radial-gradient(at 0% 0%, rgba(91, 6, 23, 0.07) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(0, 42, 91, 0.07) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(176, 42, 62, 0.05) 0px, transparent 50%),
+    radial-gradient(at 0% 0%, rgba(91, 6, 23, 0.05) 0px, transparent 45%),
+    radial-gradient(at 100% 0%, rgba(0, 42, 91, 0.06) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(176, 42, 62, 0.03) 0px, transparent 60%),
     radial-gradient(at 0% 100%, rgba(0, 42, 91, 0.05) 0px, transparent 50%),
-    linear-gradient(rgba(25, 28, 29, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(25, 28, 29, 0.035) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 24px 24px, 24px 24px;
+    linear-gradient(rgba(176, 42, 62, 0.09) 1.2px, transparent 1.2px),
+    linear-gradient(90deg, rgba(176, 42, 62, 0.09) 1.2px, transparent 1.2px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 28px 28px, 28px 28px;
+  animation: moveRedGridBg 24s linear infinite;
 }
 
-/* Neubrutalism hard shadows */
-.neu-shadow {
-  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+/* Dark Mode Animated Grid Background */
+.dark .bg-architectural {
+  background-color: #080c14;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(176, 42, 62, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(0, 70, 150, 0.18) 0px, transparent 55%),
+    radial-gradient(at 50% 50%, rgba(91, 6, 23, 0.1) 0px, transparent 60%),
+    radial-gradient(at 0% 100%, rgba(0, 42, 91, 0.15) 0px, transparent 50%),
+    linear-gradient(rgba(244, 63, 94, 0.12) 1.2px, transparent 1.2px),
+    linear-gradient(90deg, rgba(244, 63, 94, 0.12) 1.2px, transparent 1.2px);
 }
 
-.neu-shadow-sm {
-  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+@keyframes moveRedGridBg {
+  0% {
+    background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+  }
+  100% {
+    background-position: 0 0, 0 0, 0 0, 0 0, 560px 560px, 560px 560px;
+  }
 }
 
-.neu-shadow-lg {
-  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+/* 3D Depth Card with Ambient Glow Effect */
+.campus-card {
+  background-color: #ffffff;
+  color: #0f172a;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.03), 
+    0 2px 4px -2px rgba(0, 0, 0, 0.02),
+    0 10px 20px -5px rgba(91, 6, 23, 0.03),
+    0 0 15px 0 rgba(0, 42, 91, 0.02);
+  border-radius: 1.1rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
 }
 
-/* Button Active Depression effect */
-.neu-button-active {
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
+.dark .campus-card {
+  background-color: #111827;
+  color: #f8fafc;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 4px 10px -1px rgba(0, 0, 0, 0.3), 
+    0 2px 4px -2px rgba(0, 0, 0, 0.2),
+    0 10px 24px -5px rgba(0, 0, 0, 0.4),
+    0 0 20px 0 rgba(176, 42, 62, 0.06);
 }
 
-.neu-button-active:active {
-  transform: translate(4px, 4px) !important;
-  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1) !important;
+.campus-card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.neu-button-active-sm:active {
-  transform: translate(2px, 2px) !important;
-  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1) !important;
+.campus-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.06), 
+    0 8px 10px -6px rgba(0, 0, 0, 0.03),
+    0 0 24px 2px rgba(176, 42, 62, 0.12),
+    0 0 0 1px rgba(176, 42, 62, 0.15);
+  border-color: rgba(176, 42, 62, 0.25);
 }
 
-/* Material Symbols alignment helper */
+.dark .campus-card-hover:hover {
+  box-shadow: 
+    0 20px 30px -5px rgba(0, 0, 0, 0.5), 
+    0 0 25px 3px rgba(244, 63, 94, 0.18),
+    0 0 0 1px rgba(244, 63, 94, 0.3);
+  border-color: rgba(244, 63, 94, 0.35);
+}
+
+.campus-card-interactive:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* 3D Depth for Dark Highlight Cards */
+.card-3d-dark {
+  box-shadow: 
+    0 12px 28px -6px rgba(0, 42, 91, 0.35), 
+    0 0 20px 2px rgba(0, 42, 91, 0.2), 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark .card-3d-dark {
+  box-shadow: 
+    0 12px 30px -6px rgba(0, 0, 0, 0.6), 
+    0 0 25px 2px rgba(0, 60, 130, 0.3), 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.card-3d-dark:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 20px 35px -8px rgba(0, 42, 91, 0.45), 
+    0 0 28px 4px rgba(176, 42, 62, 0.22), 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.dark .card-3d-dark:hover {
+  box-shadow: 
+    0 20px 40px -8px rgba(0, 0, 0, 0.7), 
+    0 0 32px 5px rgba(244, 63, 94, 0.25), 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Glassmorphism Accents */
+.campus-glass {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 0 15px 0 rgba(91, 6, 23, 0.04);
+}
+
+.dark .campus-glass {
+  background: rgba(17, 24, 39, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4), 0 0 15px 0 rgba(244, 63, 94, 0.08);
+}
+
+/* Tab & Modal Smooth Transition Animation */
+.tab-fade-in {
+  animation: tabFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes tabFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom Scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Material Symbols Icon Alignment */
 .material-symbols-outlined {
   font-family: 'Material Symbols Outlined';
   font-weight: normal;

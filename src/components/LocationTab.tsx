@@ -8,98 +8,53 @@ interface LocationTabProps {
 
 export const LocationTab: React.FC<LocationTabProps> = ({ onSelectLocation }) => {
   const [selectedLocId, setSelectedLocId] = useState<string>('loc-1');
-  const [buildingFilter, setBuildingFilter] = useState<string>('all');
-
-  // Load custom coordinates from localStorage or default
-  const [coords, setCoords] = useState<Record<string, string>>(() => {
-    const saved = localStorage.getItem('pkkmb_custom_coords');
-    const initial = saved ? JSON.parse(saved) : {};
-    CAMPUS_LOCATIONS.forEach((loc) => {
-      if (!initial[loc.id]) {
-        initial[loc.id] = loc.coordinates || '';
-      }
-    });
-    return initial;
-  });
-
-  const handleCoordinateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value;
-    const updated = { ...coords, [selectedLocId]: val };
-    setCoords(updated);
-    localStorage.setItem('pkkmb_custom_coords', JSON.stringify(updated));
-  };
-
-  const filteredLocations = CAMPUS_LOCATIONS.filter((loc) => {
-    if (buildingFilter === 'all') return true;
-    if (buildingFilter === 'gedung-a') return loc.building.includes('Gedung A') || loc.building.includes('Utama');
-    if (buildingFilter === 'workshop') return loc.building.includes('Workshop');
-    if (buildingFilter === 'outdoor') return loc.building.includes('Terbuka');
-    return true;
-  });
 
   const activeLocation =
     CAMPUS_LOCATIONS.find((l) => l.id === selectedLocId) || CAMPUS_LOCATIONS[0];
 
-  const activeCoord = coords[activeLocation.id] || activeLocation.coordinates || '';
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(activeCoord)}`;
+  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(activeLocation.coordinates || activeLocation.name)}`;
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 pb-6 items-start">
-      {/* Left Area: Filter and Map Blueprint (lg: col-span-7) */}
-      <div className="lg:col-span-7 flex flex-col gap-4">
+    <div className="tab-fade-in grid grid-cols-1 lg:grid-cols-12 gap-6 pb-8 items-start">
+      
+      {/* Left Column: Blueprint Map Grid (lg:col-span-7) */}
+      <div className="lg:col-span-7 flex flex-col gap-6">
+        
         {/* Header */}
-        <div className="bg-[#f8f9fa] border-2 border-[#191c1d] neu-shadow rounded-lg p-4">
-          <div className="flex items-center gap-2 text-[#5b0617] mb-1">
-            <span className="material-symbols-outlined text-[24px]">map</span>
-            <h2 className="font-display font-bold text-[20px] text-[#191c1d]">
+        <div className="campus-card bg-white dark:bg-slate-900 p-5 sm:p-6 border border-slate-200/80 dark:border-slate-800 shadow-xs flex flex-col gap-2">
+          <div className="flex items-center gap-2 text-[#5b0617] dark:text-[#ff8595]">
+            <span className="material-symbols-outlined text-[26px]">map</span>
+            <h2 className="font-display font-black text-xl sm:text-2xl text-slate-900 dark:text-white tracking-tight">
               Peta Lokasi & Gedung Kampus
             </h2>
           </div>
-          <p className="text-xs text-[#564242]">
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-medium">
             Panduan navigasi venue PKKMB di Kampus Politeknik Semen Indonesia.
           </p>
-
-          {/* Building Filter Pills */}
-          <div className="flex gap-1.5 overflow-x-auto mt-3 pt-1">
-            {[
-              { id: 'all', label: 'Semua Lokasi' },
-              { id: 'gedung-a', label: 'Gedung Utama (A)' },
-              { id: 'workshop', label: 'Workshop Vokasi' },
-              { id: 'outdoor', label: 'Area Terbuka' },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setBuildingFilter(tab.id)}
-                className={`px-3 py-1 text-xs font-bold rounded border-2 shrink-0 transition-all ${
-                  buildingFilter === tab.id
-                    ? 'bg-[#5b0617] text-white border-[#191c1d] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]'
-                    : 'bg-white text-[#191c1d] border-[#191c1d] hover:bg-[#e7e8e9]'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
         </div>
 
-        {/* Interactive Blueprint / Map Visual Card */}
-        <div className="bg-[#edeeef] border-2 border-[#191c1d] neu-shadow rounded-lg p-4 relative overflow-hidden">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-[11px] font-bold text-[#5b0617] uppercase tracking-wider">
-              DENAH ZONA ORIENTASI
-            </span>
-            <span className="text-[10px] bg-white border border-[#191c1d] px-2 py-0.5 rounded font-bold">
-              Politeknik Semen Indonesia
-            </span>
-          </div>
+        {/* Interactive Blueprint Map Visual - Solid Deep Blueprint Navy Background with 3D Depth & Glow */}
+        <div 
+          style={{ backgroundColor: '#001e3d' }}
+          className="rounded-2xl text-white p-5 sm:p-6 border border-slate-700 card-3d-dark relative overflow-hidden flex flex-col gap-4"
+        >
+          {/* Blueprint Grid Texture */}
+          <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#60a5fa_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
 
-          {/* Conceptual Blueprint Map Graphic */}
-          <div className="w-full bg-[#002a5b] text-white p-3 rounded-md border-2 border-[#191c1d] relative overflow-hidden flex flex-col gap-2">
-            {/* Blueprint grid effect */}
-            <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:12px_12px] pointer-events-none" />
+          <div className="relative z-10 flex flex-col gap-4">
+            <div className="flex items-center justify-between border-b border-white/20 pb-3">
+              <span className="text-xs font-bold text-[#aac7ff] uppercase tracking-wider flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-[16px]">domain</span>
+                DENAH ZONA ORIENTASI
+              </span>
+              <span className="text-[10px] bg-white/15 text-white border border-white/20 px-2.5 py-0.5 rounded-full font-bold">
+                Politeknik Semen Indonesia
+              </span>
+            </div>
 
-            <div className="grid grid-cols-3 gap-2 relative z-10">
-              {filteredLocations.map((loc) => {
+            {/* Zone Grid - Showing all 5 locations clearly */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+              {CAMPUS_LOCATIONS.map((loc) => {
                 const isSelected = loc.id === activeLocation.id;
                 return (
                   <button
@@ -108,16 +63,16 @@ export const LocationTab: React.FC<LocationTabProps> = ({ onSelectLocation }) =>
                       setSelectedLocId(loc.id);
                       if (onSelectLocation) onSelectLocation(loc);
                     }}
-                    className={`p-2 rounded border-2 text-left transition-all flex flex-col justify-between h-20 ${
+                    className={`p-3.5 rounded-xl border text-left transition-all cursor-pointer flex flex-col justify-between min-h-[5.5rem] ${
                       isSelected
-                        ? 'bg-[#b02a3e] text-white border-white shadow-[2px_2px_0px_0px_rgba(255,255,255,0.9)] scale-102'
-                        : 'bg-white/10 hover:bg-white/20 border-white/40 text-white'
+                        ? 'bg-gradient-to-br from-[#b02a3e] to-[#7a1f2b] text-white border-white shadow-md scale-102 ring-2 ring-white/30 font-bold'
+                        : 'bg-white/10 hover:bg-white/20 border-white/20 text-white'
                     }`}
                   >
-                    <span className="text-[9px] uppercase font-bold text-white/80 line-clamp-1">
+                    <span className={`text-[10px] uppercase font-bold tracking-wider ${isSelected ? 'text-[#ffdada]' : 'text-[#aac7ff]'}`}>
                       {loc.floor}
                     </span>
-                    <span className="font-headline font-bold text-[11px] line-clamp-2 mt-1 leading-tight">
+                    <span className="font-display font-bold text-xs sm:text-sm line-clamp-2 mt-1 leading-snug text-white">
                       {loc.name}
                     </span>
                   </button>
@@ -125,32 +80,35 @@ export const LocationTab: React.FC<LocationTabProps> = ({ onSelectLocation }) =>
               })}
             </div>
 
-            <p className="text-[10px] text-[#aac7ff] italic text-right mt-1 font-semibold">
-              *Ketuk zona untuk melihat rute petunjuk arah
+            <p className="text-[11px] text-[#aac7ff] italic text-right font-medium">
+              *Ketuk zona untuk melihat rute & detail petunjuk arah
             </p>
           </div>
         </div>
+
       </div>
 
-      {/* Right Area: Selected Location Details & Coordinate Editor (lg: col-span-5) */}
+      {/* Right Column: Selected Location Details (lg:col-span-5) */}
       <div className="lg:col-span-5 flex flex-col gap-4">
+        
         {/* Selected Location Details */}
-        <div className="bg-[#f8f9fa] border-2 border-[#191c1d] neu-shadow rounded-lg p-5 flex flex-col gap-4">
-          <div className="flex flex-col gap-1.5">
-            <div className="flex flex-wrap gap-1.5 items-center justify-between">
-              <span className="bg-[#5b0617] text-white text-[10px] font-bold px-2.5 py-0.5 rounded border border-[#191c1d]">
+        <div className="campus-card bg-white dark:bg-slate-900 p-6 border border-slate-200/80 dark:border-slate-800 shadow-xs flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
+            <div className="flex flex-wrap gap-2 items-center justify-between">
+              <span className="bg-[#5b0617]/10 dark:bg-[#ff8595]/15 text-[#5b0617] dark:text-[#ff8595] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-[#5b0617]/20 dark:border-[#ff8595]/30">
                 {activeLocation.floor} &bull; {activeLocation.building}
               </span>
-              <span className="bg-white text-[#191c1d] border-2 border-[#191c1d] px-2 py-0.5 rounded text-[10px] font-bold shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)]">
+              <span className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-slate-200 dark:border-slate-700">
                 Kapasitas: {activeLocation.capacity}
               </span>
             </div>
-            <h3 className="font-display font-black text-[20px] text-[#191c1d] mt-1 leading-tight">
+            
+            <h3 className="font-display font-black text-xl text-slate-900 dark:text-white leading-tight">
               {activeLocation.name}
             </h3>
           </div>
 
-          <p className="text-xs text-[#564242] leading-relaxed font-medium">
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
             {activeLocation.description}
           </p>
 
@@ -159,61 +117,46 @@ export const LocationTab: React.FC<LocationTabProps> = ({ onSelectLocation }) =>
             {activeLocation.tags.map((t, idx) => (
               <span
                 key={idx}
-                className="bg-[#e7e8e9] text-[#191c1d] text-[10px] font-bold px-2 py-0.5 rounded border border-[#191c1d]"
+                className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-[10px] font-bold px-2.5 py-0.5 rounded-md border border-slate-200 dark:border-slate-700"
               >
                 #{t}
               </span>
             ))}
           </div>
 
-          {/* Dynamic Coordinates Input Field */}
-          <div className="bg-white border-2 border-[#191c1d] p-3.5 rounded-md flex flex-col gap-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mt-1">
-            <label htmlFor="coords-input" className="text-xs font-bold text-[#002a5b] flex items-center gap-1.5">
-              <span className="material-symbols-outlined text-[18px]">edit_location_alt</span>
-              Masukkan Titik Koordinat Map:
-            </label>
-            <input
-              id="coords-input"
-              type="text"
-              value={coords[activeLocation.id] || ''}
-              onChange={handleCoordinateChange}
-              placeholder="Contoh: -7.162384,112.639737"
-              className="w-full bg-[#f8f9fa] border-2 border-[#191c1d] px-3 py-2 text-xs rounded font-bold focus:outline-none focus:ring-2 focus:ring-[#5b0617] shadow-inner"
-            />
-            <p className="text-[9px] text-[#897172] font-semibold">
-              *Tulis koordinat (latitude, longitude) di atas. Data akan disimpan otomatis.
-            </p>
-          </div>
-
-          {/* Step by step directions - Clickable maps link */}
+          {/* Clickable Direction Card (Google Maps Redirect) */}
           <a
             href={mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
             title="Klik untuk membuka rute di Google Maps"
-            className="bg-[#ffdada]/60 border-2 border-[#191c1d] p-4 rounded-md flex flex-col gap-2 hover:bg-[#ffdada] transition-all cursor-pointer shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5 group text-left block"
+            className="campus-card-hover bg-gradient-to-br from-[#5b0617]/10 via-[#b02a3e]/10 to-red-50/50 dark:from-[#5b0617]/25 dark:via-[#b02a3e]/20 dark:to-slate-900 border border-[#5b0617]/20 dark:border-[#ff8595]/30 p-4 rounded-xl flex flex-col gap-2 cursor-pointer group text-left block transition-all mt-2"
           >
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1.5 text-[#5b0617]">
-                <span className="material-symbols-outlined text-[20px]">directions</span>
+              <div className="flex items-center gap-1.5 text-[#5b0617] dark:text-[#ff8595]">
+                <span className="material-symbols-outlined text-[18px]">directions</span>
                 <span className="font-bold text-xs uppercase tracking-wider">
                   Petunjuk Menuju Lokasi
                 </span>
               </div>
-              <span className="text-[10px] bg-[#5b0617] text-white font-bold px-2 py-0.5 rounded border border-[#191c1d] flex items-center gap-1 shrink-0 group-hover:scale-105 transition-transform shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
-                <span className="material-symbols-outlined text-[12px] text-white">open_in_new</span>
+              <span className="text-[10px] bg-[#5b0617] dark:bg-[#b02a3e] text-white font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1 group-hover:scale-105 transition-transform shadow-xs">
+                <span className="material-symbols-outlined text-[12px]">open_in_new</span>
                 Buka Map
               </span>
             </div>
-            <p className="text-xs text-[#191c1d] font-semibold leading-relaxed mt-1">
+            
+            <p className="text-xs text-slate-800 dark:text-slate-200 font-semibold leading-relaxed mt-1">
               {activeLocation.directions}
             </p>
-            <p className="text-[9px] text-[#5b0617] font-bold underline mt-1">
+            
+            <p className="text-[10px] text-[#5b0617] dark:text-[#ff8595] font-bold underline mt-1">
               *Ketuk kartu ini untuk navigasi Google Maps secara otomatis.
             </p>
           </a>
         </div>
+
       </div>
+
     </div>
   );
 };

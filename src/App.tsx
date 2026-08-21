@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { DAYS_DATA } from './data/orientationData';
 import { TabType, DaySchedule, StudentMember } from './types';
 import { Header } from './components/Header';
@@ -15,7 +15,28 @@ import { MenuDrawer } from './components/MenuDrawer';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('beranda');
-  const [currentDayNumber, setCurrentDayNumber] = useState<number>(2); // Default to Tuesday / Hari ke-2 as in mockup
+  const [currentDayNumber, setCurrentDayNumber] = useState<number>(1); // Default to Monday / Hari ke-1 (Senin)
+
+  // Dark mode state: default to light if not saved
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
+    const savedTheme = localStorage.getItem('pkkmb_theme');
+    if (savedTheme) return savedTheme === 'dark';
+    return false;
+  });
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('pkkmb_theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('pkkmb_theme', 'light');
+    }
+  }, [isDarkMode]);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode((prev) => !prev);
+  };
 
   // Modal states
   const [scheduleModalDay, setScheduleModalDay] = useState<DaySchedule | null>(null);
@@ -24,7 +45,15 @@ export default function App() {
   const [searchInitialQuery, setSearchInitialQuery] = useState<string>('');
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
-  const currentDay = DAYS_DATA.find((d) => d.dayNumber === currentDayNumber) || DAYS_DATA[1];
+  const currentDay = DAYS_DATA.find((d) => d.dayNumber === currentDayNumber) || DAYS_DATA[0];
+
+  const tabTitles: Record<TabType, string> = {
+    beranda: 'Beranda Utama',
+    jadwal: 'Jadwal 5 Hari',
+    kelompok: 'Daftar Kelompok',
+    lokasi: 'Denah & Venue',
+    faq: 'Tanya Jawab (FAQ)',
+  };
 
   const handleOpenSearchWithQuery = (query: string) => {
     setSearchInitialQuery(query);
@@ -35,21 +64,28 @@ export default function App() {
     setActiveTab('kelompok');
   };
 
+  const handleNavigate = (tab: TabType) => {
+    setActiveTab(tab);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <div className="bg-architectural min-h-screen text-[#191c1d] flex flex-col font-body selection:bg-[#ffdada] selection:text-[#5b0617]">
-      {/* Top Fixed App Bar */}
+    <div className="bg-architectural min-h-screen text-slate-900 dark:text-slate-100 flex flex-col font-body selection:bg-[#ffdada] selection:text-[#5b0617] transition-colors duration-300">
+      {/* Top Fixed App Bar with Dark Mode Toggle */}
       <Header
         onOpenMenu={() => setIsMenuOpen(true)}
-        onOpenGroups={() => setActiveTab('kelompok')}
+        isDarkMode={isDarkMode}
+        onToggleDarkMode={toggleDarkMode}
+        activeTabTitle={tabTitles[activeTab]}
       />
 
       {/* Main Scrollable Canvas */}
-      <main className="pt-20 pb-16 px-4 sm:px-6 md:px-8 max-w-5xl mx-auto w-full flex-1 flex flex-col transition-all">
+      <main className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full flex-1 flex flex-col transition-all">
         {activeTab === 'beranda' && (
           <HomeTab
             currentDay={currentDay}
             onSelectDay={(dayNum) => setCurrentDayNumber(dayNum)}
-            onNavigateTab={(tab) => setActiveTab(tab)}
+            onNavigateTab={handleNavigate}
             onOpenScheduleModal={(day) => setScheduleModalDay(day)}
             onOpenLocationModal={(loc) => setLocationModalName(loc)}
             onSearchStudent={handleOpenSearchWithQuery}
@@ -78,7 +114,7 @@ export default function App() {
         )}
       </main>
 
-      <Footer onNavigateTab={(tab) => setActiveTab(tab)} />
+      <Footer onNavigateTab={handleNavigate} />
 
       {/* Interactive Modals and Drawers */}
       <ScheduleModal
@@ -102,7 +138,8 @@ export default function App() {
       <MenuDrawer
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
-        onNavigateTab={(tab) => setActiveTab(tab)}
+        onNavigateTab={handleNavigate}
+        activeTab={activeTab}
       />
     </div>
   );
