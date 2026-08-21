@@ -1,0 +1,6 @@
+{
+  "name": "ORVOKS - PKKMB Politeknik Semen Indonesia",
+  "description": "Aplikasi orientasi vokasional mahasiswa baru PKKMB Politeknik Semen Indonesia 2026 dengan gaya Neubrutalism.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
