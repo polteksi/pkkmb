@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrandDecoration } from './BrandDecoration';
 
 interface HeaderProps {
   onOpenMenu: () => void;
@@ -43,11 +42,11 @@ export const Header: React.FC<HeaderProps> = ({
           onClick={onOpenMenu}
           className="flex items-center gap-2 cursor-pointer select-none group"
         >
-          <BrandDecoration type="sparkle" size={18} color="#D63BBE" className="group-hover:rotate-45 transition-transform duration-300 hidden xs:inline-block" />
+          <img src="/favicon.png" alt="ORVOKS Logo" className="h-7 w-7 sm:h-8 sm:w-8 shrink-0" />
           <span className="font-display text-[22px] sm:text-[24px] font-black text-[#5B2BBE] dark:text-white tracking-tight group-hover:opacity-90 transition-opacity">
             ORVOKS
           </span>
-          <span className="bg-gradient-to-r from-[#5B2BBE] to-[#D63BBE] text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full shadow-xs tracking-wider font-display">
+          <span className="bg-[#5B2BBE] text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full shadow-xs tracking-wider font-display">
             2026
           </span>
         </div>

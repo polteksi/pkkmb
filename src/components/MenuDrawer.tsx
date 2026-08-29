@@ -35,7 +35,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Drawer Header - ORVOKS Deep Purple Gradient */}
-        <div className="bg-gradient-to-br from-[#43208F] via-[#5B2BBE] to-[#7D3BD6] text-white p-5 sm:p-6 shrink-0 relative overflow-hidden">
+        <div className="bg-[#5B2BBE] text-white p-5 sm:p-6 shrink-0 relative overflow-hidden">
           
           {/* Subtle geometric accent */}
           <div className="absolute top-3 right-12 opacity-15 pointer-events-none">

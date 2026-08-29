@@ -67,7 +67,7 @@ export const LocationTab: React.FC<LocationTabProps> = ({ onSelectLocation }) =>
                     }}
                     className={`p-3.5 rounded-xl border text-left transition-all cursor-pointer flex flex-col justify-between min-h-[5.5rem] ${
                       isSelected
-                        ? 'bg-gradient-to-br from-[#D63BBE] to-[#5B2BBE] text-white border-white shadow-md scale-102 ring-2 ring-white/40 font-bold'
+                        ? 'bg-[#5B2BBE] text-white border-white shadow-md scale-102 ring-2 ring-white/40 font-bold'
                         : 'bg-white/10 hover:bg-white/20 border-white/20 text-white'
                     }`}
                   >
@@ -132,7 +132,7 @@ export const LocationTab: React.FC<LocationTabProps> = ({ onSelectLocation }) =>
             target="_blank"
             rel="noopener noreferrer"
             title="Klik untuk membuka rute di Google Maps"
-            className="campus-card-hover bg-gradient-to-br from-[#5B2BBE]/10 via-[#D63BBE]/10 to-[#FAF9F6] dark:from-[#5B2BBE]/20 dark:via-[#D63BBE]/15 dark:to-[#251F4A] border border-[#5B2BBE]/20 dark:border-[#D63BBE]/30 p-4 rounded-xl flex flex-col gap-2 cursor-pointer group text-left block transition-all mt-2"
+            className="campus-card-hover bg-[#FAF9F6] dark:bg-[#251F4A] border border-[#5B2BBE]/20 dark:border-[#D63BBE]/30 p-4 rounded-xl flex flex-col gap-2 cursor-pointer group text-left block transition-all mt-2"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-1.5 text-[#5B2BBE] dark:text-[#C39BFF]">

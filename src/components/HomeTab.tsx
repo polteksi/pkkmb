@@ -31,7 +31,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({
         <div className="lg:col-span-7 flex flex-col gap-6">
           
           {/* Hero Section */}
-          <section className="campus-card bg-gradient-to-br from-white via-[#FAF9F6] to-[#FDE8FA]/40 dark:from-[#1B1638] dark:via-[#1B1638] dark:to-[#251F4A] p-6 sm:p-7 relative overflow-hidden border border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 shadow-xs">
+          <section className="campus-card bg-white dark:bg-[#1B1638] p-6 sm:p-7 relative overflow-hidden border border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 shadow-xs">
             
             {/* Minimal Geometric Sparkle Accents in background */}
             <div className="absolute top-4 right-6 opacity-20 pointer-events-none">
@@ -49,7 +49,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({
               {/* Bold Editorial Headline */}
               <h1 className="font-display text-[28px] sm:text-[36px] font-black text-[#22202A] dark:text-white leading-[1.12] tracking-tight">
                 Bangun Fondasi,<br />
-                <span className="bg-gradient-to-r from-[#5B2BBE] via-[#D63BBE] to-[#4256A6] dark:from-[#C39BFF] dark:via-[#FF85EA] dark:to-[#A5B8FF] bg-clip-text text-transparent">
+                <span className="text-[#5B2BBE] dark:text-[#C39BFF]">
                   Wujudkan Karya!
                 </span>
               </h1>
@@ -59,20 +59,13 @@ export const HomeTab: React.FC<HomeTabProps> = ({
               </p>
 
               {/* Hero Banner Showcase */}
-              <div className="mt-2 rounded-2xl overflow-hidden bg-[#1B1638] relative h-44 sm:h-52 w-full border border-[#5B2BBE]/15 dark:border-[#D63BBE]/25 shadow-inner group">
+              <div className="mt-2 rounded-2xl overflow-hidden relative h-44 sm:h-52 w-full border border-[#5B2BBE]/15 dark:border-[#D63BBE]/25 shadow-inner group">
                 <img
                   src={HERO_IMAGE_URL}
                   alt="Orientasi Vokasional 2026 - Politeknik Semen Indonesia"
-                  className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500 ease-out"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0F0C20]/80 via-transparent to-transparent pointer-events-none" />
-                
-                {/* Floating Tag */}
-                <div className="absolute bottom-3 right-3 campus-glass dark:bg-[#1B1638]/90 dark:border-[#D63BBE]/30 px-3.5 py-1.5 rounded-full text-[11px] font-bold text-[#5B2BBE] dark:text-[#EFE9FF] shadow-sm flex items-center gap-1.5">
-                  <BrandDecoration type="sparkle" size={13} color="#D63BBE" />
-                  <span>ORVOKS EXPO & PRAKTIK</span>
-                </div>
               </div>
             </div>
           </section>
@@ -150,7 +143,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({
               </div>
               <div className="w-full h-2.5 bg-[#FAF9F6] dark:bg-[#251F4A] rounded-full overflow-hidden p-0.5 border border-[#5B2BBE]/10 dark:border-transparent">
                 <div
-                  className="h-full bg-gradient-to-r from-[#5B2BBE] via-[#D63BBE] to-[#F2B632] rounded-full transition-all duration-500 ease-out"
+                  className="h-full bg-[#5B2BBE] rounded-full transition-all duration-500 ease-out"
                   style={{ width: `${currentDay.progressPercent}%` }}
                 />
               </div>

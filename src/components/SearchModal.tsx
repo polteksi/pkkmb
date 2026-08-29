@@ -42,7 +42,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header - ORVOKS Deep Purple Gradient */}
-        <div className="bg-gradient-to-r from-[#43208F] via-[#5B2BBE] to-[#7D3BD6] text-white p-5 flex items-center justify-between relative overflow-hidden">
+        <div className="bg-[#5B2BBE] text-white p-5 flex items-center justify-between relative overflow-hidden">
           <div className="flex items-center gap-2 relative z-10">
             <span className="material-symbols-outlined text-[24px]">person_search</span>
             <h3 className="font-display font-bold text-lg text-white">

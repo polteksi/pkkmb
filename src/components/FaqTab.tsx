@@ -27,7 +27,7 @@ export const FaqTab: React.FC = () => {
     <div className="tab-fade-in flex flex-col gap-6 pb-8">
       
       {/* Header & Search Banner */}
-      <div className="campus-card bg-gradient-to-r from-white via-[#FAF9F6] to-[#FDE8FA]/40 dark:from-[#1B1638] dark:to-[#251F4A] p-6 sm:p-7 border border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 shadow-xs flex flex-col gap-4 relative overflow-hidden">
+      <div className="campus-card bg-white dark:bg-[#1B1638] p-6 sm:p-7 border border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 shadow-xs flex flex-col gap-4 relative overflow-hidden">
         
         <div className="absolute top-4 right-6 opacity-20 pointer-events-none">
           <BrandDecoration type="sparkle" size={24} color="#5B2BBE" />
@@ -153,7 +153,7 @@ export const FaqTab: React.FC = () => {
       </div>
 
       {/* Helpdesk Contact Card */}
-      <div className="campus-card bg-gradient-to-r from-[#FAF9F6] via-[#FDE8FA]/40 to-[#EFE9FF]/60 dark:from-[#1B1638] dark:via-[#1B1638] dark:to-[#251F4A] border border-[#5B2BBE]/15 dark:border-[#D63BBE]/30 p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xs">
+      <div className="campus-card bg-[#FAF9F6] dark:bg-[#1B1638] border border-[#5B2BBE]/15 dark:border-[#D63BBE]/30 p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xs">
         <div className="flex items-center gap-3.5">
           <div className="w-12 h-12 rounded-2xl bg-[#5B2BBE] dark:bg-[#5B2BBE] text-white flex items-center justify-center shrink-0 shadow-xs">
             <span className="material-symbols-outlined text-[26px]">contact_support</span>

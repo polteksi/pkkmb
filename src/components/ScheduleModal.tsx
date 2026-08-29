@@ -25,7 +25,7 @@ export const ScheduleModal: React.FC<ScheduleModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header - ORVOKS Deep Purple Gradient */}
-        <div className="bg-gradient-to-r from-[#43208F] via-[#5B2BBE] to-[#7D3BD6] text-white p-5 flex items-start justify-between relative overflow-hidden">
+        <div className="bg-[#5B2BBE] text-white p-5 flex items-start justify-between relative overflow-hidden">
           <div className="relative z-10">
             <span className="text-[10px] bg-white/20 text-[#FDE8FA] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider font-display inline-flex items-center gap-1">
               <BrandDecoration type="sparkle" size={12} color="#F2B632" />

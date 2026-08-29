@@ -18,7 +18,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
             <span className="font-display text-[20px] font-black text-[#5B2BBE] dark:text-white tracking-tight">
               ORVOKS
             </span>
-            <span className="bg-gradient-to-r from-[#5B2BBE] to-[#D63BBE] text-white text-[9px] font-extrabold px-2.5 py-0.5 rounded-full font-display">
+            <span className="bg-[#5B2BBE] text-white text-[9px] font-extrabold px-2.5 py-0.5 rounded-full font-display">
               2026
             </span>
           </div>

@@ -62,7 +62,7 @@ export const ScheduleTab: React.FC<ScheduleTabProps> = ({
     <div className="tab-fade-in flex flex-col gap-6 pb-8">
       
       {/* Header Banner */}
-      <div className="campus-card bg-gradient-to-r from-white via-[#FAF9F6] to-[#FDE8FA]/40 dark:from-[#1B1638] dark:to-[#251F4A] p-6 border border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 shadow-xs flex flex-col gap-4 relative overflow-hidden">
+      <div className="campus-card bg-white dark:bg-[#1B1638] p-6 border border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 shadow-xs flex flex-col gap-4 relative overflow-hidden">
         
         {/* Subtle minimal geometric accent */}
         <div className="absolute top-4 right-6 opacity-20 pointer-events-none">

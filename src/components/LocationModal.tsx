@@ -33,7 +33,7 @@ export const LocationModal: React.FC<LocationModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header - ORVOKS Blue/Purple Gradient */}
-        <div className="bg-gradient-to-r from-[#4256A6] via-[#5B2BBE] to-[#7D3BD6] text-white p-5 flex items-start justify-between relative overflow-hidden">
+        <div className="bg-[#5B2BBE] text-white p-5 flex items-start justify-between relative overflow-hidden">
           <div className="flex items-start gap-2.5 relative z-10">
             <span className="material-symbols-outlined text-[24px] text-[#FDE8FA] mt-0.5">location_on</span>
             <div>
@@ -88,7 +88,7 @@ export const LocationModal: React.FC<LocationModalProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             title="Klik untuk membuka di Google Maps"
-            className="bg-gradient-to-br from-[#5B2BBE]/10 via-[#D63BBE]/10 to-[#FAF9F6] dark:from-[#5B2BBE]/20 dark:via-[#D63BBE]/15 dark:to-[#251F4A] border border-[#5B2BBE]/20 dark:border-[#D63BBE]/30 p-4 rounded-xl flex flex-col gap-1.5 hover:border-[#5B2BBE]/40 dark:hover:border-[#D63BBE]/50 transition-all cursor-pointer group block text-left"
+            className="bg-[#FAF9F6] dark:bg-[#251F4A] border border-[#5B2BBE]/20 dark:border-[#D63BBE]/30 p-4 rounded-xl flex flex-col gap-1.5 hover:border-[#5B2BBE]/40 dark:hover:border-[#D63BBE]/50 transition-all cursor-pointer group block text-left"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-1.5 text-[#5B2BBE] dark:text-[#C39BFF]">

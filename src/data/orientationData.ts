@@ -1,6 +1,6 @@
 import { DaySchedule, OrientationGroup, StudentMember, CampusLocation, FaqItem } from '../types';
 
-export const HERO_IMAGE_URL = 'https://lh3.googleusercontent.com/aida-public/AB6AXuAGwRf_cukRPQm8PNOFSJLHrBtmw1HW1AelFAXdvRHgjyxN1mG6FAqcFd2d3TJIBrQCs0KSCEHNELt6xhcM6Pj8wn9kwLD43Li7Zc_kFxprPqXb8Zuip1VSI_5tJVTS0yH6N6v6D2VhL2Wr8VYZhUTjlKxjUErl8gHr7_qvOPG00K6FUuRgG8PCVpXVIxlsVqZ8aYlDzuwn-uOjKZmrdKm68CHkH6J-obJW5UI5i9THo2VKvzNDFeTF';
+export const HERO_IMAGE_URL = 'public/Elaina 3D.jpg';
 
 export const DAYS_DATA: DaySchedule[] = [
   {

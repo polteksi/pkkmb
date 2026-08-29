@@ -14,9 +14,11 @@ import { SearchModal } from './components/SearchModal';
 import { MenuDrawer } from './components/MenuDrawer';
 import { BrandDecoration } from './components/BrandDecoration';
 
+
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('beranda');
   const [currentDayNumber, setCurrentDayNumber] = useState<number>(1); // Default to Monday / Hari ke-1 (Senin)
+
 
   // Dark mode state: default to light if not saved
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
@@ -72,7 +74,7 @@ export default function App() {
 
   return (
     <div className="bg-orvoks-canvas min-h-screen text-[#22202A] dark:text-[#F3F2F8] flex flex-col font-body selection:bg-[#EFE9FF] selection:text-[#5B2BBE] dark:selection:bg-[#5B2BBE] dark:selection:text-white transition-colors duration-300 relative overflow-hidden">
-      
+
       {/* Background Decorative Minimal Geometric Accents (Clean, non-intrusive, preserving generous whitespace) */}
       <div className="fixed top-28 -left-3 pointer-events-none opacity-15 dark:opacity-10 z-0">
         <BrandDecoration type="sparkle" size={24} color="#5B2BBE" />
