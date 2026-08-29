@@ -12,6 +12,7 @@ import { ScheduleModal } from './components/ScheduleModal';
 import { LocationModal } from './components/LocationModal';
 import { SearchModal } from './components/SearchModal';
 import { MenuDrawer } from './components/MenuDrawer';
+import { BrandDecoration } from './components/BrandDecoration';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('beranda');
@@ -70,7 +71,22 @@ export default function App() {
   };
 
   return (
-    <div className="bg-architectural min-h-screen text-slate-900 dark:text-slate-100 flex flex-col font-body selection:bg-[#ffdada] selection:text-[#5b0617] transition-colors duration-300">
+    <div className="bg-orvoks-canvas min-h-screen text-[#22202A] dark:text-[#F3F2F8] flex flex-col font-body selection:bg-[#EFE9FF] selection:text-[#5B2BBE] dark:selection:bg-[#5B2BBE] dark:selection:text-white transition-colors duration-300 relative overflow-hidden">
+      
+      {/* Background Decorative Minimal Geometric Accents (Clean, non-intrusive, preserving generous whitespace) */}
+      <div className="fixed top-28 -left-3 pointer-events-none opacity-15 dark:opacity-10 z-0">
+        <BrandDecoration type="sparkle" size={24} color="#5B2BBE" />
+      </div>
+      <div className="fixed top-1/3 -right-3 pointer-events-none opacity-20 dark:opacity-10 z-0 hidden lg:block">
+        <BrandDecoration type="starburst" size={28} color="#F2B632" secondaryColor="#5B2BBE" />
+      </div>
+      <div className="fixed bottom-32 -left-3 pointer-events-none opacity-15 dark:opacity-10 z-0 hidden md:block">
+        <BrandDecoration type="diamond" size={20} color="#D63BBE" />
+      </div>
+      <div className="fixed bottom-20 -right-2 pointer-events-none opacity-15 dark:opacity-10 z-0">
+        <BrandDecoration type="sparkle" size={22} color="#4256A6" />
+      </div>
+
       {/* Top Fixed App Bar with Dark Mode Toggle */}
       <Header
         onOpenMenu={() => setIsMenuOpen(true)}
@@ -80,7 +96,7 @@ export default function App() {
       />
 
       {/* Main Scrollable Canvas */}
-      <main className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full flex-1 flex flex-col transition-all">
+      <main className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full flex-1 flex flex-col transition-all relative z-10">
         {activeTab === 'beranda' && (
           <HomeTab
             currentDay={currentDay}
