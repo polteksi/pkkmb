@@ -4,53 +4,64 @@
 
 @layer base {
   :root {
-    --primary: #5b0617;
-    --primary-container: #7a1f2b;
-    --primary-fixed: #ffdada;
-    --secondary: #b02a3e;
-    --secondary-container: #ff6473;
-    --tertiary: #002a5b;
-    --tertiary-container: #004083;
-    --tertiary-fixed-dim: #aac7ff;
-    --background: #f8f9fa;
-    --surface: #ffffff;
-    --surface-container: #f1f3f5;
-    --surface-container-low: #f8f9fa;
-    --surface-container-high: #e9ecef;
-    --on-surface: #0f172a;
-    --on-surface-variant: #334155;
+    /* ORVOKS Brand Palette Tokens */
+    --orvoks-purple: #5B2BBE;
+    --orvoks-deep-purple: #43208F;
+    --orvoks-magenta: #D63BBE;
+    --orvoks-blue: #4256A6;
+    --orvoks-green: #2F9672;
+    --orvoks-yellow: #F2B632;
+    --orvoks-pink: #F06C7D;
+    
+    /* Neutrals & Surfaces (Light) */
+    --background: #FAF9F6;
+    --surface: #FFFFFF;
+    --surface-container: #F3F1EC;
+    --surface-container-high: #EAE6DF;
+    --on-surface: #22202A;
+    --on-surface-variant: #6B6874;
+
+    /* Semantic Aliases */
+    --primary: var(--orvoks-purple);
+    --primary-container: var(--orvoks-deep-purple);
+    --primary-fixed: #EFE9FF;
+    --secondary: var(--orvoks-magenta);
+    --secondary-container: #FDE8FA;
+    --tertiary: var(--orvoks-blue);
+    --tertiary-fixed-dim: #DCE4FF;
   }
 
   .dark {
-    --primary: #ffb3ba;
-    --primary-container: #5b0617;
-    --primary-fixed: #ffdada;
-    --secondary: #ff8595;
-    --secondary-container: #7a1f2b;
-    --tertiary: #a1c8ff;
-    --tertiary-container: #002a5b;
-    --tertiary-fixed-dim: #004083;
-    --background: #080c14;
-    --surface: #111827;
-    --surface-container: #1e293b;
-    --surface-container-low: #0b0f19;
-    --surface-container-high: #334155;
-    --on-surface: #f8fafc;
-    --on-surface-variant: #cbd5e1;
+    /* Neutrals & Surfaces (ORVOKS Night Mode) */
+    --background: #0F0C20;
+    --surface: #1B1638;
+    --surface-container: #251F4A;
+    --surface-container-high: #322B60;
+    --on-surface: #F3F2F8;
+    --on-surface-variant: #A39EB8;
+
+    /* Semantic Aliases (Dark) */
+    --primary: #C39BFF;
+    --primary-container: #5B2BBE;
+    --primary-fixed: #EFE9FF;
+    --secondary: #FF85EA;
+    --secondary-container: #D63BBE;
+    --tertiary: #A5B8FF;
+    --tertiary-fixed-dim: #4256A6;
   }
 
   body {
-    font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: #f8fafc;
-    color: #0f172a;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #FAF9F6;
+    color: #22202A;
     min-height: 100vh;
     min-height: 100dvh;
     overflow-x: hidden;
   }
 
   .dark body {
-    background-color: #080c14;
-    color: #f8fafc;
+    background-color: #0F0C20;
+    color: #F3F2F8;
   }
 
   h1,
@@ -61,144 +72,123 @@
   h6,
   .font-display,
   .font-headline {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Sora', 'Montserrat', sans-serif;
   }
 }
 
-/* Light Mode Animated Red Grid Background */
-.bg-architectural {
-  background-color: #f8fafc;
+/* ORVOKS Clean Warm Off-White Page Canvas (#FAF9F6) */
+.bg-architectural,
+.bg-orvoks-canvas {
+  background-color: #FAF9F6;
   background-image: 
-    radial-gradient(at 0% 0%, rgba(91, 6, 23, 0.05) 0px, transparent 45%),
-    radial-gradient(at 100% 0%, rgba(0, 42, 91, 0.06) 0px, transparent 50%),
-    radial-gradient(at 50% 50%, rgba(176, 42, 62, 0.03) 0px, transparent 60%),
-    radial-gradient(at 0% 100%, rgba(0, 42, 91, 0.05) 0px, transparent 50%),
-    linear-gradient(rgba(176, 42, 62, 0.09) 1.2px, transparent 1.2px),
-    linear-gradient(90deg, rgba(176, 42, 62, 0.09) 1.2px, transparent 1.2px);
-  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 28px 28px, 28px 28px;
-  animation: moveRedGridBg 24s linear infinite;
+    radial-gradient(at 0% 0%, rgba(91, 43, 190, 0.035) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(214, 59, 190, 0.035) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(242, 182, 50, 0.03) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(66, 86, 166, 0.025) 0px, transparent 50%);
+  background-attachment: fixed;
 }
 
-/* Dark Mode Animated Grid Background */
-.dark .bg-architectural {
-  background-color: #080c14;
+/* ORVOKS Dark Mode Background */
+.dark .bg-architectural,
+.dark .bg-orvoks-canvas {
+  background-color: #0F0C20;
   background-image: 
-    radial-gradient(at 0% 0%, rgba(176, 42, 62, 0.15) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(0, 70, 150, 0.18) 0px, transparent 55%),
-    radial-gradient(at 50% 50%, rgba(91, 6, 23, 0.1) 0px, transparent 60%),
-    radial-gradient(at 0% 100%, rgba(0, 42, 91, 0.15) 0px, transparent 50%),
-    linear-gradient(rgba(244, 63, 94, 0.12) 1.2px, transparent 1.2px),
-    linear-gradient(90deg, rgba(244, 63, 94, 0.12) 1.2px, transparent 1.2px);
+    radial-gradient(at 0% 0%, rgba(91, 43, 190, 0.16) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(214, 59, 190, 0.14) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(66, 86, 166, 0.08) 0px, transparent 55%),
+    radial-gradient(at 0% 100%, rgba(91, 43, 190, 0.12) 0px, transparent 50%);
+  background-attachment: fixed;
 }
 
-@keyframes moveRedGridBg {
-  0% {
-    background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
-  }
-  100% {
-    background-position: 0 0, 0 0, 0 0, 0 0, 560px 560px, 560px 560px;
-  }
-}
-
-/* 3D Depth Card with Ambient Glow Effect */
+/* ORVOKS Modern Playful Editorial Cards */
 .campus-card {
-  background-color: #ffffff;
-  color: #0f172a;
-  border: 1px solid rgba(226, 232, 240, 0.95);
+  background-color: #FFFFFF;
+  color: #22202A;
+  border: 1px solid rgba(91, 43, 190, 0.09);
   box-shadow: 
-    0 4px 6px -1px rgba(0, 0, 0, 0.03), 
-    0 2px 4px -2px rgba(0, 0, 0, 0.02),
-    0 10px 20px -5px rgba(91, 6, 23, 0.03),
-    0 0 15px 0 rgba(0, 42, 91, 0.02);
-  border-radius: 1.1rem;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    0 4px 20px -2px rgba(91, 43, 190, 0.04),
+    0 2px 6px -1px rgba(0, 0, 0, 0.02);
+  border-radius: 1.25rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
 }
 
 .dark .campus-card {
-  background-color: #111827;
-  color: #f8fafc;
-  border-color: rgba(255, 255, 255, 0.08);
+  background-color: #1B1638;
+  color: #F3F2F8;
+  border-color: rgba(214, 59, 190, 0.14);
   box-shadow: 
-    0 4px 10px -1px rgba(0, 0, 0, 0.3), 
-    0 2px 4px -2px rgba(0, 0, 0, 0.2),
-    0 10px 24px -5px rgba(0, 0, 0, 0.4),
-    0 0 20px 0 rgba(176, 42, 62, 0.06);
+    0 8px 24px -4px rgba(0, 0, 0, 0.45),
+    0 0 20px 0 rgba(91, 43, 190, 0.1);
 }
 
 .campus-card-hover {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .campus-card-hover:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   box-shadow: 
-    0 20px 25px -5px rgba(0, 0, 0, 0.06), 
-    0 8px 10px -6px rgba(0, 0, 0, 0.03),
-    0 0 24px 2px rgba(176, 42, 62, 0.12),
-    0 0 0 1px rgba(176, 42, 62, 0.15);
-  border-color: rgba(176, 42, 62, 0.25);
+    0 16px 30px -6px rgba(91, 43, 190, 0.1),
+    0 6px 12px -4px rgba(214, 59, 190, 0.06);
+  border-color: rgba(91, 43, 190, 0.22);
 }
 
 .dark .campus-card-hover:hover {
+  transform: translateY(-3px);
   box-shadow: 
-    0 20px 30px -5px rgba(0, 0, 0, 0.5), 
-    0 0 25px 3px rgba(244, 63, 94, 0.18),
-    0 0 0 1px rgba(244, 63, 94, 0.3);
-  border-color: rgba(244, 63, 94, 0.35);
+    0 20px 32px -6px rgba(0, 0, 0, 0.65), 
+    0 0 24px 2px rgba(214, 59, 190, 0.2);
+  border-color: rgba(214, 59, 190, 0.35);
 }
 
 .campus-card-interactive:active {
   transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-/* 3D Depth for Dark Highlight Cards */
+/* Deep Brand Highlight Card (ORVOKS Deep Purple Gradient) */
 .card-3d-dark {
+  background: linear-gradient(135deg, #43208F 0%, #5B2BBE 55%, #7D3BD6 100%);
+  color: #FFFFFF;
   box-shadow: 
-    0 12px 28px -6px rgba(0, 42, 91, 0.35), 
-    0 0 20px 2px rgba(0, 42, 91, 0.2), 
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    0 14px 30px -6px rgba(91, 43, 190, 0.4), 
+    0 0 24px 2px rgba(214, 59, 190, 0.2), 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dark .card-3d-dark {
+  background: linear-gradient(135deg, #251456 0%, #3B1B85 55%, #5B2BBE 100%);
   box-shadow: 
-    0 12px 30px -6px rgba(0, 0, 0, 0.6), 
-    0 0 25px 2px rgba(0, 60, 130, 0.3), 
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+    0 14px 34px -6px rgba(0, 0, 0, 0.75), 
+    0 0 28px 2px rgba(195, 155, 255, 0.25), 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 .card-3d-dark:hover {
   transform: translateY(-3px);
   box-shadow: 
-    0 20px 35px -8px rgba(0, 42, 91, 0.45), 
-    0 0 28px 4px rgba(176, 42, 62, 0.22), 
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
+    0 20px 38px -8px rgba(91, 43, 190, 0.5), 
+    0 0 32px 4px rgba(214, 59, 190, 0.3), 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.35);
 }
 
-.dark .card-3d-dark:hover {
-  box-shadow: 
-    0 20px 40px -8px rgba(0, 0, 0, 0.7), 
-    0 0 32px 5px rgba(244, 63, 94, 0.25), 
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-/* Glassmorphism Accents */
+/* Frosted Glass Header / Badges */
 .campus-glass {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 0 15px 0 rgba(91, 6, 23, 0.04);
+  border: 1px solid rgba(91, 43, 190, 0.08);
+  box-shadow: 0 4px 20px -2px rgba(91, 43, 190, 0.04);
 }
 
 .dark .campus-glass {
-  background: rgba(17, 24, 39, 0.92);
+  background: rgba(27, 22, 56, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4), 0 0 15px 0 rgba(244, 63, 94, 0.08);
+  border: 1px solid rgba(214, 59, 190, 0.16);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45);
 }
 
 /* Tab & Modal Smooth Transition Animation */

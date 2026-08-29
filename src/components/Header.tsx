@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrandDecoration } from './BrandDecoration';
 
 interface HeaderProps {
   onOpenMenu: () => void;
@@ -14,7 +15,7 @@ export const Header: React.FC<HeaderProps> = ({
   activeTabTitle 
 }) => {
   return (
-    <header className="fixed top-0 left-0 w-full z-40 h-16 campus-glass border-b border-slate-200/80 dark:border-slate-800 shadow-xs transition-colors duration-300">
+    <header className="fixed top-0 left-0 w-full z-40 h-16 campus-glass border-b border-[#5B2BBE]/10 dark:border-[#D63BBE]/20 transition-colors duration-300">
       <div className="max-w-6xl mx-auto h-full px-4 sm:px-6 flex items-center justify-between">
         
         {/* Left: Hamburger Navigation Trigger */}
@@ -23,15 +24,17 @@ export const Header: React.FC<HeaderProps> = ({
             id="btn-nav-menu"
             onClick={onOpenMenu}
             aria-label="Buka Menu Navigasi"
-            className="w-10 h-10 rounded-xl flex items-center justify-center text-[#5b0617] dark:text-[#ff8595] hover:bg-[#5b0617]/10 dark:hover:bg-white/10 active:scale-95 transition-all cursor-pointer border border-slate-200/60 dark:border-slate-700/60"
+            className="w-10 h-10 rounded-xl flex items-center justify-center text-[#5B2BBE] dark:text-[#C39BFF] hover:bg-[#5B2BBE]/10 dark:hover:bg-[#5B2BBE]/25 active:scale-95 transition-all cursor-pointer border border-[#5B2BBE]/15 dark:border-[#D63BBE]/25 bg-white/70 dark:bg-[#1B1638]"
           >
             <span className="material-symbols-outlined text-[24px]">menu</span>
           </button>
           
           {activeTabTitle && (
-            <span className="hidden sm:inline-block text-xs font-semibold text-slate-500 dark:text-slate-400 border-l border-slate-200 dark:border-slate-700 pl-3">
-              {activeTabTitle}
-            </span>
+            <div className="hidden sm:flex items-center gap-2 border-l border-[#5B2BBE]/15 dark:border-[#D63BBE]/25 pl-3">
+              <span className="text-xs font-bold text-[#6B6874] dark:text-[#A39EB8]">
+                {activeTabTitle}
+              </span>
+            </div>
           )}
         </div>
 
@@ -40,10 +43,11 @@ export const Header: React.FC<HeaderProps> = ({
           onClick={onOpenMenu}
           className="flex items-center gap-2 cursor-pointer select-none group"
         >
-          <span className="font-display text-[22px] sm:text-[24px] font-black text-[#5b0617] dark:text-white tracking-tight group-hover:opacity-90 transition-opacity">
+          <BrandDecoration type="sparkle" size={18} color="#D63BBE" className="group-hover:rotate-45 transition-transform duration-300 hidden xs:inline-block" />
+          <span className="font-display text-[22px] sm:text-[24px] font-black text-[#5B2BBE] dark:text-white tracking-tight group-hover:opacity-90 transition-opacity">
             ORVOKS
           </span>
-          <span className="bg-gradient-to-r from-[#5b0617] to-[#b02a3e] dark:from-[#b02a3e] dark:to-[#ff6473] text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-xs tracking-wider font-headline">
+          <span className="bg-gradient-to-r from-[#5B2BBE] to-[#D63BBE] text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full shadow-xs tracking-wider font-display">
             2026
           </span>
         </div>
@@ -55,9 +59,9 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={onToggleDarkMode}
             aria-label={isDarkMode ? 'Beralih ke Mode Terang' : 'Beralih ke Mode Gelap'}
             title={isDarkMode ? 'Beralih ke Mode Terang' : 'Beralih ke Mode Gelap'}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all border cursor-pointer active:scale-95 shadow-2xs bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-amber-300 border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all border cursor-pointer active:scale-95 shadow-2xs bg-white/90 dark:bg-[#251F4A] text-[#22202A] dark:text-[#F2B632] border-[#5B2BBE]/15 dark:border-[#D63BBE]/30 hover:bg-[#5B2BBE]/5 dark:hover:bg-[#322B60]"
           >
-            <span className="material-symbols-outlined text-[20px] transition-transform duration-300">
+            <span className="material-symbols-outlined text-[19px] transition-transform duration-300">
               {isDarkMode ? 'light_mode' : 'dark_mode'}
             </span>
             <span className="hidden sm:inline">

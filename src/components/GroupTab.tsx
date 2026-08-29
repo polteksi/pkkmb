@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { GROUPS_DATA } from '../data/orientationData';
 import { StudentMember } from '../types';
+import { BrandDecoration } from './BrandDecoration';
 
 interface GroupTabProps {
   onSelectStudent?: (student: StudentMember) => void;
@@ -23,22 +24,22 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent, onOpenLocat
     <div className="tab-fade-in flex flex-col gap-6 pb-8">
       
       {/* Header & Group Picker */}
-      <div className="campus-card bg-white dark:bg-slate-900 p-5 sm:p-6 border border-slate-200/80 dark:border-slate-800 shadow-xs flex flex-col gap-4">
+      <div className="campus-card bg-white dark:bg-[#1B1638] p-5 sm:p-6 border border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 shadow-xs flex flex-col gap-4">
         <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2.5 text-[#002a5b] dark:text-[#aac7ff]">
-            <div className="w-10 h-10 rounded-xl bg-[#002a5b]/10 dark:bg-[#002a5b]/40 text-[#002a5b] dark:text-[#aac7ff] flex items-center justify-center shrink-0">
+          <div className="flex items-center gap-2.5 text-[#5B2BBE] dark:text-[#C39BFF]">
+            <div className="w-10 h-10 rounded-xl bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/30 text-[#5B2BBE] dark:text-[#C39BFF] flex items-center justify-center shrink-0">
               <span className="material-symbols-outlined text-[24px]">groups</span>
             </div>
             <div>
-              <h2 className="font-display font-black text-lg sm:text-2xl text-slate-900 dark:text-white tracking-tight leading-tight">
+              <h2 className="font-display font-black text-lg sm:text-2xl text-[#22202A] dark:text-white tracking-tight leading-tight">
                 Kelompok Orientasi
               </h2>
-              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium hidden sm:block">
+              <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] font-medium hidden sm:block">
                 Pilih kelompok untuk melihat mentor, ruang harian & daftar anggota
               </p>
             </div>
           </div>
-          <span className="text-[11px] sm:text-xs bg-[#002a5b]/10 dark:bg-[#002a5b]/40 text-[#002a5b] dark:text-[#aac7ff] font-bold px-2.5 py-1 rounded-full border border-[#002a5b]/20 dark:border-[#002a5b]/40 shrink-0">
+          <span className="text-[11px] sm:text-xs bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/25 text-[#5B2BBE] dark:text-[#C39BFF] font-bold px-3 py-1 rounded-full border border-[#5B2BBE]/20 dark:border-[#5B2BBE]/35 shrink-0">
             5 Kelompok
           </span>
         </div>
@@ -53,12 +54,12 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent, onOpenLocat
                 onClick={() => setSelectedGroupId(grp.id)}
                 className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold border shrink-0 transition-all cursor-pointer flex items-center gap-2 ${
                   isSelected
-                    ? 'bg-[#002a5b] dark:bg-[#00387a] text-white border-[#002a5b] dark:border-[#aac7ff] shadow-xs scale-102 font-bold ring-2 ring-[#002a5b]/20 dark:ring-[#aac7ff]/30'
-                    : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700'
+                    ? 'bg-[#5B2BBE] dark:bg-[#5B2BBE] text-white border-[#5B2BBE] dark:border-[#D63BBE] shadow-md scale-102 font-bold ring-2 ring-[#5B2BBE]/25 dark:ring-[#D63BBE]/35'
+                    : 'bg-[#FAF9F6] dark:bg-[#251F4A] text-[#22202A] dark:text-[#F3F2F8] border-[#5B2BBE]/12 dark:border-[#251F4A] hover:bg-[#EFE9FF]/60 dark:hover:bg-[#322B60]'
                 }`}
               >
                 <span>{grp.name}</span>
-                <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${isSelected ? 'bg-white/20 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300'}`}>
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${isSelected ? 'bg-white/20 text-white' : 'bg-[#EFE9FF] dark:bg-[#322B60] text-[#5B2BBE] dark:text-[#C39BFF]'}`}>
                   {grp.members.length}
                 </span>
               </button>
@@ -67,20 +68,21 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent, onOpenLocat
         </div>
       </div>
 
-      {/* Group Spotlight Details Card - Solid Deep Navy Background with High Contrast Text & 3D Glow */}
+      {/* Group Spotlight Details Card - ORVOKS Deep Purple Gradient */}
       <div 
-        style={{ backgroundColor: '#002a5b' }}
-        className="rounded-2xl text-white p-6 sm:p-7 card-3d-dark border border-[#00387a] relative overflow-hidden flex flex-col gap-5"
+        className="rounded-2xl text-white p-6 sm:p-7 card-3d-dark border border-[#5B2BBE]/30 relative overflow-hidden flex flex-col gap-5"
       >
-        {/* Subtle blueprint grid overlay */}
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:14px_14px] pointer-events-none" />
+        {/* Minimal geometric background accent */}
+        <div className="absolute top-3 right-4 opacity-15 pointer-events-none">
+          <BrandDecoration type="starburst" size={28} color="#FFFFFF" secondaryColor="#F2B632" />
+        </div>
         
         <div className="relative z-10 flex flex-col gap-4">
           
           {/* Top Label & Group Alias */}
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/20 pb-3">
-            <span className="text-xs text-[#aac7ff] font-bold tracking-wider uppercase flex items-center gap-1.5">
-              <span className="material-symbols-outlined text-[16px]">info</span>
+            <span className="text-xs text-[#EFE9FF] font-bold tracking-wider uppercase flex items-center gap-1.5 font-display">
+              <BrandDecoration type="sparkle" size={14} color="#F2B632" />
               INFORMASI KELOMPOK
             </span>
             <span className="bg-white/20 backdrop-blur-xs text-white text-xs font-bold px-3 py-1 rounded-full border border-white/25">
@@ -93,8 +95,8 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent, onOpenLocat
             <h3 className="font-display font-black text-2xl sm:text-3xl text-white tracking-tight">
               {currentGroup.name}
             </h3>
-            <div className="mt-2.5 bg-black/30 backdrop-blur-xs p-3.5 rounded-xl border border-white/15">
-              <p className="text-xs sm:text-sm text-[#ffdada] italic font-medium leading-relaxed">
+            <div className="mt-2.5 bg-black/25 backdrop-blur-xs p-3.5 rounded-xl border border-white/15">
+              <p className="text-xs sm:text-sm text-[#FDE8FA] italic font-medium leading-relaxed">
                 "{currentGroup.motto}"
               </p>
             </div>
@@ -105,7 +107,7 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent, onOpenLocat
             {/* Mentor Info */}
             <div className="bg-white/10 backdrop-blur-xs p-4 rounded-xl border border-white/20 flex flex-col justify-between gap-3">
               <div>
-                <span className="text-[10px] text-[#aac7ff] font-bold uppercase tracking-wider block">
+                <span className="text-[10px] text-[#EFE9FF] font-bold uppercase tracking-wider block font-display">
                   MENTOR PENDAMPING
                 </span>
                 <span className="font-bold text-sm sm:text-base text-white block mt-1">
@@ -116,7 +118,7 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent, onOpenLocat
                 href={`https://wa.me/62${currentGroup.mentorPhone.replace(/[^0-9]/g, '')}`}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-4 py-2 rounded-xl w-max shadow-sm transition-all active:scale-98"
+                className="inline-flex items-center gap-2 text-xs font-bold text-white bg-[#2F9672] hover:bg-[#257A5D] px-4 py-2 rounded-xl w-max shadow-sm transition-all active:scale-98"
               >
                 <span className="material-symbols-outlined text-[18px]">call</span>
                 <span>{currentGroup.mentorPhone} (WhatsApp)</span>
@@ -126,7 +128,7 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent, onOpenLocat
             {/* Room Location */}
             <div className="bg-white/10 backdrop-blur-xs p-4 rounded-xl border border-white/20 flex flex-col justify-between gap-3">
               <div>
-                <span className="text-[10px] text-[#aac7ff] font-bold uppercase tracking-wider block">
+                <span className="text-[10px] text-[#EFE9FF] font-bold uppercase tracking-wider block font-display">
                   RUANG DISKUSI HARIAN
                 </span>
                 <span className="font-bold text-sm sm:text-base text-white block mt-1">
@@ -135,7 +137,7 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent, onOpenLocat
               </div>
               <button
                 onClick={() => onOpenLocationModal(currentGroup.room)}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-white/20 hover:bg-white/30 px-4 py-2 rounded-xl w-max cursor-pointer self-start transition-all border border-white/20 active:scale-98"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-white/20 hover:bg-white/30 px-4 py-2 rounded-xl w-max cursor-pointer self-start transition-all border border-white/25 active:scale-98"
               >
                 <span className="material-symbols-outlined text-[18px]">pin_drop</span>
                 <span>Lihat di Peta Kampus</span>
@@ -146,13 +148,13 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent, onOpenLocat
       </div>
 
       {/* Member Roster List */}
-      <div className="campus-card bg-white dark:bg-slate-900 p-5 sm:p-6 border border-slate-200/80 dark:border-slate-800 shadow-xs flex flex-col gap-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
+      <div className="campus-card bg-white dark:bg-[#1B1638] p-5 sm:p-6 border border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 shadow-xs flex flex-col gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-[#251F4A] pb-4">
           <div>
-            <h4 className="font-display font-bold text-lg text-slate-900 dark:text-white">
+            <h4 className="font-display font-bold text-lg text-[#22202A] dark:text-white">
               Daftar Anggota ({currentGroup.members.length} Mahasiswa)
             </h4>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <p className="text-xs text-[#6B6874] dark:text-[#A39EB8]">
               Mahasiswa baru terdaftar di {currentGroup.name}
             </p>
           </div>
@@ -163,7 +165,7 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent, onOpenLocat
               placeholder="Cari nama / NIM / prodi..."
               value={searchMember}
               onChange={(e) => setSearchMember(e.target.value)}
-              className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 text-xs rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002a5b]/20 dark:focus:ring-[#aac7ff]/30 focus:border-[#002a5b] dark:focus:border-[#aac7ff] focus:bg-white dark:focus:bg-slate-800 text-slate-900 dark:text-white font-medium transition-all"
+              className="w-full bg-[#FAF9F6] dark:bg-[#251F4A] border border-slate-200 dark:border-[#322B60] px-3 py-2 text-xs rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5B2BBE]/20 dark:focus:ring-[#C39BFF]/30 focus:border-[#5B2BBE] dark:focus:border-[#C39BFF] focus:bg-white dark:focus:bg-[#251F4A] text-[#22202A] dark:text-white font-medium transition-all"
             />
             {searchMember && (
               <button
@@ -182,7 +184,7 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent, onOpenLocat
             <div
               key={member.id}
               onClick={() => onSelectStudent?.(member)}
-              className="p-3.5 rounded-xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-800/80 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-xs transition-all flex items-center justify-between gap-3 cursor-pointer group"
+              className="p-3.5 rounded-xl border border-[#5B2BBE]/10 dark:border-[#251F4A] bg-white dark:bg-[#251F4A]/60 hover:border-[#5B2BBE]/30 dark:hover:border-[#D63BBE]/40 hover:shadow-xs transition-all flex items-center justify-between gap-3 cursor-pointer group"
             >
               <div className="flex items-center gap-3 min-w-0">
                 <div
@@ -193,29 +195,29 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent, onOpenLocat
                 </div>
                 <div className="min-w-0">
                   <div className="flex items-center gap-1.5 flex-wrap">
-                    <h5 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white truncate">
+                    <h5 className="font-bold text-xs sm:text-sm text-[#22202A] dark:text-white truncate">
                       {member.name}
                     </h5>
                     {member.role !== 'Anggota' && (
-                      <span className="text-[9px] bg-[#ffdada] dark:bg-[#5b0617] text-[#5b0617] dark:text-[#ffdada] font-bold px-1.5 py-0.2 rounded-full border border-transparent dark:border-[#ff6473]/30">
+                      <span className="text-[9px] bg-[#FDE8FA] dark:bg-[#D63BBE]/30 text-[#D63BBE] dark:text-[#FF85EA] font-bold px-1.5 py-0.2 rounded-full border border-[#D63BBE]/20">
                         {member.role}
                       </span>
                     )}
                   </div>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium truncate mt-0.5">
+                  <p className="text-[11px] text-[#6B6874] dark:text-[#A39EB8] font-medium truncate mt-0.5">
                     {member.nim} &bull; {member.major}
                   </p>
                 </div>
               </div>
 
-              <span className="material-symbols-outlined text-[18px] text-slate-300 dark:text-slate-600 group-hover:text-[#5b0617] dark:group-hover:text-[#ff8595] group-hover:translate-x-0.5 transition-all shrink-0">
+              <span className="material-symbols-outlined text-[18px] text-slate-300 dark:text-[#322B60] group-hover:text-[#5B2BBE] dark:group-hover:text-[#C39BFF] group-hover:translate-x-0.5 transition-all shrink-0">
                 chevron_right
               </span>
             </div>
           ))}
 
           {filteredMembers.length === 0 && (
-            <div className="col-span-full text-center py-8 text-xs text-slate-400 dark:text-slate-500 italic">
+            <div className="col-span-full text-center py-8 text-xs text-[#6B6874] dark:text-[#A39EB8] italic">
               Tidak ditemukan mahasiswa dengan kata kunci tersebut.
             </div>
           )}
