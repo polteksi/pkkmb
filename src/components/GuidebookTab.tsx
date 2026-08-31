@@ -7,18 +7,18 @@ interface GuidebookTabProps {
 }
 
 export const GuidebookTab: React.FC<GuidebookTabProps> = ({
-  fileUrl = '/documents/guidebook orvoks a 2026.docx',
+  fileUrl = '/documents/guidebook orvoks 2026.docx',
   isAvailable = true,
 }) => {
   const [downloadStarted, setDownloadStarted] = useState(false);
-  const [activeAvailable, setActiveAvailable] = useState<boolean>(isAvailable);
+  const [activeAvailable] = useState<boolean>(isAvailable);
 
   const handleDownload = () => {
     setDownloadStarted(true);
-    // Reset notification after 3 seconds
+    // Reset notification after 4 seconds
     setTimeout(() => {
       setDownloadStarted(false);
-    }, 3500);
+    }, 4000);
   };
 
   const encodedFileUrl = encodeURI(fileUrl);
@@ -39,9 +39,9 @@ export const GuidebookTab: React.FC<GuidebookTabProps> = ({
             <h2 className="font-display font-black text-xl sm:text-2xl text-[#22202A] dark:text-white tracking-tight leading-tight">
               Guidebook PKKMB POLTEKSI 2026
             </h2>
-               <p className="text-xs sm:text-sm text-[#6B6874] dark:text-[#A39EB8] font-medium mt-0.5">
-                 Format dokumen Microsoft Word (.docx).
-               </p>
+            <p className="text-xs sm:text-sm text-[#6B6874] dark:text-[#A39EB8] font-medium mt-0.5">
+              Panduan lengkap orientasi mahasiswa baru Politeknik Semen Indonesia.
+            </p>
           </div>
         </div>
 
@@ -52,53 +52,116 @@ export const GuidebookTab: React.FC<GuidebookTabProps> = ({
 
       {activeAvailable ? (
         /* AVAILABLE STATE */
-        <>
-          <div className="campus-card bg-white dark:bg-[#1B1638] p-6 sm:p-7 border border-[#5B2BBE]/15 dark:border-[#5B2BBE]/30 shadow-xs flex flex-col gap-5 relative overflow-hidden">
-          {/* Background ambient lighting */}
-          <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-[#5B2BBE]/5 dark:bg-[#5B2BBE]/15 blur-2xl pointer-events-none" />
+        <div className="flex flex-col gap-6">
+          <div className="campus-card bg-white dark:bg-[#1B1638] p-6 sm:p-7 border border-[#5B2BBE]/15 dark:border-[#5B2BBE]/30 shadow-xs flex flex-col gap-6 relative overflow-hidden">
+            {/* Background ambient lighting */}
+            <div className="absolute top-0 right-0 w-56 h-56 rounded-full bg-[#5B2BBE]/5 dark:bg-[#5B2BBE]/15 blur-2xl pointer-events-none" />
 
-          <div className="flex items-start justify-between gap-4 relative z-10">
-            <div className="flex items-center gap-3.5">
-              <div className="w-14 h-14 rounded-2xl bg-[#4256A6]/10 dark:bg-[#4256A6]/25 text-[#4256A6] dark:text-[#A5B8FF] flex items-center justify-center shrink-0 border border-[#4256A6]/20 shadow-xs">
-                <span className="material-symbols-outlined text-[32px]">description</span>
+            <div className="flex items-start justify-between gap-4 relative z-10">
+              <div className="flex items-center gap-3.5">
+                <div className="w-14 h-14 rounded-2xl bg-[#4256A6]/10 dark:bg-[#4256A6]/25 text-[#4256A6] dark:text-[#A5B8FF] flex items-center justify-center shrink-0 border border-[#4256A6]/20 shadow-xs">
+                  <span className="material-symbols-outlined text-[32px]">description</span>
+                </div>
+                <div>
+                  <h3 className="font-display font-extrabold text-lg sm:text-xl text-[#22202A] dark:text-white leading-snug">
+                    Buku Panduan Mahasiswa Baru
+                  </h3>
+                  <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] font-medium mt-0.5">
+                    ORVOKS 2026 &bull; Politeknik Semen Indonesia
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-display font-extrabold text-lg sm:text-xl text-[#22202A] dark:text-white leading-snug">
-                  Buku Panduan Mahasiswa Baru
-                </h3>
-                <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] font-medium mt-0.5">
-                  ORVOKS 2026 &bull; Politeknik Semen Indonesia
-                </p>
+
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-bold bg-[#2F9672]/15 text-[#2F9672] dark:text-[#4ADE80] px-3 py-1 rounded-full border border-[#2F9672]/30 shrink-0">
+                <span className="w-2 h-2 rounded-full bg-[#2F9672] dark:bg-[#4ADE80] animate-pulse" />
+                Siap Diunduh
+              </span>
+            </div>
+
+            {/* Document Specifications Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 relative z-10">
+              <div className="p-3.5 bg-[#FAF9F6] dark:bg-[#251F4A]/60 rounded-xl border border-slate-100 dark:border-[#322B60]">
+                <span className="text-[10px] uppercase font-bold text-[#6B6874] dark:text-[#A39EB8] tracking-wider block">
+                  Nama File
+                </span>
+                <span className="text-xs font-bold text-[#22202A] dark:text-white mt-1 block truncate" title="guidebook orvoks 2026.docx">
+                  guidebook orvoks 2026.docx
+                </span>
+              </div>
+
+              <div className="p-3.5 bg-[#FAF9F6] dark:bg-[#251F4A]/60 rounded-xl border border-slate-100 dark:border-[#322B60]">
+                <span className="text-[10px] uppercase font-bold text-[#6B6874] dark:text-[#A39EB8] tracking-wider block">
+                  Ukuran Dokumen
+                </span>
+                <span className="text-xs font-bold text-[#22202A] dark:text-white mt-1 block">
+                  ~645 KB
+                </span>
+              </div>
+
+              <div className="p-3.5 bg-[#FAF9F6] dark:bg-[#251F4A]/60 rounded-xl border border-slate-100 dark:border-[#322B60]">
+                <span className="text-[10px] uppercase font-bold text-[#6B6874] dark:text-[#A39EB8] tracking-wider block">
+                  Tipe Format
+                </span>
+                <span className="text-xs font-bold text-[#5B2BBE] dark:text-[#C39BFF] mt-1 block">
+                  Microsoft Word (.docx)
+                </span>
+              </div>
+
+              <div className="p-3.5 bg-[#FAF9F6] dark:bg-[#251F4A]/60 rounded-xl border border-slate-100 dark:border-[#322B60]">
+                <span className="text-[10px] uppercase font-bold text-[#6B6874] dark:text-[#A39EB8] tracking-wider block">
+                  Kompatibilitas
+                </span>
+                <span className="text-xs font-bold text-[#22202A] dark:text-white mt-1 block">
+                  PC & HP (Word / WPS / Docs)
+                </span>
               </div>
             </div>
 
-            <span className="inline-flex items-center gap-1 text-[11px] font-bold bg-[#2F9672]/15 text-[#2F9672] dark:text-[#4ADE80] px-3 py-1 rounded-full border border-[#2F9672]/30 shrink-0">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2F9672] dark:bg-[#4ADE80] animate-ping" />
-              Tersedia
-            </span>
-          </div>
-
-          {/* Download Action Area */}
-          <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 relative z-10">
-            <a
-              href={encodedFileUrl}
-              download="guidebook orvoks a 2026.docx"
-              onClick={handleDownload}
-              className="flex-1 bg-[#5B2BBE] hover:bg-[#43208F] dark:bg-[#5B2BBE] dark:hover:bg-[#43208F] text-white font-bold text-sm py-3.5 px-6 rounded-xl transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer active:scale-98"
-            >
-              <span className="material-symbols-outlined text-[20px]">download</span>
-              <span>Unduh Guidebook</span>
-            </a>
-          </div>
-
-          {downloadStarted && (
-            <div className="p-3 bg-[#2F9672]/15 border border-[#2F9672]/30 rounded-xl text-xs font-bold text-[#2F9672] dark:text-[#4ADE80] flex items-center gap-2 animate-in fade-in duration-200">
-              <span className="material-symbols-outlined text-[18px]">check_circle</span>
-              <span>Pengunduhan file Word sedang berjalan...</span>
+            {/* Download Action Area */}
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 relative z-10">
+              <a
+                href={encodedFileUrl}
+                download="guidebook orvoks 2026.docx"
+                onClick={handleDownload}
+                className="flex-1 bg-[#5B2BBE] hover:bg-[#43208F] dark:bg-[#5B2BBE] dark:hover:bg-[#7D3BD6] text-white font-bold text-sm py-3.5 px-6 rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+              >
+                <span className="material-symbols-outlined text-[20px]">download</span>
+                <span>Unduh Guidebook (.docx)</span>
+              </a>
             </div>
-          )}
+
+            {downloadStarted && (
+              <div className="p-3.5 bg-[#2F9672]/15 border border-[#2F9672]/30 rounded-xl text-xs font-bold text-[#2F9672] dark:text-[#4ADE80] flex items-center gap-2.5 animate-in fade-in duration-200">
+                <span className="material-symbols-outlined text-[20px]">check_circle</span>
+                <span>File guidebook Word sedang diunduh. Silakan buka file langsung di Microsoft Word atau WPS Office!</span>
+              </div>
+            )}
+          </div>
+
+          {/* Quick Guide Card */}
+          <div className="campus-card bg-[#FAF9F6] dark:bg-[#251F4A]/50 p-5 sm:p-6 border border-[#5B2BBE]/15 dark:border-[#5B2BBE]/30 rounded-2xl flex flex-col gap-3.5">
+            <h4 className="font-display font-bold text-sm text-[#22202A] dark:text-white flex items-center gap-2">
+              <span className="material-symbols-outlined text-[18px] text-[#5B2BBE] dark:text-[#C39BFF]">info</span>
+              Petunjuk Membuka Dokumen
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-[#6B6874] dark:text-[#A39EB8]">
+              <div className="flex items-start gap-2.5 bg-white dark:bg-[#1B1638] p-3 rounded-xl border border-slate-100 dark:border-[#322B60]">
+                <span className="material-symbols-outlined text-[#5B2BBE] dark:text-[#C39BFF] text-[18px] shrink-0 mt-0.5">laptop</span>
+                <div>
+                  <strong className="text-[#22202A] dark:text-white block mb-0.5">Di Komputer / Laptop:</strong>
+                  Klik tombol unduh, lalu buka file hasil unduhan langsung dengan aplikasi Microsoft Word, Google Docs, atau LibreOffice.
+                </div>
+              </div>
+              <div className="flex items-start gap-2.5 bg-white dark:bg-[#1B1638] p-3 rounded-xl border border-slate-100 dark:border-[#322B60]">
+                <span className="material-symbols-outlined text-[#5B2BBE] dark:text-[#C39BFF] text-[18px] shrink-0 mt-0.5">smartphone</span>
+                <div>
+                  <strong className="text-[#22202A] dark:text-white block mb-0.5">Di Smartphone (Android / iOS):</strong>
+                  Setelah file terunduh, buka melalui aplikasi Microsoft 365, WPS Office, atau Google Dokumen.
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        </>
       ) : (
         /* PENDING STATE (If Guidebook file not yet released) */
         <div className="campus-card bg-white dark:bg-[#1B1638] border border-[#5B2BBE]/15 dark:border-[#5B2BBE]/30 p-8 sm:p-12 rounded-2xl shadow-xs text-center flex flex-col items-center gap-5 relative overflow-hidden">
