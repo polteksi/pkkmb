@@ -14,9 +14,11 @@ import { PerlengkapanModal } from './components/PerlengkapanModal';
 import { SearchModal } from './components/SearchModal';
 import { MenuDrawer } from './components/MenuDrawer';
 import { BrandDecoration } from './components/BrandDecoration';
+import { SplashScreen } from './components/SplashScreen';
 
 
 export default function App() {
+  const [showSplash, setShowSplash] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<TabType>('beranda');
   const [currentDayNumber, setCurrentDayNumber] = useState<number>(1); // Default to first session
 
@@ -162,6 +164,14 @@ export default function App() {
         onNavigateTab={handleNavigate}
         activeTab={activeTab}
       />
+
+      {/* Opening Splash Screen Animation */}
+      {showSplash && (
+        <SplashScreen
+          onFinish={() => setShowSplash(false)}
+          isDarkMode={isDarkMode}
+        />
+      )}
     </div>
   );
 }
