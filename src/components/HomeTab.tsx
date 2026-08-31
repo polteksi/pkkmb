@@ -8,6 +8,7 @@ interface HomeTabProps {
   onSelectDay: (dayNumber: number) => void;
   onNavigateTab: (tab: TabType) => void;
   onOpenScheduleModal: (day: DaySchedule) => void;
+  onOpenPerlengkapanModal: () => void;
   onSearchStudent: (query: string) => void;
 }
 
@@ -18,10 +19,11 @@ export const HomeTab: React.FC<HomeTabProps> = ({
   onSelectDay,
   onNavigateTab,
   onOpenScheduleModal,
+  onOpenPerlengkapanModal,
   onSearchStudent,
 }) => {
   const remainingDays = DAYS_DATA.length - currentDay.dayNumber;
-  const [showPerlengkapanModal, setShowPerlengkapanModal] = useState(false);
+  const [bannerLoadError, setBannerLoadError] = useState(false);
 
   return (
     <div className="tab-fade-in flex flex-col gap-6 pb-6">
@@ -33,7 +35,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({
         <div className="lg:col-span-7 flex flex-col gap-6">
           
           {/* Hero Section */}
-          <section className="campus-card bg-white dark:bg-[#1B1638] p-6 sm:p-7 relative overflow-hidden border border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 shadow-xs">
+          <section className="campus-card bg-white dark:bg-[#1B1638] p-6 sm:p-7 relative overflow-hidden border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 shadow-xs">
             
             {/* Minimal Geometric Sparkle Accents in background */}
             <div className="absolute top-4 right-6 opacity-20 pointer-events-none">
@@ -61,19 +63,27 @@ export const HomeTab: React.FC<HomeTabProps> = ({
               </p>
 
               {/* Hero Banner Showcase */}
-              <div className="mt-2 rounded-2xl overflow-hidden relative h-44 sm:h-52 w-full border border-[#5B2BBE]/15 dark:border-[#D63BBE]/25 shadow-inner group">
-                <img
-                  src={HERO_IMAGE_URL}
-                  alt="Orientasi Vokasional 2026 - Politeknik Semen Indonesia"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                  referrerPolicy="no-referrer"
-                />
+              <div className="mt-2 rounded-2xl overflow-hidden relative h-44 sm:h-52 w-full border border-[#5B2BBE]/15 dark:border-[#5B2BBE]/30 shadow-inner group bg-[#5B2BBE]/10">
+                {!bannerLoadError ? (
+                  <img
+                    src={HERO_IMAGE_URL}
+                    alt="Orientasi Vokasional 2026 - Politeknik Semen Indonesia"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                    onError={() => setBannerLoadError(true)}
+                  />
+                ) : (
+                  <div className="w-full h-full bg-[#5B2BBE] flex flex-col items-center justify-center text-white p-6 text-center">
+                    <BrandDecoration type="sparkle" size={32} color="#F2B632" className="mb-2" />
+                    <span className="font-display font-black text-xl tracking-tight">ORVOKS 2026</span>
+                    <span className="text-xs text-[#EFE9FF] mt-1 font-medium">Politeknik Semen Indonesia</span>
+                  </div>
+                )}
               </div>
             </div>
           </section>
 
           {/* Live Status & Day Stepper */}
-          <section className="campus-card bg-white dark:bg-[#1B1638] p-6 relative overflow-hidden border border-[#5B2BBE]/10 dark:border-[#D63BBE]/20 shadow-xs">
+          <section className="campus-card bg-white dark:bg-[#1B1638] p-6 relative overflow-hidden border border-[#5B2BBE]/10 dark:border-[#5B2BBE]/25 shadow-xs">
             <div className="flex items-center justify-between pb-4 border-b border-[#FAF9F6] dark:border-[#251F4A]">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/30 text-[#5B2BBE] dark:text-[#C39BFF] flex items-center justify-center font-bold">
@@ -90,7 +100,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                     </span>
                   </div>
                   <p className="text-[11px] font-bold text-[#5B2BBE] dark:text-[#C39BFF] uppercase tracking-wider font-display">
-                    SESI KE-{currentDay.dayNumber} DARI {DAYS_DATA.length}
+                    {currentDay.shortDate} · {currentDay.dayName} ({currentDay.phase})
                   </p>
                 </div>
               </div>
@@ -102,10 +112,10 @@ export const HomeTab: React.FC<HomeTabProps> = ({
               </div>
             </div>
 
-            {/* Interactive Day Stepper Timeline */}
+            {/* Interactive Day Stepper Timeline: Tanggal + Nama Hari */}
             <div className="py-4">
               <div className="flex items-center justify-between mb-2.5">
-                <span className="text-[11px] font-bold text-[#6B6874] dark:text-[#A39EB8] uppercase tracking-wider block">
+                <span className="text-[11px] font-bold text-[#6B6874] dark:text-[#A39EB8] uppercase tracking-wider block font-display">
                   Pilih Hari Orientasi:
                 </span>
               </div>
@@ -119,16 +129,16 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                       onClick={() => onSelectDay(d.dayNumber)}
                       className={`p-2 rounded-xl border text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-0.5 ${
                         isActive
-                          ? 'bg-[#5B2BBE] dark:bg-[#5B2BBE] text-white border-[#5B2BBE] dark:border-[#D63BBE] shadow-md scale-102 font-bold ring-2 ring-[#5B2BBE]/25 dark:ring-[#D63BBE]/35'
+                          ? 'bg-[#5B2BBE] dark:bg-[#5B2BBE] text-white border-[#5B2BBE] dark:border-[#C39BFF] shadow-sm font-bold ring-2 ring-[#5B2BBE]/25 dark:ring-[#C39BFF]/35'
                           : isPast
-                          ? 'bg-[#FAF9F6] dark:bg-[#251F4A] text-[#22202A] dark:text-[#F3F2F8] border-[#5B2BBE]/12 dark:border-[#D63BBE]/15 hover:bg-[#EFE9FF]/60 dark:hover:bg-[#322B60] font-semibold'
+                          ? 'bg-[#FAF9F6] dark:bg-[#251F4A] text-[#22202A] dark:text-[#F3F2F8] border-[#5B2BBE]/12 dark:border-[#5B2BBE]/20 hover:bg-[#EFE9FF]/60 dark:hover:bg-[#322B60] font-semibold'
                           : 'bg-white dark:bg-[#1B1638] text-[#6B6874] dark:text-[#A39EB8] border-slate-200 dark:border-[#251F4A] hover:bg-[#FAF9F6] dark:hover:bg-[#251F4A]/80 font-medium'
                       }`}
                     >
-                      <span className={`text-[9px] uppercase font-bold tracking-wider ${isActive ? 'text-[#FDE8FA]' : 'text-[#6B6874] dark:text-[#A39EB8]'}`}>
-                        H-{d.dayNumber}
+                      <span className={`text-[11px] font-extrabold tracking-tight font-display ${isActive ? 'text-white' : 'text-[#22202A] dark:text-[#F3F2F8]'}`}>
+                        {d.shortDate}
                       </span>
-                      <span className="text-[10px] font-bold line-clamp-1">
+                      <span className={`text-[10px] font-semibold ${isActive ? 'text-[#EFE9FF]' : 'text-[#6B6874] dark:text-[#A39EB8]'}`}>
                         {d.dayName}
                       </span>
                     </button>
@@ -155,7 +165,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({
           {/* Cari Kelompokmu Button Card */}
           <button
             onClick={() => onSearchStudent('')}
-            className="campus-card campus-card-hover bg-white dark:bg-[#1B1638] p-4 sm:p-5 border border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 shadow-xs flex items-center justify-between gap-4 cursor-pointer text-left w-full group relative overflow-hidden"
+            className="campus-card campus-card-hover bg-white dark:bg-[#1B1638] p-4 sm:p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 shadow-xs flex items-center justify-between gap-4 cursor-pointer text-left w-full group relative overflow-hidden"
           >
             <div className="flex items-center gap-3.5 relative z-10">
               <div className="w-11 h-11 rounded-xl bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/30 text-[#5B2BBE] dark:text-[#C39BFF] flex items-center justify-center shrink-0 group-hover:bg-[#5B2BBE] group-hover:text-white transition-colors">
@@ -183,15 +193,15 @@ export const HomeTab: React.FC<HomeTabProps> = ({
         <div className="lg:col-span-5 flex flex-col gap-4">
           
           {/* Card 1: Agenda Hari Ini */}
-          <div className="campus-card campus-card-hover bg-white dark:bg-[#1B1638] p-5 border border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 flex flex-col justify-between gap-3 shadow-xs">
+          <div className="campus-card campus-card-hover bg-white dark:bg-[#1B1638] p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 flex flex-col justify-between gap-3 shadow-xs">
             <div className="flex items-center justify-between border-b border-slate-100 dark:border-[#251F4A] pb-2.5">
-              <div className="flex items-center gap-2 text-[#D63BBE] dark:text-[#FF85EA]">
-                <BrandDecoration type="sparkle" size={16} color="#D63BBE" />
+              <div className="flex items-center gap-2 text-[#5B2BBE] dark:text-[#C39BFF]">
+                <BrandDecoration type="sparkle" size={16} color="#5B2BBE" />
                 <span className="font-bold text-xs uppercase tracking-wider font-display">
                   Agenda {currentDay.dayName}
                 </span>
               </div>
-              <span className="text-[10px] bg-[#FDE8FA] dark:bg-[#D63BBE]/25 text-[#D63BBE] dark:text-[#FF85EA] font-bold px-2.5 py-0.5 rounded-full border border-[#D63BBE]/20 dark:border-[#D63BBE]/35">
+              <span className="text-[10px] bg-[#EFE9FF] dark:bg-[#5B2BBE]/35 text-[#5B2BBE] dark:text-[#C39BFF] font-bold px-2.5 py-0.5 rounded-full border border-[#5B2BBE]/25">
                 {currentDay.kegiatan.length} Kegiatan
               </span>
             </div>
@@ -216,8 +226,8 @@ export const HomeTab: React.FC<HomeTabProps> = ({
             </button>
           </div>
 
-          {/* Card 2: Perlengkapan PKKMB (Poin A — preview + modal in-page) */}
-          <div className="campus-card bg-white dark:bg-[#1B1638] p-5 border border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 flex flex-col gap-3 shadow-xs">
+          {/* Card 2: Perlengkapan PKKMB */}
+          <div className="campus-card bg-white dark:bg-[#1B1638] p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 flex flex-col gap-3 shadow-xs">
             <div className="flex items-center justify-between border-b border-slate-100 dark:border-[#251F4A] pb-2.5">
               <div className="flex items-center gap-1.5 text-[#5B2BBE] dark:text-[#C39BFF]">
                 <span className="material-symbols-outlined text-[20px]">backpack</span>
@@ -243,9 +253,13 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                     <p className="text-xs font-semibold text-[#22202A] dark:text-[#F3F2F8] leading-snug">
                       {item.text}
                     </p>
-                    {item.mandatory && (
-                      <span className="text-[9px] bg-[#F06C7D]/15 text-[#F06C7D] dark:text-[#FF8595] font-bold px-1.5 rounded-full border border-[#F06C7D]/30 shrink-0">
+                    {item.mandatory ? (
+                      <span className="text-[9px] bg-[#5B2BBE]/10 text-[#5B2BBE] dark:text-[#C39BFF] font-bold px-1.5 rounded-full border border-[#5B2BBE]/25 shrink-0">
                         Wajib
+                      </span>
+                    ) : (
+                      <span className="text-[9px] bg-[#2F9672]/10 text-[#2F9672] dark:text-[#4ADE80] font-bold px-1.5 rounded-full border border-[#2F9672]/25 shrink-0">
+                        Anjuran
                       </span>
                     )}
                   </div>
@@ -255,7 +269,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({
 
             <button
               id="btn-lihat-semua-perlengkapan"
-              onClick={() => setShowPerlengkapanModal(true)}
+              onClick={onOpenPerlengkapanModal}
               className="w-full bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/25 hover:bg-[#5B2BBE]/15 dark:hover:bg-[#5B2BBE]/40 text-[#5B2BBE] dark:text-[#C39BFF] font-bold text-xs py-2.5 rounded-xl border border-[#5B2BBE]/20 dark:border-[#5B2BBE]/40 transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-98"
             >
               <span>Lihat Semua ({PERLENGKAPAN_ITEMS.length} item)</span>
@@ -263,9 +277,9 @@ export const HomeTab: React.FC<HomeTabProps> = ({
             </button>
           </div>
 
-          {/* Card 3: Atribut — menuju halaman detail */}
-          <div className="campus-card bg-[#FAF9F6] dark:bg-[#251F4A]/70 p-5 border border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 flex flex-col justify-between gap-3 shadow-xs">
-            <div className="flex items-center gap-1.5 text-[#D63BBE] dark:text-[#FF85EA] border-b border-slate-200/60 dark:border-[#322B60] pb-2">
+          {/* Card 3: Atribut — Menuju halaman detail (Warna Ungu Utama) */}
+          <div className="campus-card bg-[#FAF9F6] dark:bg-[#251F4A]/70 p-5 border border-[#5B2BBE]/15 dark:border-[#5B2BBE]/30 flex flex-col justify-between gap-3 shadow-xs">
+            <div className="flex items-center gap-1.5 text-[#5B2BBE] dark:text-[#C39BFF] border-b border-slate-200/60 dark:border-[#322B60] pb-2">
               <span className="material-symbols-outlined text-[18px]">checkroom</span>
               <span className="font-bold text-xs uppercase tracking-wider font-display">
                 Atribut PKKMB
@@ -284,10 +298,43 @@ export const HomeTab: React.FC<HomeTabProps> = ({
             <button
               id="btn-lihat-detail-atribut"
               onClick={() => onNavigateTab('atribut')}
-              className="w-full bg-[#D63BBE] dark:bg-[#D63BBE] hover:bg-[#C332A8] dark:hover:bg-[#C332A8] text-white font-bold text-xs py-2.5 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer active:scale-98"
+              className="w-full bg-[#5B2BBE] dark:bg-[#5B2BBE] hover:bg-[#43208F] dark:hover:bg-[#7D3BD6] text-white font-bold text-xs py-2.5 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer active:scale-98"
             >
               <span className="material-symbols-outlined text-[16px]">open_in_new</span>
               <span>Lihat Detail Atribut</span>
+            </button>
+          </div>
+
+          {/* Card 4: Guidebook PKKMB (Word Docx Download) */}
+          <div className="campus-card bg-white dark:bg-[#1B1638] p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 flex flex-col justify-between gap-3 shadow-xs">
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-[#251F4A] pb-2.5">
+              <div className="flex items-center gap-1.5 text-[#5B2BBE] dark:text-[#C39BFF]">
+                <span className="material-symbols-outlined text-[18px]">menu_book</span>
+                <span className="font-bold text-xs uppercase tracking-wider font-display">
+                  Guidebook PKKMB
+                </span>
+              </div>
+              <span className="text-[10px] bg-[#EFE9FF] dark:bg-[#5B2BBE]/35 text-[#5B2BBE] dark:text-[#C39BFF] font-bold px-2 py-0.5 rounded-full border border-[#5B2BBE]/20 font-mono">
+                .DOCX
+              </span>
+            </div>
+
+            <div>
+              <h3 className="font-display font-bold text-sm text-[#22202A] dark:text-white leading-snug">
+                Buku Panduan Mahasiswa Baru
+              </h3>
+              <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] mt-0.5 font-medium">
+                Unduh file Word panduan resmi PKKMB POLTEKSI 2026.
+              </p>
+            </div>
+
+            <button
+              id="btn-buka-guidebook"
+              onClick={() => onNavigateTab('guidebook')}
+              className="w-full bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/25 hover:bg-[#5B2BBE]/15 dark:hover:bg-[#5B2BBE]/40 text-[#5B2BBE] dark:text-[#C39BFF] font-bold text-xs py-2.5 rounded-xl border border-[#5B2BBE]/20 dark:border-[#5B2BBE]/40 transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-98"
+            >
+              <span className="material-symbols-outlined text-[16px]">download</span>
+              <span>Unduh Guidebook</span>
             </button>
           </div>
 
@@ -295,74 +342,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({
 
       </div>
 
-      {/* Perlengkapan Modal (in-page) */}
-      {showPerlengkapanModal && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/80 backdrop-blur-xs animate-in fade-in duration-150"
-          onClick={() => setShowPerlengkapanModal(false)}
-        >
-          <div
-            className="bg-white dark:bg-[#1B1638] rounded-2xl max-w-md w-full max-h-[85vh] flex flex-col overflow-hidden shadow-2xl border border-[#5B2BBE]/15 dark:border-[#D63BBE]/25 animate-in zoom-in-95 duration-150"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Modal Header */}
-            <div className="bg-[#5B2BBE] text-white p-5 flex items-center justify-between shrink-0">
-              <div>
-                <span className="text-[10px] bg-white/20 text-[#FDE8FA] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider font-display inline-block mb-1">
-                  Perlengkapan Hari-H
-                </span>
-                <h3 className="font-display font-black text-lg text-white leading-tight">
-                  Semua {PERLENGKAPAN_ITEMS.length} Item Wajib Bawa
-                </h3>
-              </div>
-              <button
-                onClick={() => setShowPerlengkapanModal(false)}
-                aria-label="Tutup Modal"
-                className="w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-all cursor-pointer border border-white/20 shrink-0 ml-2"
-              >
-                <span className="material-symbols-outlined text-[18px]">close</span>
-              </button>
-            </div>
-
-            {/* Modal Body */}
-            <div className="p-5 overflow-y-auto flex flex-col gap-2.5 flex-1">
-              {PERLENGKAPAN_ITEMS.map((item, idx) => (
-                <div
-                  key={item.id}
-                  className="p-3 rounded-xl border border-[#5B2BBE]/8 dark:border-[#251F4A] bg-[#FAF9F6]/80 dark:bg-[#251F4A]/50 flex items-start gap-3"
-                >
-                  <div className="w-7 h-7 rounded-lg bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/30 text-[#5B2BBE] dark:text-[#C39BFF] flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs font-display">
-                    {idx + 1}
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-start gap-1.5 flex-wrap">
-                      <p className="text-xs sm:text-sm font-semibold text-[#22202A] dark:text-[#F3F2F8] leading-snug">
-                        {item.text}
-                      </p>
-                      {item.mandatory && (
-                        <span className="text-[9px] bg-[#F06C7D]/15 text-[#F06C7D] dark:text-[#FF8595] font-bold px-1.5 py-0.5 rounded-full border border-[#F06C7D]/30 shrink-0">
-                          Wajib
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Modal Footer */}
-            <div className="p-4 bg-[#FAF9F6] dark:bg-[#151030] border-t border-[#5B2BBE]/10 dark:border-[#251F4A] flex justify-end">
-              <button
-                onClick={() => setShowPerlengkapanModal(false)}
-                className="bg-[#5B2BBE] hover:bg-[#43208F] dark:bg-[#5B2BBE] text-white px-5 py-2 rounded-xl font-bold text-xs transition-all cursor-pointer shadow-xs active:scale-95"
-              >
-                Tutup
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
     </div>
   );
 };
+

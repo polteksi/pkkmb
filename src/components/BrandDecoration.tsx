@@ -25,7 +25,7 @@ export const BrandDecoration: React.FC<BrandDecorationProps> = ({
   className = '',
   size = 24,
   color = '#5B2BBE',
-  secondaryColor = '#D63BBE',
+  secondaryColor = '#F2B632',
 }) => {
   const pixelSize = typeof size === 'number' ? `${size}px` : size;
 

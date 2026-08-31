@@ -6,9 +6,11 @@ import { HomeTab } from './components/HomeTab';
 import { ScheduleTab } from './components/ScheduleTab';
 import { GroupTab } from './components/GroupTab';
 import { AtributTab } from './components/AtributTab';
+import { GuidebookTab } from './components/GuidebookTab';
 import { FaqTab } from './components/FaqTab';
 import { Footer } from './components/Footer';
 import { ScheduleModal } from './components/ScheduleModal';
+import { PerlengkapanModal } from './components/PerlengkapanModal';
 import { SearchModal } from './components/SearchModal';
 import { MenuDrawer } from './components/MenuDrawer';
 import { BrandDecoration } from './components/BrandDecoration';
@@ -42,6 +44,7 @@ export default function App() {
 
   // Modal states
   const [scheduleModalDay, setScheduleModalDay] = useState<DaySchedule | null>(null);
+  const [isPerlengkapanOpen, setIsPerlengkapanOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [searchInitialQuery, setSearchInitialQuery] = useState<string>('');
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -53,6 +56,7 @@ export default function App() {
     jadwal: 'Jadwal 5 Hari',
     kelompok: 'Daftar Kelompok',
     atribut: 'Atribut PKKMB',
+    guidebook: 'Guidebook PKKMB',
     faq: 'Tanya Jawab (FAQ)',
   };
 
@@ -81,7 +85,7 @@ export default function App() {
         <BrandDecoration type="starburst" size={28} color="#F2B632" secondaryColor="#5B2BBE" />
       </div>
       <div className="fixed bottom-32 -left-3 pointer-events-none opacity-15 dark:opacity-10 z-0 hidden md:block">
-        <BrandDecoration type="diamond" size={20} color="#D63BBE" />
+        <BrandDecoration type="diamond" size={20} color="#5B2BBE" />
       </div>
       <div className="fixed bottom-20 -right-2 pointer-events-none opacity-15 dark:opacity-10 z-0">
         <BrandDecoration type="sparkle" size={22} color="#4256A6" />
@@ -97,13 +101,14 @@ export default function App() {
       />
 
       {/* Main Scrollable Canvas */}
-      <main className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full flex-1 flex flex-col transition-all relative z-10">
+      <main className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full flex-1 flex flex-col relative z-10">
         {activeTab === 'beranda' && (
           <HomeTab
             currentDay={currentDay}
             onSelectDay={(dayNum) => setCurrentDayNumber(dayNum)}
             onNavigateTab={handleNavigate}
             onOpenScheduleModal={(day) => setScheduleModalDay(day)}
+            onOpenPerlengkapanModal={() => setIsPerlengkapanOpen(true)}
             onSearchStudent={handleOpenSearchWithQuery}
           />
         )}
@@ -122,6 +127,10 @@ export default function App() {
           <AtributTab />
         )}
 
+        {activeTab === 'guidebook' && (
+          <GuidebookTab />
+        )}
+
         {activeTab === 'faq' && (
           <FaqTab />
         )}
@@ -133,6 +142,11 @@ export default function App() {
       <ScheduleModal
         day={scheduleModalDay}
         onClose={() => setScheduleModalDay(null)}
+      />
+
+      <PerlengkapanModal
+        isOpen={isPerlengkapanOpen}
+        onClose={() => setIsPerlengkapanOpen(false)}
       />
 
       <SearchModal

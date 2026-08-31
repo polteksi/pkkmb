@@ -8,13 +8,13 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
   return (
-    <footer className="bg-white dark:bg-[#1B1638] border-t border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 mt-auto py-10 px-4 sm:px-6 lg:px-8 w-full transition-colors duration-300">
+    <footer className="bg-white dark:bg-[#1B1638] border-t border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 mt-auto py-10 px-4 sm:px-6 lg:px-8 w-full transition-colors duration-300">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         
         {/* Column 1: Brand & Address */}
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-2 select-none">
-            <BrandDecoration type="sparkle" size={16} color="#D63BBE" />
+            <BrandDecoration type="sparkle" size={16} color="#5B2BBE" />
             <span className="font-display text-[20px] font-black text-[#5B2BBE] dark:text-white tracking-tight">
               ORVOKS
             </span>
@@ -62,6 +62,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
               Atribut PKKMB
             </button>
             <button
+              onClick={() => onNavigateTab('guidebook')}
+              className="hover:text-[#5B2BBE] dark:hover:text-[#C39BFF] hover:underline text-left w-max transition-colors cursor-pointer"
+            >
+              Guidebook (Word)
+            </button>
+            <button
               onClick={() => onNavigateTab('faq')}
               className="hover:text-[#5B2BBE] dark:hover:text-[#C39BFF] hover:underline text-left w-max transition-colors cursor-pointer"
             >
@@ -105,7 +111,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
                 rel="noopener noreferrer"
                 className="bg-[#FAF9F6] dark:bg-[#251F4A] hover:bg-[#EFE9FF] dark:hover:bg-[#322B60] text-[#22202A] dark:text-[#F3F2F8] border border-[#5B2BBE]/15 dark:border-[#322B60] px-3.5 py-1.5 rounded-xl text-[11px] font-bold shadow-2xs hover:border-[#5B2BBE]/30 transition-all flex items-center gap-1.5"
               >
-                <span>📷</span> Instagram
+                <span className="material-symbols-outlined text-[15px] text-[#5B2BBE] dark:text-[#C39BFF]">photo_camera</span>
+                <span>Instagram</span>
               </a>
               <a
                 href="https://tiktok.com/@pkkmb.polteksi"
@@ -113,7 +120,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
                 rel="noopener noreferrer"
                 className="bg-[#FAF9F6] dark:bg-[#251F4A] hover:bg-[#EFE9FF] dark:hover:bg-[#322B60] text-[#22202A] dark:text-[#F3F2F8] border border-[#5B2BBE]/15 dark:border-[#322B60] px-3.5 py-1.5 rounded-xl text-[11px] font-bold shadow-2xs hover:border-[#5B2BBE]/30 transition-all flex items-center gap-1.5"
               >
-                <span>🎵</span> TikTok
+                <span className="material-symbols-outlined text-[15px] text-[#5B2BBE] dark:text-[#C39BFF]">videocam</span>
+                <span>TikTok</span>
               </a>
             </div>
           </div>

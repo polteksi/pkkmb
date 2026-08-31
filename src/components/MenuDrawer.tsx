@@ -22,6 +22,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
     { id: 'jadwal', label: 'Jadwal 5 Hari', icon: 'calendar_month', desc: 'Susunan lengkap rundown & sesi' },
     { id: 'kelompok', label: 'Daftar Kelompok', icon: 'groups', desc: 'Mentor, ruangan & data anggota' },
     { id: 'atribut', label: 'Atribut PKKMB', icon: 'checkroom', desc: 'Perlengkapan & dresscode per hari' },
+    { id: 'guidebook', label: 'Guidebook', icon: 'menu_book', desc: 'Unduh panduan resmi format Word' },
     { id: 'faq', label: 'Tanya Jawab (FAQ)', icon: 'help', desc: 'Tata tertib, atribut & tanya jawab' },
   ];
 
@@ -31,7 +32,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
       onClick={onClose}
     >
       <div 
-        className="bg-white dark:bg-[#1B1638] w-full max-w-xs sm:max-w-sm h-full flex flex-col justify-between overflow-y-auto shadow-2xl animate-in slide-in-from-left duration-250 border-r border-[#5B2BBE]/15 dark:border-[#D63BBE]/25"
+        className="bg-white dark:bg-[#1B1638] w-full max-w-xs sm:max-w-sm h-full flex flex-col justify-between overflow-y-auto shadow-2xl animate-in slide-in-from-left duration-250 border-r border-[#5B2BBE]/15 dark:border-[#5B2BBE]/30"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Drawer Header - ORVOKS Deep Purple Gradient */}

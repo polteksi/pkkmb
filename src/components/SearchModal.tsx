@@ -38,7 +38,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       onClick={onClose}
     >
       <div 
-        className="bg-white dark:bg-[#1B1638] rounded-2xl max-w-md w-full max-h-[85vh] flex flex-col overflow-hidden shadow-2xl border border-[#5B2BBE]/15 dark:border-[#D63BBE]/25 animate-in zoom-in-95 duration-150"
+        className="bg-white dark:bg-[#1B1638] rounded-2xl max-w-md w-full max-h-[85vh] flex flex-col overflow-hidden shadow-2xl border border-[#5B2BBE]/15 dark:border-[#5B2BBE]/30 animate-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header - ORVOKS Deep Purple Gradient */}
@@ -93,7 +93,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   onSelectStudent?.(student);
                   onClose();
                 }}
-                className="bg-white dark:bg-[#251F4A]/60 border border-[#5B2BBE]/10 dark:border-[#322B60] rounded-xl p-3.5 flex items-center justify-between hover:border-[#5B2BBE]/30 dark:hover:border-[#D63BBE]/40 hover:bg-[#FAF9F6] dark:hover:bg-[#251F4A] cursor-pointer transition-all shadow-xs group"
+                className="bg-white dark:bg-[#251F4A]/60 border border-[#5B2BBE]/10 dark:border-[#322B60] rounded-xl p-3.5 flex items-center justify-between hover:border-[#5B2BBE]/30 dark:hover:border-[#5B2BBE]/50 hover:bg-[#FAF9F6] dark:hover:bg-[#251F4A] cursor-pointer transition-all shadow-xs group"
               >
                 <div className="flex items-center gap-3 min-w-0">
                   <div
@@ -129,23 +129,37 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             </div>
           ) : (
             <div className="flex flex-col gap-2.5">
-              <span className="text-xs font-bold text-[#6B6874] dark:text-[#A39EB8] uppercase tracking-wider font-display">
-                Grup Orientasi Terdaftar:
-              </span>
-              <div className="grid grid-cols-2 gap-2">
-                {GROUPS_DATA.map((grp) => (
-                  <button
-                    key={grp.id}
-                    onClick={() => setQuery(grp.name)}
-                    className="bg-white dark:bg-[#251F4A]/60 border border-[#5B2BBE]/12 dark:border-[#322B60] p-2.5 rounded-xl text-left text-xs font-bold hover:bg-[#FAF9F6] dark:hover:bg-[#322B60] transition-all cursor-pointer shadow-xs flex flex-col justify-between"
-                  >
-                    <span className="text-[#22202A] dark:text-white font-display">{grp.name}</span>
-                    <span className="text-[10px] text-[#6B6874] dark:text-[#A39EB8] font-normal mt-0.5">
-                      {grp.members.length} Mahasiswa
-                    </span>
-                  </button>
-                ))}
-              </div>
+              {GROUPS_DATA.length > 0 ? (
+                <>
+                  <span className="text-xs font-bold text-[#6B6874] dark:text-[#A39EB8] uppercase tracking-wider font-display">
+                    Grup Orientasi Terdaftar:
+                  </span>
+                  <div className="grid grid-cols-2 gap-2">
+                    {GROUPS_DATA.map((grp) => (
+                      <button
+                        key={grp.id}
+                        onClick={() => setQuery(grp.name)}
+                        className="bg-white dark:bg-[#251F4A]/60 border border-[#5B2BBE]/12 dark:border-[#322B60] p-2.5 rounded-xl text-left text-xs font-bold hover:bg-[#FAF9F6] dark:hover:bg-[#322B60] transition-all cursor-pointer shadow-xs flex flex-col justify-between"
+                      >
+                        <span className="text-[#22202A] dark:text-white font-display">{grp.name}</span>
+                        <span className="text-[10px] text-[#6B6874] dark:text-[#A39EB8] font-normal mt-0.5">
+                          {grp.members.length} Mahasiswa
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <div className="text-center py-6 text-xs text-[#6B6874] dark:text-[#A39EB8] flex flex-col items-center gap-2">
+                  <span className="material-symbols-outlined text-[32px] text-[#5B2BBE] dark:text-[#C39BFF]">
+                    pending
+                  </span>
+                  <span className="font-bold text-[#22202A] dark:text-white">Kelompok Belum Diumumkan</span>
+                  <span className="max-w-xs text-[11px] leading-relaxed">
+                    Daftar mahasiswa dan kelompok akan dapat dicari setelah pembagian kelompok resmi diumumkan.
+                  </span>
+                </div>
+              )}
             </div>
           )}
         </div>

@@ -1,6 +1,6 @@
 import { DaySchedule, OrientationGroup, StudentMember, FaqItem, PerlengkapanItem, DresscodeHari } from '../types';
 
-export const HERO_IMAGE_URL = 'public/Elaina 3D.jpg';
+export const HERO_IMAGE_URL = '/images/banner-hero.jpg';
 
 // ─── Rundown ORVOKS 2026 ───────────────────────────────────────────────────
 export const DAYS_DATA: DaySchedule[] = [
@@ -8,6 +8,8 @@ export const DAYS_DATA: DaySchedule[] = [
     dayNumber: 1,
     dayName: 'Jumat',
     date: '18 September 2026',
+    shortDate: '18 Sep',
+    phase: 'Pra-PKKMB',
     theme: 'Pra-PKKMB',
     progressPercent: 15,
     jamSesi: '07.30 – 11.00 WIB',
@@ -22,6 +24,8 @@ export const DAYS_DATA: DaySchedule[] = [
     dayNumber: 2,
     dayName: 'Sabtu',
     date: '19 September 2026',
+    shortDate: '19 Sep',
+    phase: 'Pra-PKKMB',
     theme: 'Pra-PKKMB',
     progressPercent: 30,
     jamSesi: '07.30 – 12.00 WIB',
@@ -35,6 +39,8 @@ export const DAYS_DATA: DaySchedule[] = [
     dayNumber: 3,
     dayName: 'Senin',
     date: '21 September 2026',
+    shortDate: '21 Sep',
+    phase: 'PKKMB Day 1',
     theme: 'PKKMB Day 1',
     progressPercent: 50,
     jamSesi: '06.30 – 17.00 WIB',
@@ -49,6 +55,8 @@ export const DAYS_DATA: DaySchedule[] = [
     dayNumber: 4,
     dayName: 'Selasa',
     date: '22 September 2026',
+    shortDate: '22 Sep',
+    phase: 'PKKMB Day 2',
     theme: 'PKKMB Day 2',
     progressPercent: 65,
     jamSesi: '07.00 – 17.00 WIB',
@@ -63,6 +71,8 @@ export const DAYS_DATA: DaySchedule[] = [
     dayNumber: 5,
     dayName: 'Rabu',
     date: '23 September 2026',
+    shortDate: '23 Sep',
+    phase: 'PKKMB Day 3',
     theme: 'PKKMB Day 3',
     progressPercent: 75,
     jamSesi: '07.00 – 17.00 WIB',
@@ -79,6 +89,8 @@ export const DAYS_DATA: DaySchedule[] = [
     dayNumber: 6,
     dayName: 'Kamis',
     date: '24 September 2026',
+    shortDate: '24 Sep',
+    phase: 'PKKMB Day 4',
     theme: 'PKKMB Day 4',
     progressPercent: 85,
     jamSesi: '07.00 – 12.00 WIB',
@@ -91,6 +103,8 @@ export const DAYS_DATA: DaySchedule[] = [
     dayNumber: 7,
     dayName: 'Jumat',
     date: '25 September 2026',
+    shortDate: '25 Sep',
+    phase: 'PKKMB Day 5',
     theme: 'PKKMB Day 5',
     progressPercent: 100,
     jamSesi: '07.00 – 21.00 WIB',
@@ -231,93 +245,11 @@ export const DRESSCODE_DATA: DresscodeHari[] = [
 ];
 
 // ─── Groups Data ───────────────────────────────────────────────────────────
-export const GROUPS_DATA: OrientationGroup[] = [
-  {
-    id: 'grp-1',
-    name: 'Kelompok Beton',
-    alias: 'Beton Mutu Tinggi',
-    mentor: 'Kak Dimas Prasetyo (Teknik Mesin \'23)',
-    mentorPhone: '0812-3456-7890',
-    memberCount: 15,
-    room: 'Ruang A.204 (Gedung Teknik)',
-    motto: 'Kokoh Berintegritas, Membangun Negeri Tanpa Retak!',
-    members: [
-      { id: 'std-1', name: 'Ahmad Farhan Maulana', nim: '264101001', major: 'D4 Rekayasa Perawatan Bangunan', groupName: 'Kelompok Beton', groupId: 'grp-1', role: 'Ketua Kelompok', avatarColor: '#b02a3e', mentorName: 'Kak Dimas Prasetyo', mentorContact: '0812-3456-7890' },
-      { id: 'std-2', name: 'Nabila Ayu Safitri', nim: '264101002', major: 'D3 Teknik Otomasi & Kontrol', groupName: 'Kelompok Beton', groupId: 'grp-1', role: 'Wakil', avatarColor: '#002a5b', mentorName: 'Kak Dimas Prasetyo', mentorContact: '0812-3456-7890' },
-      { id: 'std-3', name: 'Bima Satria Wijaya', nim: '264101003', major: 'D4 Manajemen Logistik Industri', groupName: 'Kelompok Beton', groupId: 'grp-1', role: 'Anggota', avatarColor: '#7a1f2b', mentorName: 'Kak Dimas Prasetyo', mentorContact: '0812-3456-7890' },
-      { id: 'std-4', name: 'Dewi Lestari Putri', nim: '264101004', major: 'D3 Teknik Perbaikan Mesin', groupName: 'Kelompok Beton', groupId: 'grp-1', role: 'Anggota', avatarColor: '#5b0617', mentorName: 'Kak Dimas Prasetyo', mentorContact: '0812-3456-7890' },
-      { id: 'std-5', name: 'Rizky Alamsyah', nim: '264101005', major: 'D4 Rekayasa Perawatan Bangunan', groupName: 'Kelompok Beton', groupId: 'grp-1', role: 'Anggota', avatarColor: '#004083', mentorName: 'Kak Dimas Prasetyo', mentorContact: '0812-3456-7890' },
-      { id: 'std-6', name: 'Siti Rahmadani', nim: '264101006', major: 'D3 Teknik Kimia Industri', groupName: 'Kelompok Beton', groupId: 'grp-1', role: 'Anggota', avatarColor: '#8f0c28', mentorName: 'Kak Dimas Prasetyo', mentorContact: '0812-3456-7890' },
-      { id: 'std-7', name: 'Hafizh Nur Rohman', nim: '264101007', major: 'D4 Manajemen Logistik Industri', groupName: 'Kelompok Beton', groupId: 'grp-1', role: 'Anggota', avatarColor: '#40000c', mentorName: 'Kak Dimas Prasetyo', mentorContact: '0812-3456-7890' },
-      { id: 'std-8', name: 'Clara Anindya', nim: '264101008', major: 'D3 Teknik Otomasi & Kontrol', groupName: 'Kelompok Beton', groupId: 'grp-1', role: 'Anggota', avatarColor: '#b02a3e', mentorName: 'Kak Dimas Prasetyo', mentorContact: '0812-3456-7890' },
-      { id: 'std-9', name: 'Eko Prasetyo', nim: '264101009', major: 'D3 Teknik Perbaikan Mesin', groupName: 'Kelompok Beton', groupId: 'grp-1', role: 'Anggota', avatarColor: '#002a5b', mentorName: 'Kak Dimas Prasetyo', mentorContact: '0812-3456-7890' },
-      { id: 'std-10', name: 'Gita Permatasari', nim: '264101010', major: 'D4 Rekayasa Perawatan Bangunan', groupName: 'Kelompok Beton', groupId: 'grp-1', role: 'Anggota', avatarColor: '#7a1f2b', mentorName: 'Kak Dimas Prasetyo', mentorContact: '0812-3456-7890' },
-      { id: 'std-11', name: 'Hendri Kurniawan', nim: '264101011', major: 'D3 Teknik Kimia Industri', groupName: 'Kelompok Beton', groupId: 'grp-1', role: 'Anggota', avatarColor: '#5b0617', mentorName: 'Kak Dimas Prasetyo', mentorContact: '0812-3456-7890' },
-      { id: 'std-12', name: 'Indah Kusuma Wardani', nim: '264101012', major: 'D4 Manajemen Logistik Industri', groupName: 'Kelompok Beton', groupId: 'grp-1', role: 'Anggota', avatarColor: '#004083', mentorName: 'Kak Dimas Prasetyo', mentorContact: '0812-3456-7890' },
-      { id: 'std-13', name: 'Julian Dwi Saputra', nim: '264101013', major: 'D3 Teknik Otomasi & Kontrol', groupName: 'Kelompok Beton', groupId: 'grp-1', role: 'Anggota', avatarColor: '#8f0c28', mentorName: 'Kak Dimas Prasetyo', mentorContact: '0812-3456-7890' },
-      { id: 'std-14', name: 'Karin Amelia', nim: '264101014', major: 'D4 Rekayasa Perawatan Bangunan', groupName: 'Kelompok Beton', groupId: 'grp-1', role: 'Anggota', avatarColor: '#40000c', mentorName: 'Kak Dimas Prasetyo', mentorContact: '0812-3456-7890' },
-      { id: 'std-15', name: 'Lutfi Hakim', nim: '264101015', major: 'D3 Teknik Perbaikan Mesin', groupName: 'Kelompok Beton', groupId: 'grp-1', role: 'Anggota', avatarColor: '#b02a3e', mentorName: 'Kak Dimas Prasetyo', mentorContact: '0812-3456-7890' },
-    ]
-  },
-  {
-    id: 'grp-2',
-    name: 'Kelompok Klinker',
-    alias: 'Inti Peleburan',
-    mentor: 'Kak Ratna Prameswari (Teknik Kimia \'23)',
-    mentorPhone: '0813-9876-5432',
-    memberCount: 15,
-    room: 'Ruang A.205 (Gedung Teknik)',
-    motto: 'Menyala Bersama, Membentuk Generasi Unggul!',
-    members: [
-      { id: 'std-16', name: 'Aditya Bagus Nugroho', nim: '264101016', major: 'D3 Teknik Kimia Industri', groupName: 'Kelompok Klinker', groupId: 'grp-2', role: 'Ketua Kelompok', avatarColor: '#5b0617', mentorName: 'Kak Ratna Prameswari', mentorContact: '0813-9876-5432' },
-      { id: 'std-17', name: 'Bella Chandra Kirana', nim: '264101017', major: 'D4 Manajemen Logistik Industri', groupName: 'Kelompok Klinker', groupId: 'grp-2', role: 'Wakil', avatarColor: '#002a5b', mentorName: 'Kak Ratna Prameswari', mentorContact: '0813-9876-5432' },
-      { id: 'std-18', name: 'Candra Danuarta', nim: '264101018', major: 'D3 Teknik Otomasi & Kontrol', groupName: 'Kelompok Klinker', groupId: 'grp-2', role: 'Anggota', avatarColor: '#b02a3e', mentorName: 'Kak Ratna Prameswari', mentorContact: '0813-9876-5432' },
-    ]
-  },
-  {
-    id: 'grp-3',
-    name: 'Kelompok Semen',
-    alias: 'Perekat Bangsa',
-    mentor: 'Kak Fikri Ardiansyah (Logistik \'23)',
-    mentorPhone: '0821-4455-6677',
-    memberCount: 15,
-    room: 'Ruang B.102 (Gedung Terpadu)',
-    motto: 'Menyatukan Potensi, Memperkokoh Prestasi!',
-    members: [
-      { id: 'std-19', name: 'Dany Setiawan', nim: '264101019', major: 'D4 Rekayasa Perawatan Bangunan', groupName: 'Kelompok Semen', groupId: 'grp-3', role: 'Ketua Kelompok', avatarColor: '#7a1f2b', mentorName: 'Kak Fikri Ardiansyah', mentorContact: '0821-4455-6677' },
-      { id: 'std-20', name: 'Elsa Febriyanti', nim: '264101020', major: 'D3 Teknik Otomasi & Kontrol', groupName: 'Kelompok Semen', groupId: 'grp-3', role: 'Wakil', avatarColor: '#004083', mentorName: 'Kak Fikri Ardiansyah', mentorContact: '0821-4455-6677' },
-    ]
-  },
-  {
-    id: 'grp-4',
-    name: 'Kelompok Baja',
-    alias: 'Tulangan Tangguh',
-    mentor: 'Kak Wahyu Tri (Otomasi \'23)',
-    mentorPhone: '0857-1122-3344',
-    memberCount: 15,
-    room: 'Ruang B.103 (Gedung Terpadu)',
-    motto: 'Tak Goyah oleh Beban, Selalu Menopang Kemajuan!',
-    members: [
-      { id: 'std-21', name: 'Fajar Nugraha', nim: '264101021', major: 'D3 Teknik Perbaikan Mesin', groupName: 'Kelompok Baja', groupId: 'grp-4', role: 'Ketua Kelompok', avatarColor: '#40000c', mentorName: 'Kak Wahyu Tri', mentorContact: '0857-1122-3344' },
-      { id: 'std-22', name: 'Giselle Clarissa', nim: '264101022', major: 'D4 Rekayasa Perawatan Bangunan', groupName: 'Kelompok Baja', groupId: 'grp-4', role: 'Wakil', avatarColor: '#8f0c28', mentorName: 'Kak Wahyu Tri', mentorContact: '0857-1122-3344' },
-    ]
-  },
-  {
-    id: 'grp-5',
-    name: 'Kelompok Struktur',
-    alias: 'Pilar Inovasi',
-    mentor: 'Kak Anisa Rahma (Perawatan Bangunan \'23)',
-    mentorPhone: '0896-5544-3322',
-    memberCount: 15,
-    room: 'Ruang C.301 (Gedung Lab)',
-    motto: 'Presisi dalam Ukuran, Maksimal dalam Tindakan!',
-    members: [
-      { id: 'std-23', name: 'Haris Munandar', nim: '264101023', major: 'D4 Rekayasa Perawatan Bangunan', groupName: 'Kelompok Struktur', groupId: 'grp-5', role: 'Ketua Kelompok', avatarColor: '#5b0617', mentorName: 'Kak Anisa Rahma', mentorContact: '0896-5544-3322' },
-    ]
-  }
-];
+// Default kosong saat website diluncurkan (belum diumumkan oleh panitia)
+export const GROUPS_DATA: OrientationGroup[] = [];
 
 export const ALL_STUDENTS: StudentMember[] = GROUPS_DATA.flatMap(g => g.members);
+
 
 // ─── FAQ Items (18 Q&A) ────────────────────────────────────────────────────
 export const FAQ_ITEMS: FaqItem[] = [

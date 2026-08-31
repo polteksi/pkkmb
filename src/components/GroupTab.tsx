@@ -1,17 +1,261 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GROUPS_DATA } from '../data/orientationData';
-import { StudentMember } from '../types';
+import { StudentMember, OrientationGroup } from '../types';
 import { BrandDecoration } from './BrandDecoration';
 
 interface GroupTabProps {
+  groups?: OrientationGroup[] | null;
+  isLoading?: boolean;
+  onRefresh?: () => void | Promise<void>;
   onSelectStudent?: (student: StudentMember) => void;
 }
 
-export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent }) => {
-  const [selectedGroupId, setSelectedGroupId] = useState<string>('grp-1');
-  const [searchMember, setSearchMember] = useState<string>('');
+/**
+ * 1. Skeleton Loader for GroupTab during data fetching
+ */
+const GroupTabSkeleton: React.FC = () => {
+  return (
+    <div className="tab-fade-in flex flex-col gap-6 pb-8 animate-pulse" aria-busy="true" aria-label="Memuat data kelompok">
+      {/* Skeleton Header Card */}
+      <div className="campus-card bg-white dark:bg-[#1B1638] p-5 sm:p-6 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 shadow-xs flex flex-col gap-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-slate-200 dark:bg-[#251F4A]" />
+            <div className="flex flex-col gap-2">
+              <div className="w-36 h-5 rounded-md bg-slate-200 dark:bg-[#251F4A]" />
+              <div className="w-56 h-3 rounded-md bg-slate-100 dark:bg-[#251F4A]/60 hidden sm:block" />
+            </div>
+          </div>
+          <div className="w-20 h-6 rounded-full bg-slate-200 dark:bg-[#251F4A]" />
+        </div>
+        <div className="flex gap-2 pt-2 border-t border-slate-100 dark:border-[#251F4A] overflow-hidden">
+          {[1, 2, 3, 4, 5].map((i) => (
+            <div key={i} className="w-24 h-9 rounded-xl bg-slate-200 dark:bg-[#251F4A] shrink-0" />
+          ))}
+        </div>
+      </div>
 
-  const currentGroup = GROUPS_DATA.find((g) => g.id === selectedGroupId) || GROUPS_DATA[0];
+      {/* Skeleton Spotlight Card */}
+      <div className="rounded-2xl p-6 sm:p-7 bg-[#251F4A] border border-[#5B2BBE]/30 flex flex-col gap-4">
+        <div className="w-32 h-4 rounded bg-white/20" />
+        <div className="w-48 h-8 rounded bg-white/20 mt-2" />
+        <div className="w-full h-12 rounded bg-white/10 mt-2" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
+          <div className="h-24 rounded-xl bg-white/10" />
+          <div className="h-24 rounded-xl bg-white/10" />
+        </div>
+      </div>
+
+      {/* Skeleton Roster Grid */}
+      <div className="campus-card bg-white dark:bg-[#1B1638] p-5 sm:p-6 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 shadow-xs flex flex-col gap-4">
+        <div className="w-44 h-5 rounded bg-slate-200 dark:bg-[#251F4A]" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <div key={i} className="h-16 rounded-xl border border-slate-100 dark:border-[#251F4A] bg-slate-50 dark:bg-[#251F4A]/40" />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/**
+ * 2. Pending State Component when student has no group or data is null/empty
+ */
+interface GroupPendingStateProps {
+  onRefresh?: () => void | Promise<void>;
+  isChecking?: boolean;
+}
+
+const GroupPendingState: React.FC<GroupPendingStateProps> = ({ onRefresh, isChecking }) => {
+  return (
+    <div className="tab-fade-in flex flex-col gap-6 pb-8">
+      {/* Header Card */}
+      <div className="campus-card bg-white dark:bg-[#1B1638] p-5 sm:p-6 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 shadow-xs flex flex-col gap-2 relative overflow-hidden">
+        <div className="absolute top-4 right-6 opacity-20 pointer-events-none">
+          <BrandDecoration type="sparkle" size={24} color="#5B2BBE" />
+        </div>
+        <div className="flex items-center gap-2.5 text-[#5B2BBE] dark:text-[#C39BFF]">
+          <div className="w-10 h-10 rounded-xl bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/30 text-[#5B2BBE] dark:text-[#C39BFF] flex items-center justify-center shrink-0">
+            <span className="material-symbols-outlined text-[24px]">group</span>
+          </div>
+          <div>
+            <h2 className="font-display font-black text-lg sm:text-2xl text-[#22202A] dark:text-white tracking-tight leading-tight">
+              Kelompok Orientasi
+            </h2>
+            <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] font-medium">
+              Informasi pembagian kelompok mahasiswa baru ORVOKS POLTEKSI 2026
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Pending State Main Content Card */}
+      <div className="campus-card bg-white dark:bg-[#1B1638] border border-[#5B2BBE]/15 dark:border-[#5B2BBE]/30 p-6 sm:p-10 rounded-2xl shadow-xs text-center flex flex-col items-center gap-5 relative overflow-hidden">
+        {/* Subtle decorative ambient glow */}
+        <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-[#5B2BBE]/5 dark:bg-[#5B2BBE]/15 blur-2xl pointer-events-none" />
+        <div className="absolute -bottom-12 -left-12 w-48 h-48 rounded-full bg-[#F2B632]/5 dark:bg-[#F2B632]/10 blur-2xl pointer-events-none" />
+
+        {/* Dual Material Symbols Icon Container: group & pending */}
+        <div className="relative">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/25 text-[#5B2BBE] dark:text-[#C39BFF] flex items-center justify-center shadow-xs border border-[#5B2BBE]/20 dark:border-[#5B2BBE]/35">
+            <span className="material-symbols-outlined text-[36px] sm:text-[42px]">group</span>
+          </div>
+          <div className="absolute -bottom-1 -right-1 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#F2B632] text-[#22202A] flex items-center justify-center shadow-sm border-2 border-white dark:border-[#1B1638]">
+            <span className="material-symbols-outlined text-[16px] sm:text-[18px]">pending</span>
+          </div>
+        </div>
+
+        {/* Title & Official Description */}
+        <div className="flex flex-col items-center gap-2 max-w-lg">
+          <h3 className="font-display font-black text-xl sm:text-2xl text-[#22202A] dark:text-white tracking-tight">
+            Kelompok Belum Diumumkan
+          </h3>
+          <p className="text-xs sm:text-sm text-[#6B6874] dark:text-[#A39EB8] leading-relaxed font-medium">
+            Saat ini kamu belum mendapatkan kelompok PKKMB. Informasi kelompok akan tersedia setelah pembagian kelompok resmi diumumkan oleh panitia.
+          </p>
+        </div>
+
+        {/* Status Box: Label "Status" and Value "Menunggu Pengumuman Kelompok" */}
+        <div className="w-full max-w-md bg-[#FAF9F6] dark:bg-[#251F4A]/70 border border-[#5B2BBE]/15 dark:border-[#5B2BBE]/30 rounded-xl p-3.5 sm:p-4 flex items-center justify-between gap-3 shadow-2xs">
+          <div className="flex items-center gap-2.5 text-left">
+            <div className="w-8 h-8 rounded-lg bg-[#F2B632]/20 text-[#B88109] dark:text-[#FCD34D] flex items-center justify-center shrink-0">
+              <span className="material-symbols-outlined text-[18px]">schedule</span>
+            </div>
+            <div>
+              <span className="text-[11px] font-bold text-[#6B6874] dark:text-[#A39EB8] uppercase tracking-wider block">
+                Status
+              </span>
+              <span className="font-display font-extrabold text-xs sm:text-sm text-[#22202A] dark:text-white block mt-0.5">
+                Menunggu Pengumuman Kelompok
+              </span>
+            </div>
+          </div>
+          <span className="inline-flex items-center gap-1 text-[10px] font-bold bg-[#F2B632]/15 text-[#B88109] dark:text-[#FCD34D] px-2.5 py-1 rounded-full border border-[#F2B632]/30 shrink-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#F2B632] animate-ping" />
+            Pending
+          </span>
+        </div>
+
+        {/* Small Additional Information */}
+        <p className="text-[11px] sm:text-xs text-[#6B6874] dark:text-[#A39EB8] max-w-lg leading-relaxed text-center font-medium">
+          Setelah kelompok diumumkan, kamu dapat melihat nama kelompok, mentor, anggota, dan informasi kegiatan di halaman ini.
+        </p>
+
+        {/* Refresh Action Button */}
+        {onRefresh && (
+          <button
+            onClick={onRefresh}
+            disabled={isChecking}
+            className="mt-1 bg-[#5B2BBE] hover:bg-[#43208F] dark:bg-[#5B2BBE] dark:hover:bg-[#43208F] text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-all shadow-xs cursor-pointer active:scale-95 flex items-center gap-2 disabled:opacity-75 disabled:cursor-not-allowed"
+          >
+            <span className={`material-symbols-outlined text-[18px] ${isChecking ? 'animate-spin' : ''}`}>
+              refresh
+            </span>
+            <span>{isChecking ? 'Memeriksa...' : 'Periksa Pembaruan'}</span>
+          </button>
+        )}
+
+        {/* Information & Preparation Guide */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 w-full max-w-3xl pt-4 border-t border-slate-100 dark:border-[#251F4A] text-left">
+          <div className="p-4 rounded-xl bg-[#FAF9F6] dark:bg-[#251F4A]/60 border border-[#5B2BBE]/10 dark:border-[#5B2BBE]/20 flex flex-col gap-2">
+            <div className="flex items-center gap-2 text-[#5B2BBE] dark:text-[#C39BFF]">
+              <span className="material-symbols-outlined text-[18px]">checkroom</span>
+              <span className="font-display font-bold text-xs">Siapkan Atribut</span>
+            </div>
+            <p className="text-[11px] text-[#6B6874] dark:text-[#A39EB8] leading-relaxed font-medium">
+              Cek tab Atribut & Perlengkapan untuk mempersiapkan seragam dan barang bawaan wajib.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl bg-[#FAF9F6] dark:bg-[#251F4A]/60 border border-[#5B2BBE]/10 dark:border-[#5B2BBE]/20 flex flex-col gap-2">
+            <div className="flex items-center gap-2 text-[#5B2BBE] dark:text-[#C39BFF]">
+              <span className="material-symbols-outlined text-[18px]">calendar_month</span>
+              <span className="font-display font-bold text-xs">Pantau Jadwal</span>
+            </div>
+            <p className="text-[11px] text-[#6B6874] dark:text-[#A39EB8] leading-relaxed font-medium">
+              Cermati susunan rundown Pra-PKKMB hingga Penutupan di tab Jadwal Kegiatan.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl bg-[#FAF9F6] dark:bg-[#251F4A]/60 border border-[#5B2BBE]/10 dark:border-[#5B2BBE]/20 flex flex-col gap-2">
+            <div className="flex items-center gap-2 text-[#5B2BBE] dark:text-[#C39BFF]">
+              <span className="material-symbols-outlined text-[18px]">help_outline</span>
+              <span className="font-display font-bold text-xs">Bantuan & FAQ</span>
+            </div>
+            <p className="text-[11px] text-[#6B6874] dark:text-[#A39EB8] leading-relaxed font-medium">
+              Baca pertanyaan umum terkait pelaksanaan PKKMB di tab FAQ resmi kampus.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/**
+ * 3. Main GroupTab Component with Strict Priority Logic:
+ * 
+ * IF data sedang loading:
+ *     tampilkan Skeleton Loading
+ * ELSE IF mahasiswa belum memiliki kelompok atau data kelompok null/kosong:
+ *     tampilkan Pending State "Kelompok Belum Diumumkan"
+ * ELSE:
+ *     tampilkan Halaman Kelompok Existing
+ */
+export const GroupTab: React.FC<GroupTabProps> = ({ 
+  groups: propGroups,
+  isLoading: propIsLoading = false,
+  onRefresh: propOnRefresh,
+  onSelectStudent,
+}) => {
+  // Use prop groups if provided (including explicit null/[]), otherwise default to GROUPS_DATA
+  const groups = propGroups !== undefined ? propGroups : GROUPS_DATA;
+  const [selectedGroupId, setSelectedGroupId] = useState<string>('');
+  const [searchMember, setSearchMember] = useState<string>('');
+  const [isCheckingRefresh, setIsCheckingRefresh] = useState<boolean>(false);
+
+  // Update selectedGroupId when groups data is available or changes
+  useEffect(() => {
+    if (groups && groups.length > 0) {
+      setSelectedGroupId((prev) => {
+        const exists = groups.some((g) => g.id === prev);
+        return exists ? prev : groups[0].id;
+      });
+    }
+  }, [groups]);
+
+  const handleRefresh = async () => {
+    setIsCheckingRefresh(true);
+    try {
+      if (propOnRefresh) {
+        await propOnRefresh();
+      } else {
+        // Smooth feedback delay if using local check
+        await new Promise((resolve) => setTimeout(resolve, 600));
+      }
+    } finally {
+      setIsCheckingRefresh(false);
+    }
+  };
+
+  // 1. Loading State -> Render Skeleton
+  if (propIsLoading) {
+    return <GroupTabSkeleton />;
+  }
+
+  // 2. Pending / Empty State -> Render GroupPendingState
+  if (!groups || groups.length === 0) {
+    return (
+      <GroupPendingState 
+        onRefresh={handleRefresh}
+        isChecking={isCheckingRefresh}
+      />
+    );
+  }
+
+  // 3. Populated State -> Render Active Group View
+  const currentGroup = groups.find((g) => g.id === selectedGroupId) || groups[0];
 
   const filteredMembers = currentGroup.members.filter((m) =>
     m.name.toLowerCase().includes(searchMember.toLowerCase()) ||
@@ -23,11 +267,11 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent }) => {
     <div className="tab-fade-in flex flex-col gap-6 pb-8">
       
       {/* Header & Group Picker */}
-      <div className="campus-card bg-white dark:bg-[#1B1638] p-5 sm:p-6 border border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 shadow-xs flex flex-col gap-4">
+      <div className="campus-card bg-white dark:bg-[#1B1638] p-5 sm:p-6 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 shadow-xs flex flex-col gap-4">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2.5 text-[#5B2BBE] dark:text-[#C39BFF]">
             <div className="w-10 h-10 rounded-xl bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/30 text-[#5B2BBE] dark:text-[#C39BFF] flex items-center justify-center shrink-0">
-              <span className="material-symbols-outlined text-[24px]">groups</span>
+              <span className="material-symbols-outlined text-[24px]">group</span>
             </div>
             <div>
               <h2 className="font-display font-black text-lg sm:text-2xl text-[#22202A] dark:text-white tracking-tight leading-tight">
@@ -39,13 +283,13 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent }) => {
             </div>
           </div>
           <span className="text-[11px] sm:text-xs bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/25 text-[#5B2BBE] dark:text-[#C39BFF] font-bold px-3 py-1 rounded-full border border-[#5B2BBE]/20 dark:border-[#5B2BBE]/35 shrink-0">
-            5 Kelompok
+            {groups.length} Kelompok
           </span>
         </div>
 
         {/* Group Selector Pills */}
         <div className="flex gap-2 overflow-x-auto no-scrollbar pt-1">
-          {GROUPS_DATA.map((grp) => {
+          {groups.map((grp) => {
             const isSelected = selectedGroupId === grp.id;
             return (
               <button
@@ -53,7 +297,7 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent }) => {
                 onClick={() => setSelectedGroupId(grp.id)}
                 className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold border shrink-0 transition-all cursor-pointer flex items-center gap-2 ${
                   isSelected
-                    ? 'bg-[#5B2BBE] dark:bg-[#5B2BBE] text-white border-[#5B2BBE] dark:border-[#D63BBE] shadow-md scale-102 font-bold ring-2 ring-[#5B2BBE]/25 dark:ring-[#D63BBE]/35'
+                    ? 'bg-[#5B2BBE] dark:bg-[#5B2BBE] text-white border-[#5B2BBE] dark:border-[#C39BFF] shadow-sm font-bold ring-2 ring-[#5B2BBE]/25 dark:ring-[#C39BFF]/35'
                     : 'bg-[#FAF9F6] dark:bg-[#251F4A] text-[#22202A] dark:text-[#F3F2F8] border-[#5B2BBE]/12 dark:border-[#251F4A] hover:bg-[#EFE9FF]/60 dark:hover:bg-[#322B60]'
                 }`}
               >
@@ -67,7 +311,7 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent }) => {
         </div>
       </div>
 
-      {/* Group Spotlight Details Card - ORVOKS Deep Purple Gradient */}
+      {/* Group Spotlight Details Card - ORVOKS Deep Purple */}
       <div 
         className="rounded-2xl text-white p-6 sm:p-7 card-3d-dark border border-[#5B2BBE]/30 relative overflow-hidden flex flex-col gap-5"
       >
@@ -84,7 +328,7 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent }) => {
               <BrandDecoration type="sparkle" size={14} color="#F2B632" />
               INFORMASI KELOMPOK
             </span>
-            <span className="bg-white/20 backdrop-blur-xs text-white text-xs font-bold px-3 py-1 rounded-full border border-white/25">
+            <span className="bg-white/20 backdrop-blur-xs text-white text-xs font-bold px-3 py-1 rounded-full border border-white/25 font-display">
               {currentGroup.alias}
             </span>
           </div>
@@ -95,7 +339,7 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent }) => {
               {currentGroup.name}
             </h3>
             <div className="mt-2.5 bg-black/25 backdrop-blur-xs p-3.5 rounded-xl border border-white/15">
-              <p className="text-xs sm:text-sm text-[#FDE8FA] italic font-medium leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#EFE9FF] italic font-medium leading-relaxed">
                 "{currentGroup.motto}"
               </p>
             </div>
@@ -144,7 +388,7 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent }) => {
       </div>
 
       {/* Member Roster List */}
-      <div className="campus-card bg-white dark:bg-[#1B1638] p-5 sm:p-6 border border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 shadow-xs flex flex-col gap-4">
+      <div className="campus-card bg-white dark:bg-[#1B1638] p-5 sm:p-6 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 shadow-xs flex flex-col gap-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-[#251F4A] pb-4">
           <div>
             <h4 className="font-display font-bold text-lg text-[#22202A] dark:text-white">
@@ -180,7 +424,7 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent }) => {
             <div
               key={member.id}
               onClick={() => onSelectStudent?.(member)}
-              className="p-3.5 rounded-xl border border-[#5B2BBE]/10 dark:border-[#251F4A] bg-white dark:bg-[#251F4A]/60 hover:border-[#5B2BBE]/30 dark:hover:border-[#D63BBE]/40 hover:shadow-xs transition-all flex items-center justify-between gap-3 cursor-pointer group"
+              className="p-3.5 rounded-xl border border-[#5B2BBE]/10 dark:border-[#251F4A] bg-white dark:bg-[#251F4A]/60 hover:border-[#5B2BBE]/30 dark:hover:border-[#5B2BBE]/50 hover:shadow-xs transition-all flex items-center justify-between gap-3 cursor-pointer group"
             >
               <div className="flex items-center gap-3 min-w-0">
                 <div
@@ -195,7 +439,7 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent }) => {
                       {member.name}
                     </h5>
                     {member.role !== 'Anggota' && (
-                      <span className="text-[9px] bg-[#FDE8FA] dark:bg-[#D63BBE]/30 text-[#D63BBE] dark:text-[#FF85EA] font-bold px-1.5 py-0.2 rounded-full border border-[#D63BBE]/20">
+                      <span className="text-[9px] bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/30 text-[#5B2BBE] dark:text-[#C39BFF] font-bold px-1.5 py-0.2 rounded-full border border-[#5B2BBE]/20">
                         {member.role}
                       </span>
                     )}
@@ -223,3 +467,5 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent }) => {
     </div>
   );
 };
+
+

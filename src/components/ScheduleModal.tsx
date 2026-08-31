@@ -15,17 +15,17 @@ export const ScheduleModal: React.FC<ScheduleModalProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/80 backdrop-blur-xs animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/80 backdrop-blur-xs transition-opacity duration-150"
       onClick={onClose}
     >
       <div 
-        className="bg-white dark:bg-[#1B1638] rounded-2xl max-w-lg w-full max-h-[85vh] flex flex-col overflow-hidden shadow-2xl border border-[#5B2BBE]/15 dark:border-[#D63BBE]/25 animate-in zoom-in-95 duration-150"
+        className="bg-white dark:bg-[#1B1638] rounded-2xl max-w-lg w-full max-h-[85vh] flex flex-col overflow-hidden shadow-2xl border border-[#5B2BBE]/15 dark:border-[#5B2BBE]/30 transition-all"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header - ORVOKS Deep Purple Gradient */}
         <div className="bg-[#5B2BBE] text-white p-5 flex items-start justify-between relative overflow-hidden shrink-0">
           <div className="relative z-10">
-            <span className="text-[10px] bg-white/20 text-[#FDE8FA] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider font-display inline-flex items-center gap-1">
+            <span className="text-[10px] bg-white/20 text-[#EFE9FF] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider font-display inline-flex items-center gap-1">
               <BrandDecoration type="sparkle" size={12} color="#F2B632" />
               SESI KE-{day.dayNumber} — {day.dayName}
             </span>
@@ -64,7 +64,7 @@ export const ScheduleModal: React.FC<ScheduleModalProps> = ({
             {day.kegiatan.map((kegiatan, idx) => (
               <div
                 key={idx}
-                className="bg-white dark:bg-[#251F4A]/60 border border-[#5B2BBE]/10 dark:border-[#322B60] p-3.5 rounded-xl shadow-xs flex items-center gap-3 hover:border-[#5B2BBE]/30 dark:hover:border-[#D63BBE]/40 transition-all"
+                className="bg-white dark:bg-[#251F4A]/60 border border-[#5B2BBE]/10 dark:border-[#322B60] p-3.5 rounded-xl shadow-xs flex items-center gap-3 hover:border-[#5B2BBE]/30 dark:hover:border-[#5B2BBE]/50 transition-all"
               >
                 <div className="w-7 h-7 rounded-lg bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/30 text-[#5B2BBE] dark:text-[#C39BFF] flex items-center justify-center shrink-0 font-display font-black text-xs border border-[#5B2BBE]/15 dark:border-[#5B2BBE]/30">
                   {idx + 1}

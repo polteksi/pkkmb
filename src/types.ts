@@ -1,10 +1,12 @@
-export type TabType = 'beranda' | 'jadwal' | 'kelompok' | 'atribut' | 'faq';
+export type TabType = 'beranda' | 'jadwal' | 'kelompok' | 'atribut' | 'guidebook' | 'faq';
 
 export interface DaySchedule {
   dayNumber: number;
   dayName: string;
   theme: string;
   date: string;
+  shortDate: string;        // e.g. "18 Sep"
+  phase: string;            // e.g. "Pra-PKKMB", "PKKMB Day 1"
   progressPercent: number;
   jamSesi: string;          // Rentang jam sesi (ditampilkan sekali sebagai header)
   kegiatan: string[];       // Daftar kegiatan tanpa jam/lokasi individual

@@ -19,11 +19,11 @@ export const ScheduleTab: React.FC<ScheduleTabProps> = ({
     <div className="tab-fade-in flex flex-col gap-6 pb-8">
       
       {/* Header Banner */}
-      <div className="campus-card bg-white dark:bg-[#1B1638] p-6 border border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 shadow-xs flex flex-col gap-4 relative overflow-hidden">
+      <div className="campus-card bg-white dark:bg-[#1B1638] p-6 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 shadow-xs flex flex-col gap-4 relative overflow-hidden">
         
         {/* Subtle minimal geometric accent */}
         <div className="absolute top-4 right-6 opacity-20 pointer-events-none">
-          <BrandDecoration type="sparkle" size={24} color="#D63BBE" />
+          <BrandDecoration type="sparkle" size={24} color="#5B2BBE" />
         </div>
 
         <div>
@@ -38,7 +38,7 @@ export const ScheduleTab: React.FC<ScheduleTabProps> = ({
           </p>
         </div>
 
-        {/* Day selection tabs — scrollable on mobile */}
+        {/* Day selection tabs — Tanggal + Hari */}
         <div className="grid grid-cols-4 sm:grid-cols-7 gap-1.5 pt-2 border-t border-[#FAF9F6] dark:border-[#251F4A]">
           {DAYS_DATA.map((day) => {
             const isSelected = selectedDayNum === day.dayNumber;
@@ -48,14 +48,14 @@ export const ScheduleTab: React.FC<ScheduleTabProps> = ({
                 onClick={() => setSelectedDayNum(day.dayNumber)}
                 className={`flex flex-col items-center py-2 px-1 rounded-xl border transition-all cursor-pointer ${
                   isSelected
-                    ? 'bg-[#5B2BBE] dark:bg-[#5B2BBE] text-white border-[#5B2BBE] dark:border-[#D63BBE] shadow-md font-bold scale-102 ring-2 ring-[#5B2BBE]/25 dark:ring-[#D63BBE]/35'
+                    ? 'bg-[#5B2BBE] dark:bg-[#5B2BBE] text-white border-[#5B2BBE] dark:border-[#C39BFF] shadow-sm font-bold ring-2 ring-[#5B2BBE]/25 dark:ring-[#C39BFF]/35'
                     : 'bg-white dark:bg-[#1B1638] text-[#6B6874] dark:text-[#A39EB8] border-slate-200 dark:border-[#251F4A] hover:bg-[#FAF9F6] dark:hover:bg-[#251F4A]/70'
                 }`}
               >
-                <span className={`text-[9px] uppercase font-bold tracking-wider ${isSelected ? 'text-[#FDE8FA]' : 'text-[#6B6874] dark:text-[#A39EB8]'}`}>
-                  H-{day.dayNumber}
+                <span className={`text-[11px] font-extrabold tracking-tight font-display ${isSelected ? 'text-white' : 'text-[#22202A] dark:text-[#F3F2F8]'}`}>
+                  {day.shortDate}
                 </span>
-                <span className="text-[11px] sm:text-xs font-bold">
+                <span className={`text-[10px] font-semibold ${isSelected ? 'text-[#EFE9FF]' : 'text-[#6B6874] dark:text-[#A39EB8]'}`}>
                   {day.dayName}
                 </span>
               </button>
@@ -65,11 +65,11 @@ export const ScheduleTab: React.FC<ScheduleTabProps> = ({
       </div>
 
       {/* Selected Day Overview */}
-      <div className="campus-card bg-white dark:bg-[#1B1638] p-5 border border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 shadow-xs">
+      <div className="campus-card bg-white dark:bg-[#1B1638] p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 shadow-xs">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <span className="bg-[#D63BBE]/10 dark:bg-[#D63BBE]/25 text-[#D63BBE] dark:text-[#FF85EA] text-[11px] font-bold px-3 py-0.5 rounded-full border border-[#D63BBE]/20 dark:border-[#D63BBE]/35 inline-block mb-1">
-              {selectedDay.date} ({selectedDay.dayName})
+            <span className="bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/25 text-[#5B2BBE] dark:text-[#C39BFF] text-[11px] font-bold px-3 py-0.5 rounded-full border border-[#5B2BBE]/20 dark:border-[#5B2BBE]/35 inline-block mb-1 font-display">
+              {selectedDay.date} ({selectedDay.dayName}) · {selectedDay.phase}
             </span>
             <h3 className="font-display font-bold text-lg text-[#22202A] dark:text-white">
               {selectedDay.theme}
@@ -90,19 +90,19 @@ export const ScheduleTab: React.FC<ScheduleTabProps> = ({
       <div className="flex flex-col gap-3">
         {/* Jam Sesi as Section Header */}
         <div className="flex items-center gap-3">
-          <div className="h-px flex-1 bg-gradient-to-r from-[#5B2BBE]/20 to-transparent dark:from-[#D63BBE]/20" />
+          <div className="h-px flex-1 bg-gradient-to-r from-[#5B2BBE]/20 to-transparent dark:from-[#5B2BBE]/30" />
           <span className="flex items-center gap-2 bg-[#5B2BBE] text-white text-xs font-bold px-4 py-1.5 rounded-full font-display shrink-0 shadow-xs">
             <span className="material-symbols-outlined text-[15px]">schedule</span>
             {selectedDay.jamSesi}
           </span>
-          <div className="h-px flex-1 bg-gradient-to-l from-[#5B2BBE]/20 to-transparent dark:from-[#D63BBE]/20" />
+          <div className="h-px flex-1 bg-gradient-to-l from-[#5B2BBE]/20 to-transparent dark:from-[#5B2BBE]/30" />
         </div>
 
         {/* Kegiatan Cards */}
         {selectedDay.kegiatan.map((kegiatan, idx) => (
           <div
             key={idx}
-            className="campus-card campus-card-hover bg-white dark:bg-[#1B1638] p-4 sm:p-5 border border-[#5B2BBE]/10 dark:border-[#D63BBE]/20 shadow-xs flex items-center gap-4 transition-all"
+            className="campus-card campus-card-hover bg-white dark:bg-[#1B1638] p-4 sm:p-5 border border-[#5B2BBE]/10 dark:border-[#5B2BBE]/25 shadow-xs flex items-center gap-4 transition-all"
           >
             {/* Numbering Badge */}
             <div className="w-9 h-9 rounded-xl bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/25 text-[#5B2BBE] dark:text-[#C39BFF] flex items-center justify-center shrink-0 font-display font-black text-sm border border-[#5B2BBE]/15 dark:border-[#5B2BBE]/30">
@@ -113,7 +113,7 @@ export const ScheduleTab: React.FC<ScheduleTabProps> = ({
               {kegiatan}
             </h4>
             {/* Visual accent */}
-            <div className="w-2 h-8 rounded-full bg-gradient-to-b from-[#5B2BBE] to-[#D63BBE] opacity-30 dark:opacity-50 shrink-0" />
+            <div className="w-1.5 h-8 rounded-full bg-[#5B2BBE] opacity-40 dark:opacity-60 shrink-0" />
           </div>
         ))}
 

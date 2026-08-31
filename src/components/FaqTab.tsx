@@ -27,7 +27,7 @@ export const FaqTab: React.FC = () => {
     <div className="tab-fade-in flex flex-col gap-6 pb-8">
       
       {/* Header & Search Banner */}
-      <div className="campus-card bg-white dark:bg-[#1B1638] p-6 sm:p-7 border border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 shadow-xs flex flex-col gap-4 relative overflow-hidden">
+      <div className="campus-card bg-white dark:bg-[#1B1638] p-6 sm:p-7 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 shadow-xs flex flex-col gap-4 relative overflow-hidden">
         
         <div className="absolute top-4 right-6 opacity-20 pointer-events-none">
           <BrandDecoration type="sparkle" size={24} color="#5B2BBE" />
@@ -73,7 +73,7 @@ export const FaqTab: React.FC = () => {
                 }}
                 className={`px-4 py-2 text-xs font-bold rounded-xl border transition-all shrink-0 cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-[#5B2BBE] dark:bg-[#5B2BBE] text-white border-[#5B2BBE] dark:border-[#D63BBE] shadow-xs'
+                    ? 'bg-[#5B2BBE] dark:bg-[#5B2BBE] text-white border-[#5B2BBE] dark:border-[#C39BFF] shadow-xs'
                     : 'bg-[#FAF9F6] dark:bg-[#251F4A] text-[#6B6874] dark:text-[#A39EB8] border-slate-200 dark:border-[#322B60] hover:bg-[#EFE9FF]/60 dark:hover:bg-[#322B60]'
                 }`}
               >
@@ -93,8 +93,8 @@ export const FaqTab: React.FC = () => {
               key={idx}
               className={`campus-card border transition-all overflow-hidden ${
                 isOpen 
-                  ? 'border-[#5B2BBE]/30 dark:border-[#D63BBE]/40 shadow-sm bg-white dark:bg-[#1B1638]' 
-                  : 'border-[#5B2BBE]/10 dark:border-[#251F4A] bg-white dark:bg-[#1B1638] hover:border-[#5B2BBE]/25 dark:hover:border-[#D63BBE]/30'
+                  ? 'border-[#5B2BBE]/30 dark:border-[#5B2BBE]/50 shadow-sm bg-white dark:bg-[#1B1638]' 
+                  : 'border-[#5B2BBE]/10 dark:border-[#251F4A] bg-white dark:bg-[#1B1638] hover:border-[#5B2BBE]/25 dark:hover:border-[#5B2BBE]/40'
               }`}
             >
               <button
@@ -113,7 +113,7 @@ export const FaqTab: React.FC = () => {
                 <span
                   className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 ${
                     isOpen 
-                      ? 'rotate-180 bg-[#5B2BBE] dark:bg-[#D63BBE] text-white' 
+                      ? 'rotate-180 bg-[#5B2BBE] dark:bg-[#5B2BBE] text-white' 
                       : 'bg-[#FAF9F6] dark:bg-[#251F4A] text-[#6B6874] dark:text-[#A39EB8]'
                   }`}
                 >
@@ -153,7 +153,7 @@ export const FaqTab: React.FC = () => {
       </div>
 
       {/* Helpdesk Contact Card */}
-      <div className="campus-card bg-[#FAF9F6] dark:bg-[#1B1638] border border-[#5B2BBE]/15 dark:border-[#D63BBE]/30 p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xs">
+      <div className="campus-card bg-[#FAF9F6] dark:bg-[#1B1638] border border-[#5B2BBE]/15 dark:border-[#5B2BBE]/30 p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xs">
         <div className="flex items-center gap-3.5">
           <div className="w-12 h-12 rounded-2xl bg-[#5B2BBE] dark:bg-[#5B2BBE] text-white flex items-center justify-center shrink-0 shadow-xs">
             <span className="material-symbols-outlined text-[26px]">contact_support</span>
@@ -172,7 +172,7 @@ export const FaqTab: React.FC = () => {
           href="https://wa.me/6281199887766"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-[#5B2BBE] dark:bg-[#D63BBE] hover:bg-[#43208F] dark:hover:bg-[#C332A8] text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-all text-center shrink-0 shadow-xs cursor-pointer active:scale-95 flex items-center justify-center gap-1.5"
+          className="bg-[#5B2BBE] hover:bg-[#43208F] dark:hover:bg-[#43208F] text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-all text-center shrink-0 shadow-xs cursor-pointer active:scale-95 flex items-center justify-center gap-1.5"
         >
           <span className="material-symbols-outlined text-[16px]">chat</span>
           <span>Hubungi Helpdesk Panitia</span>
