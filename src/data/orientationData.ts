@@ -1,6 +1,6 @@
 import { DaySchedule, OrientationGroup, StudentMember, FaqItem, PerlengkapanItem, DresscodeHari } from '../types';
 
-export const HERO_IMAGE_URL = '/images/banner-hero.jpg';
+export const HERO_IMAGE_URL = '/Elaina 3D.jpg';
 
 // ─── Rundown ORVOKS 2026 ───────────────────────────────────────────────────
 export const DAYS_DATA: DaySchedule[] = [
