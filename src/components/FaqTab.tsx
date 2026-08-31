@@ -169,7 +169,7 @@ export const FaqTab: React.FC = () => {
         </div>
 
         <a
-          href="https://wa.me/6281199887766"
+          href="https://wa.me/6281213399217"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-[#5B2BBE] hover:bg-[#43208F] dark:hover:bg-[#43208F] text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-all text-center shrink-0 shadow-xs cursor-pointer active:scale-95 flex items-center justify-center gap-1.5"

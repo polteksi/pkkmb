@@ -1,11 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PERLENGKAPAN_ITEMS, DRESSCODE_DATA } from '../data/orientationData';
 import { BrandDecoration } from './BrandDecoration';
 
 export const AtributTab: React.FC = () => {
   const [activeDresscodeIdx, setActiveDresscodeIdx] = useState(0);
+  const [showImageModal, setShowImageModal] = useState(false);
 
   const activeDresscode = DRESSCODE_DATA[activeDresscodeIdx];
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (showImageModal) setShowImageModal(false);
+    };
+    if (showImageModal) {
+      document.addEventListener('keydown', handleEscape);
+    }
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [showImageModal]);
+
+  const renderItemList = (items: string[], icon: string = 'check_small', iconColor: string = 'text-[#5B2BBE] dark:text-[#C39BFF]') => (
+    <div className="flex flex-col gap-2">
+      {items.map((item, i) => (
+        <div key={i} className="flex items-start gap-2.5">
+          <span className={`material-symbols-outlined text-[15px] ${iconColor} shrink-0 mt-0.5`}>
+            {icon}
+          </span>
+          <p className="text-xs sm:text-sm text-[#22202A] dark:text-[#F3F2F8] font-medium leading-snug whitespace-pre-line">
+            {item}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
 
   return (
     <div className="tab-fade-in flex flex-col gap-6 pb-8">
@@ -48,7 +74,6 @@ export const AtributTab: React.FC = () => {
               key={item.id}
               className="campus-card bg-white dark:bg-[#1B1638] p-4 border border-[#5B2BBE]/10 dark:border-[#5B2BBE]/25 flex items-start gap-3 shadow-xs transition-all hover:border-[#5B2BBE]/25 dark:hover:border-[#5B2BBE]/40"
             >
-              {/* Number circle */}
               <div className="w-8 h-8 rounded-xl bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/25 text-[#5B2BBE] dark:text-[#C39BFF] flex items-center justify-center shrink-0 font-display font-black text-xs border border-[#5B2BBE]/15 dark:border-[#5B2BBE]/30">
                 {idx + 1}
               </div>
@@ -149,6 +174,17 @@ export const AtributTab: React.FC = () => {
             </span>
           </div>
 
+          {/* Lihat Contoh Dresscode Button */}
+          <div className="p-4 border-b border-[#5B2BBE]/10 dark:border-[#251F4A] text-center">
+            <button
+              onClick={() => setShowImageModal(true)}
+              className="inline-flex items-center justify-center gap-2 bg-[#5B2BBE] dark:bg-[#5B2BBE] hover:bg-[#43208F] dark:hover:bg-[#7D3BD6] text-white font-bold text-sm py-3 px-6 rounded-xl transition-all shadow-xs cursor-pointer active:scale-98"
+            >
+              <span className="material-symbols-outlined text-[20px]">visibility</span>
+              <span>👁 Lihat Contoh Dresscode</span>
+            </button>
+          </div>
+
           {/* Putra & Putri columns */}
           <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-[#5B2BBE]/8 dark:divide-[#251F4A]">
             {/* Putra */}
@@ -161,18 +197,7 @@ export const AtributTab: React.FC = () => {
                   Putra
                 </span>
               </div>
-              <div className="flex flex-col gap-2">
-                {activeDresscode.putra.map((item, i) => (
-                  <div key={i} className="flex items-start gap-2.5">
-                    <span className="material-symbols-outlined text-[15px] text-[#4256A6] dark:text-[#A5B8FF] shrink-0 mt-0.5">
-                      check_small
-                    </span>
-                    <p className="text-xs sm:text-sm text-[#22202A] dark:text-[#F3F2F8] font-medium leading-snug">
-                      {item}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              {renderItemList(activeDresscode.putra, 'check_small', 'text-[#4256A6] dark:text-[#A5B8FF]')}
             </div>
 
             {/* Putri */}
@@ -185,26 +210,43 @@ export const AtributTab: React.FC = () => {
                   Putri
                 </span>
               </div>
-              <div className="flex flex-col gap-2">
-                {activeDresscode.putri.map((item, i) => (
-                  <div key={i} className="flex items-start gap-2.5">
-                    <span className="material-symbols-outlined text-[15px] text-[#5B2BBE] dark:text-[#C39BFF] shrink-0 mt-0.5">
-                      check_small
-                    </span>
-                    <p className="text-xs sm:text-sm text-[#22202A] dark:text-[#F3F2F8] font-medium leading-snug">
-                      {item}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              {renderItemList(activeDresscode.putri, 'check_small', 'text-[#5B2BBE] dark:text-[#C39BFF]')}
             </div>
           </div>
 
-          {/* Catatan khusus (Day 5 warna prodi, dll.) */}
+          {/* Wajib Membawa Section */}
+          {activeDresscode.wajibMembawa && activeDresscode.wajibMembawa.length > 0 && (
+            <div className="p-4 border-t border-[#5B2BBE]/10 dark:border-[#251F4A] border-l-4 border-l-[#F2B632]">
+              <div className="flex items-center gap-2 mb-2.5 text-[#B88109] dark:text-[#FCD34D]">
+                <span className="material-symbols-outlined text-[16px]">assignment</span>
+                <h5 className="font-display font-bold text-sm uppercase tracking-wider">
+                  Wajib Membawa
+                </h5>
+              </div>
+              {renderItemList(activeDresscode.wajibMembawa, 'folder_open', 'text-[#6B6874] dark:text-[#A39EB8]')}
+            </div>
+          )}
+
+          {/* Membawa Ganti Section */}
+          {activeDresscode.membawaGanti && activeDresscode.membawaGanti.length > 0 && (
+            <div className="p-4 border-t border-[#5B2BBE]/10 dark:border-[#251F4A] border-l-4 border-l-[#5B2BBE]">
+              <div className="flex items-center gap-2 mb-2.5 text-[#5B2BBE] dark:text-[#C39BFF]">
+                <span className="material-symbols-outlined text-[16px]">local_florist</span>
+                <h5 className="font-display font-bold text-sm uppercase tracking-wider">
+                  Membawa Ganti
+                </h5>
+              </div>
+              {renderItemList(activeDresscode.membawaGanti, 'check_circle', 'text-[#6B6874] dark:text-[#A39EB8]')}
+            </div>
+          )}
+
+          {/* Catatan Khusus Section */}
           {activeDresscode.catatan && (
-            <div className="mx-4 mb-4 p-3.5 bg-[#F2B632]/10 dark:bg-[#F2B632]/15 border border-[#F2B632]/30 dark:border-[#F2B632]/30 rounded-xl flex items-start gap-2.5">
-              <span className="material-symbols-outlined text-[18px] text-[#B88109] dark:text-[#FCD34D] shrink-0 mt-0.5">info</span>
-              <p className="text-xs text-[#22202A] dark:text-[#F3F2F8] font-medium leading-relaxed">
+            <div className="mx-4 my-4 p-3.5 bg-[#F2B632]/10 dark:bg-[#F2B632]/15 border border-[#F2B632]/30 dark:border-[#F2B632]/30 rounded-xl flex items-start gap-2.5">
+              <span className="material-symbols-outlined text-[18px] text-[#B88109] dark:text-[#FCD34D] shrink-0 mt-0.5">
+                info
+              </span>
+              <p className="text-xs sm:text-sm text-[#22202A] dark:text-[#F3F2F8] font-medium leading-relaxed whitespace-pre-line">
                 {activeDresscode.catatan}
               </p>
             </div>
@@ -231,7 +273,64 @@ export const AtributTab: React.FC = () => {
         </div>
       </section>
 
+      {/* Image Modal / Lightbox */}
+      {showImageModal && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm transition-opacity duration-200"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setShowImageModal(false);
+          }}
+        >
+           <div
+            className="relative bg-white dark:bg-[#1B1638] rounded-2xl overflow-hidden shadow-2xl border border-[#5B2BBE]/20 max-w-5xl w-full max-h-[90vh] flex flex-col"
+          >
+            {/* Modal Header */}
+            <div className="bg-[#5B2BBE]/8 dark:bg-[#5B2BBE]/15 border-b border-[#5B2BBE]/15 dark:border-[#5B2BBE]/25 p-4 flex items-center justify-between gap-3">
+              <div>
+                <h3 className="font-display font-black text-lg text-[#22202A] dark:text-white">
+                  Contoh Dresscode
+                </h3>
+                <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] font-medium">
+                  {activeDresscode.label} - {activeDresscode.tanggal}
+                </p>
+              </div>
+              <button
+                onClick={() => setShowImageModal(false)}
+                className="w-8 h-8 rounded-full bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/30 text-[#5B2BBE] dark:text-[#C39BFF] hover:bg-[#5B2BBE]/20 dark:hover:bg-[#5B2BBE]/40 flex items-center justify-center transition-all cursor-pointer shrink-0"
+                aria-label="Tutup"
+              >
+                <span className="material-symbols-outlined text-[20px]">close</span>
+              </button>
+            </div>
+
+            {/* Modal Body - Image */}
+            <div className="p-4 overflow-y-auto flex justify-center bg-[#FAF9F6] dark:bg-[#1B1638]">
+              {activeDresscode.image ? (
+                <img
+                  src={activeDresscode.image}
+                  alt={`Contoh dresscode ${activeDresscode.label}`}
+                  className="max-w-full h-auto object-contain rounded-xl border border-[#5B2BBE]/10 dark:border-[#5B2BBE]/25 shadow-xs"
+                  style={{ maxHeight: 'calc(90vh - 120px)' }}
+                  onError={(e) => {
+                    const img = e.target as HTMLImageElement;
+                    img.style.display = 'none';
+                    const parent = img.parentElement;
+                    if (parent) {
+                      parent.innerHTML = '<div class="text-center py-8 text-[#6B6874] dark:text-[#A39EB8]"><span class="material-symbols-outlined text-[48px] mb-2 block">image_broken</span><p class="text-sm">Contoh gambar dresscode belum tersedia.</p></div>';
+                    }
+                  }}
+                />
+              ) : (
+                <div className="text-center py-8 text-[#6B6874] dark:text-[#A39EB8]">
+                  <span className="material-symbols-outlined text-[48px] mb-2 block">image_broken</span>
+                  <p className="text-sm">Contoh gambar dresscode belum tersedia.</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };
-

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { HERO_IMAGE_URL, DAYS_DATA, PERLENGKAPAN_ITEMS } from '../data/orientationData';
+import React, { useState, useEffect } from 'react';
+import { HERO_IMAGES, DAYS_DATA, PERLENGKAPAN_ITEMS } from '../data/orientationData';
 import { DaySchedule, TabType } from '../types';
 import { BrandDecoration } from './BrandDecoration';
 
@@ -22,7 +22,15 @@ export const HomeTab: React.FC<HomeTabProps> = ({
   onOpenPerlengkapanModal,
   onSearchStudent,
 }) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [bannerLoadError, setBannerLoadError] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="tab-fade-in flex flex-col gap-6 pb-6">
@@ -64,17 +72,40 @@ export const HomeTab: React.FC<HomeTabProps> = ({
               {/* Hero Banner Showcase */}
               <div className="mt-2 rounded-2xl overflow-hidden relative h-44 sm:h-52 w-full border border-[#5B2BBE]/15 dark:border-[#5B2BBE]/30 shadow-inner group bg-white dark:bg-[#1B1638] flex items-center justify-center">
                 {!bannerLoadError ? (
-                  <img
-                    src={HERO_IMAGE_URL}
-                    alt="Orientasi Vokasional 2026 - Politeknik Semen Indonesia"
-                    className="max-w-full max-h-full w-auto h-full object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
-                    onError={() => setBannerLoadError(true)}
-                  />
+                  HERO_IMAGES.map((src, idx) => (
+                    <img
+                      key={idx}
+                      src={src}
+                      alt={`Orientasi Vokasional 2026 - Slide ${idx + 1}`}
+                      className={`absolute inset-0 w-full h-full object-contain object-center transition-all duration-700 ease-in-out ${
+                        idx === currentSlide ? `opacity-100 ${idx === 2 ? 'scale-125' : 'scale-100'} group-hover:scale-105` : 'opacity-0 scale-105 pointer-events-none'
+                      }`}
+                      onError={() => setBannerLoadError(true)}
+                    />
+                  ))
                 ) : (
                   <div className="w-full h-full bg-[#5B2BBE] flex flex-col items-center justify-center text-white p-6 text-center">
                     <BrandDecoration type="sparkle" size={32} color="#F2B632" className="mb-2" />
                     <span className="font-display font-black text-xl tracking-tight">ORVOKS 2026</span>
                     <span className="text-xs text-[#EFE9FF] mt-1 font-medium">Politeknik Semen Indonesia</span>
+                  </div>
+                )}
+
+                {/* Dot Indicators */}
+                {!bannerLoadError && (
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                    {HERO_IMAGES.map((_, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setCurrentSlide(idx)}
+                        className={`transition-all duration-300 cursor-pointer ${
+                          idx === currentSlide
+                            ? 'w-2.5 h-2.5 rounded-full bg-white shadow-sm scale-110'
+                            : 'w-2 h-2 rounded-full bg-white/50 hover:bg-white/80'
+                        }`}
+                        aria-label={`Slide ${idx + 1}`}
+                      />
+                    ))}
                   </div>
                 )}
               </div>
@@ -281,7 +312,41 @@ export const HomeTab: React.FC<HomeTabProps> = ({
             </button>
           </div>
 
-          {/* Card 4: Guidebook PKKMB (PDF Download) */}
+          {/* Card 4: Pengumpulan Tugas */}
+          <div className="campus-card bg-white dark:bg-[#1B1638] p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 flex flex-col justify-between gap-3 shadow-xs">
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-[#251F4A] pb-2.5">
+              <div className="flex items-center gap-1.5 text-[#5B2BBE] dark:text-[#C39BFF]">
+                <span className="material-symbols-outlined text-[18px]">folder</span>
+                <span className="font-bold text-xs uppercase tracking-wider font-display">
+                  Pengumpulan Tugas
+                </span>
+              </div>
+              <span className="text-[10px] bg-[#2F9672]/10 text-[#2F9672] dark:text-[#4ADE80] font-bold px-2 py-0.5 rounded-full border border-[#2F9672]/25 shrink-0">
+                Google Drive
+              </span>
+            </div>
+
+            <div>
+              <h3 className="font-display font-bold text-sm text-[#22202A] dark:text-white leading-snug">
+                Tempat Pengumpulan Tugas PKKMB
+              </h3>
+              <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] mt-0.5 font-medium">
+                Unduh dan kumpulkan tugas serta berkas PKKMB melalui Google Drive resmi.
+              </p>
+            </div>
+
+            <a
+              href="https://drive.google.com/drive/folders/1fQp5sS3EZm8XD5R-f2yjHXnPj9K-f6FI?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-[#5B2BBE] dark:bg-[#5B2BBE] hover:bg-[#43208F] dark:hover:bg-[#7D3BD6] text-white font-bold text-xs py-2.5 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer active:scale-98"
+            >
+              <span className="material-symbols-outlined text-[16px]">open_in_new</span>
+              <span>Buka Google Drive</span>
+            </a>
+          </div>
+
+          {/* Card 5: Guidebook PKKMB (PDF Download) */}
           <div className="campus-card bg-white dark:bg-[#1B1638] p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 flex flex-col justify-between gap-3 shadow-xs">
             <div className="flex items-center justify-between border-b border-slate-100 dark:border-[#251F4A] pb-2.5">
               <div className="flex items-center gap-1.5 text-[#5B2BBE] dark:text-[#C39BFF]">
@@ -291,7 +356,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                 </span>
               </div>
               <span className="text-[10px] bg-[#EFE9FF] dark:bg-[#5B2BBE]/35 text-[#5B2BBE] dark:text-[#C39BFF] font-bold px-2 py-0.5 rounded-full border border-[#5B2BBE]/20 font-mono">
-                .DOCX
+                .PDF
               </span>
             </div>
 

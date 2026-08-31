@@ -63,9 +63,12 @@ export interface PerlengkapanItem {
 }
 
 export interface DresscodeHari {
-  label: string;        // e.g. "Pra-PKKMB", "Day 1"
-  tanggal: string;
+  label: string;        // e.g. "Pra-PKKMB", "PPKKMB Day 1"
+  tanggal: string;      // e.g. "Jumat, 18 September 2026"
+  image: string;        // e.g. "/day1.png"
   putra: string[];
   putri: string[];
+  wajibMembawa?: string[];
+  membawaGanti?: string[];
   catatan?: string;
 }
