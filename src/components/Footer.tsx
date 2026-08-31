@@ -27,7 +27,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
           </p>
           <div className="text-xs text-[#6B6874] dark:text-[#A39EB8] flex flex-col gap-1 leading-relaxed">
             <span className="font-bold text-[#22202A] dark:text-[#F3F2F8]">Alamat Kampus:</span>
-            <p>Politeknik Semen Indonesia, Gresik, Jawa Timur</p>
+            <p>Jl. Kartini No.25 C, Kesemen, Sukorame, Kec. Gresik, Kabupaten Gresik, Jawa Timur 61111</p>
           </div>
         </div>
 
@@ -47,7 +47,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
               onClick={() => onNavigateTab('jadwal')}
               className="hover:text-[#5B2BBE] dark:hover:text-[#C39BFF] hover:underline text-left w-max transition-colors cursor-pointer"
             >
-              Jadwal 5 Hari
+              Jadwal 7 Hari
             </button>
             <button
               onClick={() => onNavigateTab('kelompok')}
@@ -65,7 +65,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
               onClick={() => onNavigateTab('guidebook')}
               className="hover:text-[#5B2BBE] dark:hover:text-[#C39BFF] hover:underline text-left w-max transition-colors cursor-pointer"
             >
-              Guidebook (Word)
+              Guidebook (PDF)
             </button>
             <button
               onClick={() => onNavigateTab('faq')}
@@ -135,7 +135,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
           &copy; 2026 Panitia PKKMB Politeknik Semen Indonesia. All rights reserved.
         </span>
         <span className="text-[10px] text-[#5B2BBE] dark:text-[#C39BFF] font-bold uppercase tracking-wider font-display">
-          Motto: "Bangun Fondasi, Wujudkan Karya!"
+          Motto: "Pondasi Kemandirian, Kokoh Berintegritas"
         </span>
       </div>
     </footer>

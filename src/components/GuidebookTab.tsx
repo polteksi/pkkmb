@@ -7,7 +7,7 @@ interface GuidebookTabProps {
 }
 
 export const GuidebookTab: React.FC<GuidebookTabProps> = ({
-  fileUrl = '/documents/guidebook orvoks 2026.docx',
+  fileUrl = '/documents/Guide Book PKKMB Polteksi.pdf',
   isAvailable = true,
 }) => {
   const [downloadStarted, setDownloadStarted] = useState(false);
@@ -46,7 +46,7 @@ export const GuidebookTab: React.FC<GuidebookTabProps> = ({
         </div>
 
         <span className="text-xs bg-[#FAF9F6] dark:bg-[#251F4A] text-[#6B6874] dark:text-[#A39EB8] font-bold px-3 py-1.5 rounded-xl border border-slate-200 dark:border-[#322B60] w-max shrink-0">
-          Format: Microsoft Word (.docx)
+           Format: PDF Document (.pdf)
         </span>
       </div>
 
@@ -60,7 +60,7 @@ export const GuidebookTab: React.FC<GuidebookTabProps> = ({
             <div className="flex items-start justify-between gap-4 relative z-10">
               <div className="flex items-center gap-3.5">
                 <div className="w-14 h-14 rounded-2xl bg-[#4256A6]/10 dark:bg-[#4256A6]/25 text-[#4256A6] dark:text-[#A5B8FF] flex items-center justify-center shrink-0 border border-[#4256A6]/20 shadow-xs">
-                  <span className="material-symbols-outlined text-[32px]">description</span>
+                  <span className="material-symbols-outlined text-[32px]">picture_as_pdf</span>
                 </div>
                 <div>
                   <h3 className="font-display font-extrabold text-lg sm:text-xl text-[#22202A] dark:text-white leading-snug">
@@ -84,8 +84,8 @@ export const GuidebookTab: React.FC<GuidebookTabProps> = ({
                 <span className="text-[10px] uppercase font-bold text-[#6B6874] dark:text-[#A39EB8] tracking-wider block">
                   Nama File
                 </span>
-                <span className="text-xs font-bold text-[#22202A] dark:text-white mt-1 block truncate" title="guidebook orvoks 2026.docx">
-                  guidebook orvoks 2026.docx
+                <span className="text-xs font-bold text-[#22202A] dark:text-white mt-1 block truncate" title="Guide Book PKKMB Polteksi.pdf">
+                  Guide Book PKKMB Polteksi.pdf
                 </span>
               </div>
 
@@ -94,7 +94,7 @@ export const GuidebookTab: React.FC<GuidebookTabProps> = ({
                   Ukuran Dokumen
                 </span>
                 <span className="text-xs font-bold text-[#22202A] dark:text-white mt-1 block">
-                  ~645 KB
+                   10 MB
                 </span>
               </div>
 
@@ -103,7 +103,7 @@ export const GuidebookTab: React.FC<GuidebookTabProps> = ({
                   Tipe Format
                 </span>
                 <span className="text-xs font-bold text-[#5B2BBE] dark:text-[#C39BFF] mt-1 block">
-                  Microsoft Word (.docx)
+                  (.pdf)
                 </span>
               </div>
 
@@ -112,7 +112,7 @@ export const GuidebookTab: React.FC<GuidebookTabProps> = ({
                   Kompatibilitas
                 </span>
                 <span className="text-xs font-bold text-[#22202A] dark:text-white mt-1 block">
-                  PC & HP (Word / WPS / Docs)
+                   PC & HP (Adobe Reader / Browser PDF Viewer)
                 </span>
               </div>
             </div>
@@ -121,19 +121,19 @@ export const GuidebookTab: React.FC<GuidebookTabProps> = ({
             <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 relative z-10">
               <a
                 href={encodedFileUrl}
-                download="guidebook orvoks 2026.docx"
+                 download="Guide Book PKKMB Polteksi.pdf"
                 onClick={handleDownload}
                 className="flex-1 bg-[#5B2BBE] hover:bg-[#43208F] dark:bg-[#5B2BBE] dark:hover:bg-[#7D3BD6] text-white font-bold text-sm py-3.5 px-6 rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer active:scale-98"
               >
                 <span className="material-symbols-outlined text-[20px]">download</span>
-                <span>Unduh Guidebook (.docx)</span>
+                 <span>Unduh Guidebook (.pdf)</span>
               </a>
             </div>
 
             {downloadStarted && (
               <div className="p-3.5 bg-[#2F9672]/15 border border-[#2F9672]/30 rounded-xl text-xs font-bold text-[#2F9672] dark:text-[#4ADE80] flex items-center gap-2.5 animate-in fade-in duration-200">
                 <span className="material-symbols-outlined text-[20px]">check_circle</span>
-                <span>File guidebook Word sedang diunduh. Silakan buka file langsung di Microsoft Word atau WPS Office!</span>
+                 <span>File panduan PDF sedang diunduh. Buka langsung di browser atau aplikasi PDF reader!</span>
               </div>
             )}
           </div>
@@ -149,14 +149,14 @@ export const GuidebookTab: React.FC<GuidebookTabProps> = ({
                 <span className="material-symbols-outlined text-[#5B2BBE] dark:text-[#C39BFF] text-[18px] shrink-0 mt-0.5">laptop</span>
                 <div>
                   <strong className="text-[#22202A] dark:text-white block mb-0.5">Di Komputer / Laptop:</strong>
-                  Klik tombol unduh, lalu buka file hasil unduhan langsung dengan aplikasi Microsoft Word, Google Docs, atau LibreOffice.
+                   Klik tombol unduh, lalu buka file PDF langsung di browser (Chrome, Firefox, Safari) atau aplikasi pembaca PDF seperti Adobe Acrobat Reader.
                 </div>
               </div>
               <div className="flex items-start gap-2.5 bg-white dark:bg-[#1B1638] p-3 rounded-xl border border-slate-100 dark:border-[#322B60]">
                 <span className="material-symbols-outlined text-[#5B2BBE] dark:text-[#C39BFF] text-[18px] shrink-0 mt-0.5">smartphone</span>
                 <div>
                   <strong className="text-[#22202A] dark:text-white block mb-0.5">Di Smartphone (Android / iOS):</strong>
-                  Setelah file terunduh, buka melalui aplikasi Microsoft 365, WPS Office, atau Google Dokumen.
+                   Setelah file terunduh, buka melalui browser (Chrome, Firefox, Safari) atau aplikasi pembaca PDF di ponsel.
                 </div>
               </div>
             </div>
@@ -211,7 +211,7 @@ export const GuidebookTab: React.FC<GuidebookTabProps> = ({
           </div>
 
           <p className="text-[11px] sm:text-xs text-[#6B6874] dark:text-[#A39EB8] max-w-lg leading-relaxed text-center font-medium">
-            Tautan unduhan file Word (.docx) akan langsung aktif secara otomatis setelah dokumen dipublikasikan.
+             Tautan unduhan file PDF (.pdf) akan langsung aktif secara otomatis setelah dokumen dipublikasikan.
           </p>
 
           <button

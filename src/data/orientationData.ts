@@ -1,6 +1,6 @@
 import { DaySchedule, OrientationGroup, StudentMember, FaqItem, PerlengkapanItem, DresscodeHari } from '../types';
 
-export const HERO_IMAGE_URL = '/Elaina 3D.jpg';
+export const HERO_IMAGE_URL = '/images/orvoks.jpeg';
 
 // ─── Rundown ORVOKS 2026 ───────────────────────────────────────────────────
 export const DAYS_DATA: DaySchedule[] = [
@@ -33,6 +33,7 @@ export const DAYS_DATA: DaySchedule[] = [
       'Sosialisasi Bagian Kemahasiswaan (Termasuk Peraturan Anti Kekerasan)',
       'Sosialisasi Penugasan dan Pematangan Pelaksanaan PKKMB',
       'Pelaksanaan Persiapan Administrasi Kampus',
+      'dll.',
     ],
   },
   {
@@ -110,7 +111,7 @@ export const DAYS_DATA: DaySchedule[] = [
     jamSesi: '07.00 – 21.00 WIB',
     kegiatan: [
       'Implementasi "Pondasi Kemandirian, Kokoh Berintegritas"',
-      'Celebration of GEVO and TABE',
+       'Celebration Of GEVO and TABE',
       'Penutupan ORVOKS POLTEKSI 2026',
     ],
   },
@@ -209,13 +210,13 @@ export const DRESSCODE_DATA: DresscodeHari[] = [
     label: 'Day 4',
     tanggal: 'Kamis, 24 September 2026',
     putra: [
-      'Kaos almamater POLTEKSI / kaos putih polos',
+      'Jas almamater POLTEKSI / kaos putih polos',
       'Celana bahan hitam',
       'Sepatu formal/tertutup',
       'Name tag lengkap',
     ],
     putri: [
-      'Kaos almamater POLTEKSI / kaos putih polos',
+      'Jas almamater POLTEKSI / kaos putih polos',
       'Rok/celana bahan hitam',
       'Sepatu formal/tertutup',
       'Kerudung putih (bagi yang berkerudung)',

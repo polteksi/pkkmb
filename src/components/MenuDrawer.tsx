@@ -19,10 +19,10 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
 
   const navItems: { id: TabType; label: string; icon: string; desc: string }[] = [
     { id: 'beranda', label: 'Beranda Utama', icon: 'home', desc: 'Ringkasan & status orientasi harian' },
-    { id: 'jadwal', label: 'Jadwal 5 Hari', icon: 'calendar_month', desc: 'Susunan lengkap rundown & sesi' },
+    { id: 'jadwal', label: 'Jadwal 7 Hari', icon: 'calendar_month', desc: 'Susunan lengkap rundown & sesi' },
     { id: 'kelompok', label: 'Daftar Kelompok', icon: 'groups', desc: 'Mentor, ruangan & data anggota' },
     { id: 'atribut', label: 'Atribut PKKMB', icon: 'checkroom', desc: 'Perlengkapan & dresscode per hari' },
-    { id: 'guidebook', label: 'Guidebook', icon: 'menu_book', desc: 'Unduh panduan resmi format Word' },
+    { id: 'guidebook', label: 'Guidebook', icon: 'menu_book', desc: 'Unduh panduan resmi format PDF' },
     { id: 'faq', label: 'Tanya Jawab (FAQ)', icon: 'help', desc: 'Tata tertib, atribut & tanya jawab' },
   ];
 
@@ -68,7 +68,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
 
           <div className="mt-3 bg-black/25 backdrop-blur-xs p-2.5 rounded-xl text-[11px] text-white/90 border border-white/15 flex items-center gap-2">
             <BrandDecoration type="sparkle" size={14} color="#F2B632" />
-            <span className="font-medium italic">"Bangun Fondasi, Wujudkan Karya!"</span>
+            <span className="font-medium italic">"Pondasi Kemandirian, Kokoh Berintegritas"</span>
           </div>
         </div>
 

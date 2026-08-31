@@ -55,7 +55,7 @@ export default function App() {
 
   const tabTitles: Record<TabType, string> = {
     beranda: 'Beranda Utama',
-    jadwal: 'Jadwal 5 Hari',
+    jadwal: 'Jadwal 7 Hari',
     kelompok: 'Daftar Kelompok',
     atribut: 'Atribut PKKMB',
     guidebook: 'Guidebook PKKMB',

@@ -22,7 +22,6 @@ export const HomeTab: React.FC<HomeTabProps> = ({
   onOpenPerlengkapanModal,
   onSearchStudent,
 }) => {
-  const remainingDays = DAYS_DATA.length - currentDay.dayNumber;
   const [bannerLoadError, setBannerLoadError] = useState(false);
 
   return (
@@ -52,9 +51,9 @@ export const HomeTab: React.FC<HomeTabProps> = ({
 
               {/* Bold Editorial Headline */}
               <h1 className="font-display text-[28px] sm:text-[36px] font-black text-[#22202A] dark:text-white leading-[1.12] tracking-tight">
-                Bangun Fondasi,<br />
+                Pondasi Kemandirian,<br />
                 <span className="text-[#5B2BBE] dark:text-[#C39BFF]">
-                  Wujudkan Karya!
+                  Kokoh Berintegritas
                 </span>
               </h1>
 
@@ -63,12 +62,12 @@ export const HomeTab: React.FC<HomeTabProps> = ({
               </p>
 
               {/* Hero Banner Showcase */}
-              <div className="mt-2 rounded-2xl overflow-hidden relative h-44 sm:h-52 w-full border border-[#5B2BBE]/15 dark:border-[#5B2BBE]/30 shadow-inner group bg-[#5B2BBE]/10">
+              <div className="mt-2 rounded-2xl overflow-hidden relative h-44 sm:h-52 w-full border border-[#5B2BBE]/15 dark:border-[#5B2BBE]/30 shadow-inner group bg-white dark:bg-[#1B1638] flex items-center justify-center">
                 {!bannerLoadError ? (
                   <img
                     src={HERO_IMAGE_URL}
                     alt="Orientasi Vokasional 2026 - Politeknik Semen Indonesia"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                    className="max-w-full max-h-full w-auto h-full object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
                     onError={() => setBannerLoadError(true)}
                   />
                 ) : (
@@ -84,31 +83,22 @@ export const HomeTab: React.FC<HomeTabProps> = ({
 
           {/* Live Status & Day Stepper */}
           <section className="campus-card bg-white dark:bg-[#1B1638] p-6 relative overflow-hidden border border-[#5B2BBE]/10 dark:border-[#5B2BBE]/25 shadow-xs">
-            <div className="flex items-center justify-between pb-4 border-b border-[#FAF9F6] dark:border-[#251F4A]">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/30 text-[#5B2BBE] dark:text-[#C39BFF] flex items-center justify-center font-bold">
-                  <span className="material-symbols-outlined text-[22px]">event_available</span>
-                </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <h2 className="font-display text-xl font-bold text-[#22202A] dark:text-white">
-                      {currentDay.theme}
-                    </h2>
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#2F9672]/15 text-[#2F9672] dark:text-[#4ADE80] border border-[#2F9672]/30">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#2F9672] dark:bg-[#4ADE80] animate-ping" />
-                      LIVE
-                    </span>
-                  </div>
-                  <p className="text-[11px] font-bold text-[#5B2BBE] dark:text-[#C39BFF] uppercase tracking-wider font-display">
-                    {currentDay.shortDate} · {currentDay.dayName} ({currentDay.phase})
-                  </p>
-                </div>
+            <div className="flex items-center gap-3 pb-4 border-b border-[#FAF9F6] dark:border-[#251F4A]">
+              <div className="w-10 h-10 rounded-xl bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/30 text-[#5B2BBE] dark:text-[#C39BFF] flex items-center justify-center font-bold">
+                <span className="material-symbols-outlined text-[22px]">event_available</span>
               </div>
-
-              <div className="text-right">
-                <span className="inline-block px-3 py-1 rounded-full bg-[#FAF9F6] dark:bg-[#251F4A] text-[#6B6874] dark:text-[#A39EB8] font-bold text-xs border border-[#5B2BBE]/10 dark:border-transparent">
-                  {remainingDays > 0 ? `${remainingDays} sesi lagi` : 'Hari Terakhir!'}
-                </span>
+              <div>
+                <div className="flex items-center gap-2">
+                  <h2 className="font-display text-xl font-bold text-[#22202A] dark:text-white">
+                    {currentDay.theme}
+                  </h2>
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#F1F3F5] text-[#6B7280] border border-[#D1D5DB]">
+                    BELUM DIMULAI
+                  </span>
+                </div>
+                <p className="text-[11px] font-bold text-[#5B2BBE] dark:text-[#C39BFF] uppercase tracking-wider font-display">
+                  {currentDay.shortDate} · {currentDay.dayName} ({currentDay.phase})
+                </p>
               </div>
             </div>
 
@@ -144,20 +134,6 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                     </button>
                   );
                 })}
-              </div>
-            </div>
-
-            {/* Animated Progress Gauge */}
-            <div className="pt-2 flex flex-col gap-1.5">
-              <div className="flex justify-between items-center text-xs">
-                <span className="font-semibold text-[#6B6874] dark:text-[#A39EB8]">Progress Orientasi</span>
-                <span className="font-bold text-[#5B2BBE] dark:text-[#C39BFF]">{currentDay.progressPercent}%</span>
-              </div>
-              <div className="w-full h-2.5 bg-[#FAF9F6] dark:bg-[#251F4A] rounded-full overflow-hidden p-0.5 border border-[#5B2BBE]/10 dark:border-transparent">
-                <div
-                  className="h-full bg-[#5B2BBE] rounded-full transition-all duration-500 ease-out"
-                  style={{ width: `${currentDay.progressPercent}%` }}
-                />
               </div>
             </div>
           </section>
@@ -305,7 +281,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({
             </button>
           </div>
 
-          {/* Card 4: Guidebook PKKMB (Word Docx Download) */}
+          {/* Card 4: Guidebook PKKMB (PDF Download) */}
           <div className="campus-card bg-white dark:bg-[#1B1638] p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 flex flex-col justify-between gap-3 shadow-xs">
             <div className="flex items-center justify-between border-b border-slate-100 dark:border-[#251F4A] pb-2.5">
               <div className="flex items-center gap-1.5 text-[#5B2BBE] dark:text-[#C39BFF]">
@@ -324,7 +300,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                 Buku Panduan Mahasiswa Baru
               </h3>
               <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] mt-0.5 font-medium">
-                Unduh file Word panduan resmi PKKMB POLTEKSI 2026.
+                Unduh panduan resmi PKKMB POLTEKSI 2026 dalam format PDF.
               </p>
             </div>
 
