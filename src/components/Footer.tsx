@@ -56,10 +56,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
               Daftar Kelompok
             </button>
             <button
-              onClick={() => onNavigateTab('lokasi')}
+              onClick={() => onNavigateTab('atribut')}
               className="hover:text-[#5B2BBE] dark:hover:text-[#C39BFF] hover:underline text-left w-max transition-colors cursor-pointer"
             >
-              Denah & Venue
+              Atribut PKKMB
             </button>
             <button
               onClick={() => onNavigateTab('faq')}

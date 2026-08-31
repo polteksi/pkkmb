@@ -5,10 +5,9 @@ import { BrandDecoration } from './BrandDecoration';
 
 interface GroupTabProps {
   onSelectStudent?: (student: StudentMember) => void;
-  onOpenLocationModal: (locationName: string) => void;
 }
 
-export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent, onOpenLocationModal }) => {
+export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent }) => {
   const [selectedGroupId, setSelectedGroupId] = useState<string>('grp-1');
   const [searchMember, setSearchMember] = useState<string>('');
 
@@ -125,8 +124,8 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent, onOpenLocat
               </a>
             </div>
 
-            {/* Room Location */}
-            <div className="bg-white/10 backdrop-blur-xs p-4 rounded-xl border border-white/20 flex flex-col justify-between gap-3">
+            {/* Room Info */}
+            <div className="bg-white/10 backdrop-blur-xs p-4 rounded-xl border border-white/20 flex flex-col gap-3">
               <div>
                 <span className="text-[10px] text-[#EFE9FF] font-bold uppercase tracking-wider block font-display">
                   RUANG DISKUSI HARIAN
@@ -135,13 +134,10 @@ export const GroupTab: React.FC<GroupTabProps> = ({ onSelectStudent, onOpenLocat
                   {currentGroup.room}
                 </span>
               </div>
-              <button
-                onClick={() => onOpenLocationModal(currentGroup.room)}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-white/20 hover:bg-white/30 px-4 py-2 rounded-xl w-max cursor-pointer self-start transition-all border border-white/25 active:scale-98"
-              >
-                <span className="material-symbols-outlined text-[18px]">pin_drop</span>
-                <span>Lihat di Peta Kampus</span>
-              </button>
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-white/70 bg-white/10 px-3 py-1.5 rounded-xl w-max border border-white/15">
+                <span className="material-symbols-outlined text-[16px]">meeting_room</span>
+                <span>Ruang Kelompok</span>
+              </div>
             </div>
           </div>
         </div>

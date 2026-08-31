@@ -1,4 +1,4 @@
-export type TabType = 'beranda' | 'jadwal' | 'kelompok' | 'lokasi' | 'faq';
+export type TabType = 'beranda' | 'jadwal' | 'kelompok' | 'atribut' | 'faq';
 
 export interface DaySchedule {
   dayNumber: number;
@@ -6,21 +6,8 @@ export interface DaySchedule {
   theme: string;
   date: string;
   progressPercent: number;
-  attributes: {
-    id: string;
-    name: string;
-    checked: boolean;
-    mandatory: boolean;
-    note?: string;
-  }[];
-  sessions: {
-    time: string;
-    title: string;
-    speaker?: string;
-    location: string;
-    type: 'ceremony' | 'workshop' | 'tour' | 'break' | 'games';
-  }[];
-  primaryLocation: string;
+  jamSesi: string;          // Rentang jam sesi (ditampilkan sekali sebagai header)
+  kegiatan: string[];       // Daftar kegiatan tanpa jam/lokasi individual
 }
 
 export interface StudentMember {
@@ -65,4 +52,18 @@ export interface FaqItem {
   question: string;
   answer: string;
   category: string;
+}
+
+export interface PerlengkapanItem {
+  id: string;
+  text: string;
+  mandatory: boolean;
+}
+
+export interface DresscodeHari {
+  label: string;        // e.g. "Pra-PKKMB", "Day 1"
+  tanggal: string;
+  putra: string[];
+  putri: string[];
+  catatan?: string;
 }

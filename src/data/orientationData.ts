@@ -1,107 +1,236 @@
-import { DaySchedule, OrientationGroup, StudentMember, CampusLocation, FaqItem } from '../types';
+import { DaySchedule, OrientationGroup, StudentMember, FaqItem, PerlengkapanItem, DresscodeHari } from '../types';
 
 export const HERO_IMAGE_URL = 'public/Elaina 3D.jpg';
 
+// ─── Rundown ORVOKS 2026 ───────────────────────────────────────────────────
 export const DAYS_DATA: DaySchedule[] = [
   {
     dayNumber: 1,
-    dayName: 'Senin',
-    date: '25 Agustus 2026',
-    theme: 'Upacara Pembukaan & Fondasi Vokasi',
-    progressPercent: 20,
-    primaryLocation: 'Lapangan Utama Politeknik',
-    attributes: [
-      { id: 'att-1-1', name: 'Kemeja Putih Lengan Panjang + Celana/Rok Hitam', checked: true, mandatory: true },
-      { id: 'att-1-2', name: 'Dasi Hitam & Sepatu Pantofel Hitam', checked: true, mandatory: true },
-      { id: 'att-1-3', name: 'Name Tag Orvoks & Buku Panduan', checked: true, mandatory: true },
-      { id: 'att-1-4', name: 'Tumbler Air Minum 1L', checked: true, mandatory: false },
+    dayName: 'Jumat',
+    date: '18 September 2026',
+    theme: 'Pra-PKKMB',
+    progressPercent: 15,
+    jamSesi: '07.30 – 11.00 WIB',
+    kegiatan: [
+      'Sosialisasi Bagian Keuangan',
+      'Sosialisasi Bagian Akademik',
+      'Pembagian Atribut PKKMB',
+      'Sosialisasi Peraturan dan Persiapan PKKMB',
     ],
-    sessions: [
-      { time: '06.30 - 07.15', title: 'Registrasi & Apel Pagi Mahasiswa Baru', location: 'Plaza Rektorat', type: 'ceremony' },
-      { time: '07.30 - 09.30', title: 'Upacara Sidang Terbuka Senat & Pembukaan PKKMB ORVOKS', speaker: 'Direktur Politeknik Semen Indonesia', location: 'Lapangan Utama Politeknik', type: 'ceremony' },
-      { time: '10.00 - 11.45', title: 'Kuliah Umum: Peran Vokasi dalam Hilirisasi Industri Semen', speaker: 'Direktur PT Semen Indonesia (Persero) Tbk', location: 'Aula Utama Lt. 3', type: 'workshop' },
-      { time: '11.45 - 13.00', title: 'Ishoma & Makan Siang Bersama Kelompok', location: 'Selasar Gedung Teknik', type: 'break' },
-      { time: '13.00 - 15.30', title: 'Orientasi Sistem Akademik & Pengenalan SIAKAD', speaker: 'Bagian Administrasi Akademik', location: 'Lab Komputer A & B', type: 'workshop' },
-    ]
   },
   {
     dayNumber: 2,
-    dayName: 'Selasa',
-    date: '26 Agustus 2026',
-    theme: 'Kenali Dunia Kampusmu',
-    progressPercent: 40,
-    primaryLocation: 'Aula Utama',
-    attributes: [
-      { id: 'att-2-1', name: 'Kaos Almamater + Bawahan Hitam', checked: true, mandatory: true, note: 'Wajib kenakan kaos almamater resmi ORVOKS' },
-      { id: 'att-2-2', name: 'Sepatu Kets Hitam Bertali', checked: true, mandatory: true },
-      { id: 'att-2-3', name: 'ID Card / Name Tag Kelompok Beton', checked: true, mandatory: true },
-      { id: 'att-2-4', name: 'Buku Saku Catatan & Alat Tulis', checked: true, mandatory: false },
+    dayName: 'Sabtu',
+    date: '19 September 2026',
+    theme: 'Pra-PKKMB',
+    progressPercent: 30,
+    jamSesi: '07.30 – 12.00 WIB',
+    kegiatan: [
+      'Sosialisasi Bagian Kemahasiswaan (Termasuk Peraturan Anti Kekerasan)',
+      'Sosialisasi Penugasan dan Pematangan Pelaksanaan PKKMB',
+      'Pelaksanaan Persiapan Administrasi Kampus',
     ],
-    sessions: [
-      { time: '07.00 - 07.30', title: 'Presensi & Pengecekan Atribut Pagi', location: 'Lobi Utama Gedung A', type: 'ceremony' },
-      { time: '07.30 - 09.30', title: 'Pengenalan Jurusan & Program Studi Vokasi Terapan', speaker: 'Ketua Jurusan & Dosen Pembina', location: 'Aula Utama Lt. 3', type: 'workshop' },
-      { time: '09.45 - 11.45', title: 'Campus Tour: Workshop Mesin, Lab Otomasi & Beton', speaker: 'Duta Kampus ORVOKS', location: 'Kawasan Workshop Vokasi', type: 'tour' },
-      { time: '11.45 - 13.00', title: 'Ishoma & Yel-Yel Antar Kelompok', location: 'Amfiteater Terbuka', type: 'games' },
-      { time: '13.00 - 15.30', title: 'Simulasi Proyek Rekayasa & Praktik K3 Industri', speaker: 'Instruktur K3 PT Semen Indonesia', location: 'Workshop Konstruksi & Fabrikasi', type: 'workshop' },
-    ]
   },
   {
     dayNumber: 3,
-    dayName: 'Rabu',
-    date: '27 Agustus 2026',
-    theme: 'Inovasi & Karakter Teknokrat Muda',
-    progressPercent: 60,
-    primaryLocation: 'Auditorium Gedung B',
-    attributes: [
-      { id: 'att-3-1', name: 'Batik Bebas Rapi + Celana/Rok Bahan Hitam', checked: false, mandatory: true },
-      { id: 'att-3-2', name: 'Sepatu Formal / Tertutup', checked: false, mandatory: true },
-      { id: 'att-3-3', name: 'Alat Peraga Mini Maket Kelompok', checked: false, mandatory: true },
+    dayName: 'Senin',
+    date: '21 September 2026',
+    theme: 'PKKMB Day 1',
+    progressPercent: 50,
+    jamSesi: '06.30 – 17.00 WIB',
+    kegiatan: [
+      'Pembukaan ORVOKS POLTEKSI 2026',
+      'Penyampaian Materi Pertama (Industri)',
+      'Penyampaian Materi Kedua (Nasional)',
+      'Penyampaian Materi Ketiga (Program)',
     ],
-    sessions: [
-      { time: '07.00 - 08.00', title: 'Morning Energizer & Drill Disiplin', location: 'Lapangan Basket', type: 'games' },
-      { time: '08.15 - 10.30', title: 'Talkshow Technopreneurship & Inovasi Material Masa Depan', speaker: 'Alumni Sukses & Founder Startup', location: 'Auditorium Gedung B', type: 'workshop' },
-      { time: '10.45 - 12.00', title: 'Pengenalan Organisasi Mahasiswa (BEM, DPM, Himpunan)', speaker: 'Presiden Mahasiswa', location: 'Auditorium Gedung B', type: 'workshop' },
-      { time: '13.00 - 16.00', title: 'Expo Unit Kegiatan Mahasiswa (UKM) & Open Recruitment', location: 'Gedung Serbaguna', type: 'tour' },
-    ]
   },
   {
     dayNumber: 4,
-    dayName: 'Kamis',
-    date: '28 Agustus 2026',
-    theme: 'Leadership & Solidaritas Tim Vokasi',
-    progressPercent: 80,
-    primaryLocation: 'Area Outbound Kampus',
-    attributes: [
-      { id: 'att-4-1', name: 'Kaos Olahraga Kampus + Celana Training', checked: false, mandatory: true },
-      { id: 'att-4-2', name: 'Topi Lapangan & Sepatu Olahraga', checked: false, mandatory: true },
-      { id: 'att-4-3', name: 'Handuk Kecil & Botol Minum', checked: false, mandatory: false },
+    dayName: 'Selasa',
+    date: '22 September 2026',
+    theme: 'PKKMB Day 2',
+    progressPercent: 65,
+    jamSesi: '07.00 – 17.00 WIB',
+    kegiatan: [
+      'Pelaksanaan Materi Pertama (Nasional)',
+      'Penyampaian Materi Kedua (Nasional)',
+      'Penyampaian Materi Ketiga (Industri)',
+      'Penyampaian Materi Keempat (Industri)',
     ],
-    sessions: [
-      { time: '06.30 - 07.30', title: 'Senam Pagi Bersama & Pemanasan', location: 'Lapangan Utama', type: 'games' },
-      { time: '07.45 - 12.00', title: 'Outbound: Problem Solving & Simulasi Rantai Pasok', location: 'Taman Konservasi Kampus', type: 'games' },
-      { time: '13.00 - 15.30', title: 'Penyusunan Rencana Studi & Mentoring Bersama Dosen Wali', location: 'Ruang Kelas Terpadu', type: 'workshop' },
-    ]
   },
   {
     dayNumber: 5,
-    dayName: 'Jumat',
-    date: '29 Agustus 2026',
-    theme: 'Inagurasi & Pengukuhan Insan Vokasi',
-    progressPercent: 100,
-    primaryLocation: 'Main Hall & Panggung Budaya',
-    attributes: [
-      { id: 'att-5-1', name: 'Jaket Almamater Lengkap + Atribut Resmi', checked: false, mandatory: true },
-      { id: 'att-5-2', name: 'Kemeja Putih & Dasi Resmi', checked: false, mandatory: true },
-      { id: 'att-5-3', name: 'Glow Stick & Atribut Inagurasi', checked: false, mandatory: false },
+    dayName: 'Rabu',
+    date: '23 September 2026',
+    theme: 'PKKMB Day 3',
+    progressPercent: 75,
+    jamSesi: '07.00 – 17.00 WIB',
+    kegiatan: [
+      'Visit Industri',
+      'Penyampaian Materi Pertama (Industri)',
+      'Penyampaian Materi Kedua (Industri)',
+      'Industri Session',
+      'Sharing Session',
+      'ORMAWA dan UKM',
     ],
-    sessions: [
-      { time: '07.30 - 10.00', title: 'Pentas Seni & Gelar Budaya Karya Mahasiswa Baru', location: 'Panggung Utama', type: 'games' },
-      { time: '10.15 - 11.30', title: 'Apresiasi Kelompok Terbaik & Lomba Kreativitas', location: 'Main Hall', type: 'ceremony' },
-      { time: '13.30 - 15.30', title: 'Upacara Penutupan Resmi & Pelantikan Mahasiswa Baru', speaker: 'Direktur Politeknik', location: 'Main Hall', type: 'ceremony' },
-    ]
-  }
+  },
+  {
+    dayNumber: 6,
+    dayName: 'Kamis',
+    date: '24 September 2026',
+    theme: 'PKKMB Day 4',
+    progressPercent: 85,
+    jamSesi: '07.00 – 12.00 WIB',
+    kegiatan: [
+      'Pelaksanaan Kreatifitasi dan Pengabdian',
+      'Industrial Implementation',
+    ],
+  },
+  {
+    dayNumber: 7,
+    dayName: 'Jumat',
+    date: '25 September 2026',
+    theme: 'PKKMB Day 5',
+    progressPercent: 100,
+    jamSesi: '07.00 – 21.00 WIB',
+    kegiatan: [
+      'Implementasi "Pondasi Kemandirian, Kokoh Berintegritas"',
+      'Celebration of GEVO and TABE',
+      'Penutupan ORVOKS POLTEKSI 2026',
+    ],
+  },
 ];
 
+// ─── Perlengkapan Hari-H (Poin A) — single source of truth ───────────────
+export const PERLENGKAPAN_ITEMS: PerlengkapanItem[] = [
+  { id: 'p-1',  text: 'Sarapan sebelum mengikuti rangkaian kegiatan.', mandatory: true },
+  { id: 'p-2',  text: 'Name Tag yang sudah dibuat sebelum Pra-PKKMB.', mandatory: true },
+  { id: 'p-3',  text: 'Name Tag dengan warna pita sesuai kelompok.', mandatory: true },
+  { id: 'p-4',  text: 'Peserta putri diimbau memakai legging/celana panjang.', mandatory: false },
+  { id: 'p-5',  text: 'Barang-barang penugasan sesuai ketentuan.', mandatory: true },
+  { id: 'p-6',  text: 'Alat tulis.', mandatory: true },
+  { id: 'p-7',  text: 'Obat-obatan pribadi.', mandatory: false },
+  { id: 'p-8',  text: 'Payung dan jas hujan.', mandatory: false },
+  { id: 'p-9',  text: 'Tumbler air minum (dilarang wadah sekali pakai).', mandatory: true },
+  { id: 'p-10', text: 'Kacamata hitam, kipas, payung lipat (opsional).', mandatory: false },
+  { id: 'p-11', text: 'Peralatan ibadah.', mandatory: false },
+];
+
+// ─── Dresscode Per Hari (Poin B) — single source of truth ─────────────────
+export const DRESSCODE_DATA: DresscodeHari[] = [
+  {
+    label: 'Pra-PKKMB',
+    tanggal: '18 & 19 September 2026',
+    putra: [
+      'Kemeja putih lengan panjang',
+      'Celana bahan hitam rapi',
+      'Sepatu formal/tertutup warna gelap',
+      'Sabuk hitam',
+      'Name tag terpasang',
+    ],
+    putri: [
+      'Kemeja putih lengan panjang',
+      'Rok/celana bahan hitam rapi',
+      'Sepatu formal/tertutup warna gelap',
+      'Legging/celana panjang (dianjurkan)',
+      'Name tag terpasang',
+    ],
+  },
+  {
+    label: 'Day 1',
+    tanggal: 'Senin, 21 September 2026',
+    putra: [
+      'Kemeja putih lengan panjang',
+      'Celana bahan hitam',
+      'Sepatu pantofel hitam',
+      'Dasi hitam',
+      'Jas almamater POLTEKSI',
+      'Name tag lengkap',
+    ],
+    putri: [
+      'Kemeja putih lengan panjang',
+      'Rok/celana bahan hitam',
+      'Sepatu tertutup hitam',
+      'Jas almamater POLTEKSI',
+      'Kerudung hitam (bagi yang berkerudung)',
+      'Name tag lengkap',
+    ],
+  },
+  {
+    label: 'Day 2',
+    tanggal: 'Selasa, 22 September 2026',
+    putra: [
+      'Baju batik bebas rapi',
+      'Celana bahan hitam',
+      'Sepatu formal/tertutup',
+      'Name tag lengkap',
+    ],
+    putri: [
+      'Baju batik bebas rapi',
+      'Rok/celana bahan hitam',
+      'Sepatu formal/tertutup',
+      'Kerudung menyesuaikan warna batik (bagi yang berkerudung)',
+      'Name tag lengkap',
+    ],
+  },
+  {
+    label: 'Day 3',
+    tanggal: 'Rabu, 23 September 2026',
+    putra: [
+      'Kaos olahraga kampus/bebas rapi',
+      'Celana training/olahraga',
+      'Sepatu olahraga',
+      'Name tag terpasang',
+    ],
+    putri: [
+      'Kaos olahraga kampus/bebas rapi',
+      'Celana training/legging panjang',
+      'Sepatu olahraga',
+      'Name tag terpasang',
+    ],
+    catatan: 'Bawa baju ganti untuk sesi industri jika diperlukan.',
+  },
+  {
+    label: 'Day 4',
+    tanggal: 'Kamis, 24 September 2026',
+    putra: [
+      'Kaos almamater POLTEKSI / kaos putih polos',
+      'Celana bahan hitam',
+      'Sepatu formal/tertutup',
+      'Name tag lengkap',
+    ],
+    putri: [
+      'Kaos almamater POLTEKSI / kaos putih polos',
+      'Rok/celana bahan hitam',
+      'Sepatu formal/tertutup',
+      'Kerudung putih (bagi yang berkerudung)',
+      'Name tag lengkap',
+    ],
+  },
+  {
+    label: 'Day 5',
+    tanggal: 'Jumat, 25 September 2026',
+    putra: [
+      'Kaos sesuai warna prodi (lihat ketentuan di bawah)',
+      'Celana hitam bahan/rapi',
+      'Sepatu formal/tertutup',
+      'Jas almamater POLTEKSI (untuk sesi penutupan)',
+      'Name tag lengkap',
+    ],
+    putri: [
+      'Kaos sesuai warna prodi (lihat ketentuan di bawah)',
+      'Celana/rok hitam bahan/rapi',
+      'Sepatu formal/tertutup',
+      'Kerudung menyesuaikan warna kaos prodi (bagi yang berkerudung)',
+      'Jas almamater POLTEKSI (untuk sesi penutupan)',
+      'Name tag lengkap',
+    ],
+    catatan: 'Warna kaos per prodi — Teknologi Mesin: Coklat Berkerah · Teknologi Informasi: Navy Berkerah · Akuntansi: Abu-abu Muda · Administrasi Perkantoran: Kuning Mustard.',
+  },
+];
+
+// ─── Groups Data ───────────────────────────────────────────────────────────
 export const GROUPS_DATA: OrientationGroup[] = [
   {
     id: 'grp-1',
@@ -190,83 +319,100 @@ export const GROUPS_DATA: OrientationGroup[] = [
 
 export const ALL_STUDENTS: StudentMember[] = GROUPS_DATA.flatMap(g => g.members);
 
-export const CAMPUS_LOCATIONS: CampusLocation[] = [
-  {
-    id: 'loc-1',
-    name: 'Aula Utama',
-    building: 'Gedung Utama (Gedung A)',
-    floor: 'Lantai 3',
-    capacity: '800 Orang',
-    description: 'Pusat kegiatan serbaguna kampus untuk sidang terbuka, kuliah perdana, dan inagurasi mahasiswa baru.',
-    tags: ['Acara Utama', 'AC', 'Sound System Terintegrasi', 'Wi-Fi Kampus'],
-    directions: 'Dari gerbang utama masuk ke Lobi Gedung A, gunakan lift ke Lt. 3 atau tangga sayap kanan.',
-    coordinates: '-7.162384,112.639737',
-  },
-  {
-    id: 'loc-2',
-    name: 'Workshop Fabrikasi & Konstruksi Beton',
-    building: 'Gedung Workshop Vokasi Terapan',
-    floor: 'Lantai 1',
-    capacity: '250 Orang',
-    description: 'Fasilitas praktik rekayasa perbaikan mesin, pengujian kuat tekan beton, dan simulator otomasi industri.',
-    tags: ['Lab Praktik', 'Wajib APD', 'Alat Uji Mutu', 'CNC Router'],
-    directions: 'Berjalan ke arah timur dari Aula Utama melewati koridor kanopi hijau, tepat di samping hanggar uji bahan.',
-    coordinates: '-7.162123,112.640123',
-  },
-  {
-    id: 'loc-3',
-    name: 'Amfiteater Terbuka & Plaza Kreatif',
-    building: 'Area Terbuka Kampus Tengah',
-    floor: 'Area Luar (Ground)',
-    capacity: '600 Orang',
-    description: 'Area pertunjukan seni, yel-yel kelompok, dan istirahat interaktif di bawah naungan pohon rindang.',
-    tags: ['Outdoor', 'Panggung Terbuka', 'Food Truck Area', 'Wi-Fi Area'],
-    directions: 'Terletak di jantung kampus tepat antara Gedung A dan Gedung Workshop.',
-    coordinates: '-7.162543,112.639912',
-  },
-  {
-    id: 'loc-4',
-    name: 'Ruang A.204 (Sekretariat Kelompok Beton)',
-    building: 'Gedung Teknik & Komputer (Gedung A)',
-    floor: 'Lantai 2',
-    capacity: '40 Orang',
-    description: 'Ruang diskusi dan evaluasi tim harian bersama mentor pendamping Kak Dimas Prasetyo.',
-    tags: ['Ruang Kelas', 'Proyektor', 'AC'],
-    directions: 'Naik ke Lantai 2 Gedung A, belok kiri setelah tangga utama.',
-    coordinates: '-7.162384,112.639737',
-  },
-  {
-    id: 'loc-5',
-    name: 'Perpustakaan Digital & Learning Center',
-    building: 'Gedung Rektorat Terpadu',
-    floor: 'Lantai 2 & 3',
-    capacity: '300 Orang',
-    description: 'Pusat referensi riset, jurnal internasional teknik, dan ruang co-working mahasiswa vokasi.',
-    tags: ['Zona Hening', 'Komputer Riset', 'Charging Station'],
-    directions: 'Berada di sayap barat dekat Gedung Administrasi Pusat.',
-    coordinates: '-7.162811,112.639234',
-  }
-];
-
+// ─── FAQ Items (18 Q&A) ────────────────────────────────────────────────────
 export const FAQ_ITEMS: FaqItem[] = [
+  // Umum
   {
-    question: 'Bagaimana jika saya terlambat atau berhalangan hadir?',
-    answer: 'Mahasiswa baru wajib menghubungi mentor kelompok minimal 30 menit sebelum apel pagi dimulai dan menyertakan surat keterangan sakit/izin resmi dari orang tua/wali.',
-    category: 'Tata Tertib'
+    question: 'Apa itu ORVOKS POLTEKSI 2026?',
+    answer: 'ORVOKS (Orientasi Vokasi) adalah nama resmi PKKMB Politeknik Semen Indonesia — agenda tahunan resmi sebagai wadah orientasi, adaptasi, dan pembekalan bagi mahasiswa baru.',
+    category: 'Umum',
   },
   {
-    question: 'Apakah atribut name tag dan buku saku wajib dibawa setiap hari?',
-    answer: 'Ya! Name tag dan Buku Saku ORVOKS 2026 merupakan atribut identitas wajib yang akan diperiksa oleh Divisi Disiplin dan Evaluasi pada saat presensi pagi.',
-    category: 'Atribut'
+    question: 'Apa tema ORVOKS 2026?',
+    answer: '"ONBOARDING TALENT: Gerbang Vokasi, Talenta Berkarya."',
+    category: 'Umum',
   },
   {
-    question: 'Di mana tempat parkir dan titik penurunan (drop zone) peserta?',
-    answer: 'Drop zone kendaraan roda 4 berada di Gerbang Utara. Parkir sepeda motor peserta dialokasikan di Lapangan Parkir Timur dengan menunjukkan kartu peserta PKKMB.',
-    category: 'Fasilitas'
+    question: 'Apa slogan/jargon kegiatan ini?',
+    answer: 'Slogan ORVOKS: "Pondasi Kemandirian, Kokoh Berintegritas!" dan slogan Onboarding Talent: "Vokasi Kuat, Industri Hebat!"',
+    category: 'Umum',
   },
   {
-    question: 'Apa saja sanksi jika melanggar ketentuan tata tertib?',
-    answer: 'Sanksi bersifat edukatif dan konstruktif, mulai dari teguran lisan, tugas resume tambahan jurnal vokasi, hingga penundaan sertifikat kelulusan PKKMB yang menjadi syarat yudisium.',
-    category: 'Tata Tertib'
-  }
+    question: 'Siapa maskot ORVOKS POLTEKSI?',
+    answer: 'SIVO, maskot resmi POLTEKSI yang berperan sebagai "Tuan Rumah" dan "Mentor Utama" bagi mahasiswa baru.',
+    category: 'Umum',
+  },
+  {
+    question: 'Apa itu GEVO dan TABE?',
+    answer: 'GEVO (Gerbang Vokasi) melambangkan fase awal penuh rasa ingin tahu dan semangat belajar; TABE (Talenta Berkarya) melambangkan puncak metamorfosis mahasiswa yang matang, percaya diri, dan siap berkarya.',
+    category: 'Umum',
+  },
+  {
+    question: 'Apa tujuan diadakannya ORVOKS 2026?',
+    answer: 'Membentuk kejujuran & etika akademik, melatih kesiapan mental & kemandirian, menumbuhkan gotong royong/kerja tim, serta membantu mahasiswa baru mengenal fasilitas, kurikulum, dan lingkungan kampus.',
+    category: 'Umum',
+  },
+  // Hak & Kewajiban
+  {
+    question: 'Apa saja hak peserta selama ORVOKS?',
+    answer: 'Mendapat materi & bimbingan resmi, diperlakukan adil dan manusiawi tanpa diskriminasi/kekerasan, menggunakan fasilitas kampus yang diizinkan, serta menyampaikan aspirasi/keluhan/kondisi darurat kepada panitia.',
+    category: 'Hak & Kewajiban',
+  },
+  {
+    question: 'Apa kewajiban utama peserta?',
+    answer: 'Menjaga nama baik kampus, menaati tata tertib, menghormati sesama peserta dan panitia, bersikap sopan, hadir tepat waktu (minimal 30 menit sebelum acara), serta mengenakan atribut dan dresscode lengkap.',
+    category: 'Hak & Kewajiban',
+  },
+  {
+    question: 'Bagaimana ketentuan rambut dan kerudung peserta?',
+    answer: 'Putra: rambut rapi model 3-2-1 cm, warna hitam alami. Putri berkerudung: kerudung rapi sesuai ketentuan warna dresscode. Putri tidak berkerudung: rambut diikat kuncir kuda, tidak diwarnai.',
+    category: 'Hak & Kewajiban',
+  },
+  // Larangan & Sanksi
+  {
+    question: 'Apa saja yang dilarang selama ORVOKS?',
+    answer: 'Kekerasan fisik/verbal/cyberbullying, tindakan asusila atau ujaran SARA, kecurangan akademis/non-akademis, membawa rokok/vape/miras/narkoba, membawa senjata/benda berbahaya, merusak fasilitas kampus, serta memakai aksesoris/barang mewah berlebihan.',
+    category: 'Larangan & Sanksi',
+  },
+  {
+    question: 'Apa sanksi bila melanggar aturan?',
+    answer: 'Sanksi berjenjang: SP 1 (pelanggaran ringan–sedang, wajib tugas substitusi edukatif), SP 2 (pelanggaran sedang–berat, bisa berupa penugasan khusus atau penangguhan kelulusan ORVOKS), dan SP 3 (pelanggaran berat/fatal, dinyatakan gugur/tidak lulus ORVOKS dan wajib mengulang tahun depan).',
+    category: 'Larangan & Sanksi',
+  },
+  {
+    question: 'Apa yang terjadi jika hukuman pengganti SP 1 tidak diselesaikan?',
+    answer: 'Status sanksi otomatis naik menjadi SP 2.',
+    category: 'Larangan & Sanksi',
+  },
+  {
+    question: 'Apakah pelanggaran pidana ditangani panitia saja?',
+    answer: 'Tidak. Pelanggaran hukum pidana/kriminal akan dilimpahkan ke pihak berwajib dan bidang kemahasiswaan POLTEKSI untuk proses sanksi akademis lebih lanjut.',
+    category: 'Larangan & Sanksi',
+  },
+  // Kesehatan & Teknis
+  {
+    question: 'Bagaimana jika peserta sakit saat kegiatan berlangsung?',
+    answer: 'Peserta dapat melapor kepada panitia ORVOKS atau mendatangi posko kesehatan yang disediakan.',
+    category: 'Kesehatan & Teknis',
+  },
+  {
+    question: 'Apakah peserta wajib sarapan sebelum kegiatan?',
+    answer: 'Ya, seluruh peserta diimbau sarapan terlebih dahulu sebelum mengikuti rangkaian kegiatan ORVOKS.',
+    category: 'Kesehatan & Teknis',
+  },
+  {
+    question: 'Apakah peserta dengan riwayat penyakit perlu persiapan khusus?',
+    answer: 'Ya, peserta dengan riwayat penyakit wajib membawa obat-obatan pribadi.',
+    category: 'Kesehatan & Teknis',
+  },
+  {
+    question: 'Kapan pertanyaan yang diajukan ke panitia akan dijawab?',
+    answer: 'Pertanyaan yang masuk di atas pukul 19.00 WIB akan dibalas keesokan harinya.',
+    category: 'Kesehatan & Teknis',
+  },
+  {
+    question: 'Di mana penugasan ORVOKS akan diinformasikan?',
+    answer: 'Seluruh penugasan disosialisasikan pada Sabtu, 5 September 2026 melalui akun media sosial resmi @pkkmb.polteksi.',
+    category: 'Kesehatan & Teknis',
+  },
 ];

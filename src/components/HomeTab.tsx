@@ -1,5 +1,5 @@
-import React from 'react';
-import { HERO_IMAGE_URL, DAYS_DATA } from '../data/orientationData';
+import React, { useState } from 'react';
+import { HERO_IMAGE_URL, DAYS_DATA, PERLENGKAPAN_ITEMS } from '../data/orientationData';
 import { DaySchedule, TabType } from '../types';
 import { BrandDecoration } from './BrandDecoration';
 
@@ -8,18 +8,20 @@ interface HomeTabProps {
   onSelectDay: (dayNumber: number) => void;
   onNavigateTab: (tab: TabType) => void;
   onOpenScheduleModal: (day: DaySchedule) => void;
-  onOpenLocationModal: (locationName: string) => void;
   onSearchStudent: (query: string) => void;
 }
+
+const PREVIEW_COUNT = 4;
 
 export const HomeTab: React.FC<HomeTabProps> = ({
   currentDay,
   onSelectDay,
+  onNavigateTab,
   onOpenScheduleModal,
-  onOpenLocationModal,
   onSearchStudent,
 }) => {
-  const remainingDays = 5 - currentDay.dayNumber;
+  const remainingDays = DAYS_DATA.length - currentDay.dayNumber;
+  const [showPerlengkapanModal, setShowPerlengkapanModal] = useState(false);
 
   return (
     <div className="tab-fade-in flex flex-col gap-6 pb-6">
@@ -80,7 +82,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                 <div>
                   <div className="flex items-center gap-2">
                     <h2 className="font-display text-xl font-bold text-[#22202A] dark:text-white">
-                      {currentDay.dayName}
+                      {currentDay.theme}
                     </h2>
                     <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#2F9672]/15 text-[#2F9672] dark:text-[#4ADE80] border border-[#2F9672]/30">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#2F9672] dark:bg-[#4ADE80] animate-ping" />
@@ -88,14 +90,14 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                     </span>
                   </div>
                   <p className="text-[11px] font-bold text-[#5B2BBE] dark:text-[#C39BFF] uppercase tracking-wider font-display">
-                    HARI KE-{currentDay.dayNumber} DARI 5
+                    SESI KE-{currentDay.dayNumber} DARI {DAYS_DATA.length}
                   </p>
                 </div>
               </div>
 
               <div className="text-right">
                 <span className="inline-block px-3 py-1 rounded-full bg-[#FAF9F6] dark:bg-[#251F4A] text-[#6B6874] dark:text-[#A39EB8] font-bold text-xs border border-[#5B2BBE]/10 dark:border-transparent">
-                  {remainingDays > 0 ? `${remainingDays} hari lagi` : 'Hari Terakhir!'}
+                  {remainingDays > 0 ? `${remainingDays} sesi lagi` : 'Hari Terakhir!'}
                 </span>
               </div>
             </div>
@@ -107,7 +109,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                   Pilih Hari Orientasi:
                 </span>
               </div>
-              <div className="grid grid-cols-5 gap-1.5 sm:gap-2">
+              <div className="grid grid-cols-4 sm:grid-cols-7 gap-1.5 sm:gap-2">
                 {DAYS_DATA.map((d) => {
                   const isActive = currentDay.dayNumber === d.dayNumber;
                   const isPast = d.dayNumber < currentDay.dayNumber;
@@ -115,7 +117,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                     <button
                       key={d.dayNumber}
                       onClick={() => onSelectDay(d.dayNumber)}
-                      className={`p-2.5 rounded-xl border text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-0.5 ${
+                      className={`p-2 rounded-xl border text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-0.5 ${
                         isActive
                           ? 'bg-[#5B2BBE] dark:bg-[#5B2BBE] text-white border-[#5B2BBE] dark:border-[#D63BBE] shadow-md scale-102 font-bold ring-2 ring-[#5B2BBE]/25 dark:ring-[#D63BBE]/35'
                           : isPast
@@ -123,10 +125,10 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                           : 'bg-white dark:bg-[#1B1638] text-[#6B6874] dark:text-[#A39EB8] border-slate-200 dark:border-[#251F4A] hover:bg-[#FAF9F6] dark:hover:bg-[#251F4A]/80 font-medium'
                       }`}
                     >
-                      <span className={`text-[10px] uppercase font-bold tracking-wider ${isActive ? 'text-[#FDE8FA]' : 'text-[#6B6874] dark:text-[#A39EB8]'}`}>
+                      <span className={`text-[9px] uppercase font-bold tracking-wider ${isActive ? 'text-[#FDE8FA]' : 'text-[#6B6874] dark:text-[#A39EB8]'}`}>
                         H-{d.dayNumber}
                       </span>
-                      <span className="text-xs font-bold line-clamp-1">
+                      <span className="text-[10px] font-bold line-clamp-1">
                         {d.dayName}
                       </span>
                     </button>
@@ -190,17 +192,17 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                 </span>
               </div>
               <span className="text-[10px] bg-[#FDE8FA] dark:bg-[#D63BBE]/25 text-[#D63BBE] dark:text-[#FF85EA] font-bold px-2.5 py-0.5 rounded-full border border-[#D63BBE]/20 dark:border-[#D63BBE]/35">
-                {currentDay.sessions.length} Sesi
+                {currentDay.kegiatan.length} Kegiatan
               </span>
             </div>
 
             <div>
-              <h3 className="font-display font-bold text-[16px] text-[#22202A] dark:text-white leading-snug">
+              <h3 className="font-display font-bold text-[15px] text-[#22202A] dark:text-white leading-snug">
                 {currentDay.theme}
               </h3>
-              <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] mt-1 flex items-center gap-1 font-medium">
-                <span className="material-symbols-outlined text-[15px] text-[#4256A6] dark:text-[#A5B8FF]">location_on</span>
-                {currentDay.primaryLocation}
+              <p className="text-xs text-[#5B2BBE] dark:text-[#C39BFF] mt-1 font-bold flex items-center gap-1">
+                <span className="material-symbols-outlined text-[14px]">schedule</span>
+                {currentDay.jamSesi}
               </p>
             </div>
 
@@ -214,82 +216,152 @@ export const HomeTab: React.FC<HomeTabProps> = ({
             </button>
           </div>
 
-          {/* Card 2: Atribut Hari Ini */}
+          {/* Card 2: Perlengkapan PKKMB (Poin A — preview + modal in-page) */}
           <div className="campus-card bg-white dark:bg-[#1B1638] p-5 border border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 flex flex-col gap-3 shadow-xs">
             <div className="flex items-center justify-between border-b border-slate-100 dark:border-[#251F4A] pb-2.5">
               <div className="flex items-center gap-1.5 text-[#5B2BBE] dark:text-[#C39BFF]">
-                <span className="material-symbols-outlined text-[20px]">checkroom</span>
+                <span className="material-symbols-outlined text-[20px]">backpack</span>
                 <span className="font-bold text-xs uppercase tracking-wider font-display">
-                  Atribut {currentDay.dayName}
+                  Perlengkapan PKKMB
                 </span>
               </div>
               <span className="text-[10px] bg-[#FAF9F6] dark:bg-[#251F4A] text-[#6B6874] dark:text-[#A39EB8] font-bold px-2.5 py-0.5 rounded-full border border-slate-200 dark:border-[#322B60]">
-                Ketentuan Wajib
+                {PERLENGKAPAN_ITEMS.length} Item
               </span>
             </div>
 
-            <div className="flex flex-col gap-2.5">
-              {currentDay.attributes.map((attr) => (
+            <div className="flex flex-col gap-2">
+              {PERLENGKAPAN_ITEMS.slice(0, PREVIEW_COUNT).map((item) => (
                 <div
-                  key={attr.id}
-                  className="p-3 rounded-xl border border-[#5B2BBE]/8 dark:border-[#251F4A] bg-[#FAF9F6]/80 dark:bg-[#251F4A]/50 flex items-start gap-3 transition-all"
+                  key={item.id}
+                  className="p-2.5 rounded-xl border border-[#5B2BBE]/8 dark:border-[#251F4A] bg-[#FAF9F6]/80 dark:bg-[#251F4A]/50 flex items-start gap-2.5"
                 >
-                  <div className="w-6 h-6 rounded-lg bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/30 text-[#5B2BBE] dark:text-[#C39BFF] flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="material-symbols-outlined text-[15px]">
-                      check_circle
-                    </span>
+                  <div className="w-5 h-5 rounded-md bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/30 text-[#5B2BBE] dark:text-[#C39BFF] flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="material-symbols-outlined text-[13px]">check_circle</span>
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-1.5 flex-wrap">
-                      <p className="text-xs sm:text-sm font-semibold text-[#22202A] dark:text-[#F3F2F8]">
-                        {attr.name}
-                      </p>
-                      {attr.mandatory && (
-                        <span className="text-[9px] bg-[#F06C7D]/15 text-[#F06C7D] dark:text-[#FF8595] font-bold px-1.5 py-0.2 rounded-full border border-[#F06C7D]/30">
-                          Wajib
-                        </span>
-                      )}
-                    </div>
-                    {attr.note && (
-                      <p className="text-[11px] text-[#6B6874] dark:text-[#A39EB8] mt-0.5">{attr.note}</p>
+                  <div className="flex-1 flex items-center gap-1.5 flex-wrap">
+                    <p className="text-xs font-semibold text-[#22202A] dark:text-[#F3F2F8] leading-snug">
+                      {item.text}
+                    </p>
+                    {item.mandatory && (
+                      <span className="text-[9px] bg-[#F06C7D]/15 text-[#F06C7D] dark:text-[#FF8595] font-bold px-1.5 rounded-full border border-[#F06C7D]/30 shrink-0">
+                        Wajib
+                      </span>
                     )}
                   </div>
                 </div>
               ))}
             </div>
+
+            <button
+              id="btn-lihat-semua-perlengkapan"
+              onClick={() => setShowPerlengkapanModal(true)}
+              className="w-full bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/25 hover:bg-[#5B2BBE]/15 dark:hover:bg-[#5B2BBE]/40 text-[#5B2BBE] dark:text-[#C39BFF] font-bold text-xs py-2.5 rounded-xl border border-[#5B2BBE]/20 dark:border-[#5B2BBE]/40 transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-98"
+            >
+              <span>Lihat Semua ({PERLENGKAPAN_ITEMS.length} item)</span>
+              <span className="material-symbols-outlined text-[16px]">expand_more</span>
+            </button>
           </div>
 
-          {/* Card 3: Lokasi Utama Hari Ini */}
+          {/* Card 3: Atribut — menuju halaman detail */}
           <div className="campus-card bg-[#FAF9F6] dark:bg-[#251F4A]/70 p-5 border border-[#5B2BBE]/12 dark:border-[#D63BBE]/20 flex flex-col justify-between gap-3 shadow-xs">
-            <div className="flex items-center gap-1.5 text-[#4256A6] dark:text-[#A5B8FF] border-b border-slate-200/60 dark:border-[#322B60] pb-2">
-              <span className="material-symbols-outlined text-[18px]">pin_drop</span>
+            <div className="flex items-center gap-1.5 text-[#D63BBE] dark:text-[#FF85EA] border-b border-slate-200/60 dark:border-[#322B60] pb-2">
+              <span className="material-symbols-outlined text-[18px]">checkroom</span>
               <span className="font-bold text-xs uppercase tracking-wider font-display">
-                Lokasi Utama Hari Ini
+                Atribut PKKMB
               </span>
             </div>
 
             <div>
-              <h3 className="font-display font-bold text-base text-[#22202A] dark:text-white leading-snug">
-                {currentDay.primaryLocation}
+              <h3 className="font-display font-bold text-sm text-[#22202A] dark:text-white leading-snug">
+                Dresscode & Ketentuan Pakaian
               </h3>
               <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] mt-0.5 font-medium">
-                Gedung Utama (Gedung A) Lt. 3 Politeknik Semen Indonesia
+                Lihat detail dresscode putra & putri per hari, termasuk warna kaos prodi Day 5.
               </p>
             </div>
 
             <button
-              id="btn-see-location"
-              onClick={() => onOpenLocationModal(currentDay.primaryLocation)}
-              className="w-full bg-[#4256A6] dark:bg-[#4256A6] hover:bg-[#34468C] dark:hover:bg-[#5268C0] text-white font-bold text-xs py-2.5 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer active:scale-98"
+              id="btn-lihat-detail-atribut"
+              onClick={() => onNavigateTab('atribut')}
+              className="w-full bg-[#D63BBE] dark:bg-[#D63BBE] hover:bg-[#C332A8] dark:hover:bg-[#C332A8] text-white font-bold text-xs py-2.5 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer active:scale-98"
             >
-              <span className="material-symbols-outlined text-[16px]">directions</span>
-              <span>Lihat Lokasi & Petunjuk Arah</span>
+              <span className="material-symbols-outlined text-[16px]">open_in_new</span>
+              <span>Lihat Detail Atribut</span>
             </button>
           </div>
 
         </div>
 
       </div>
+
+      {/* Perlengkapan Modal (in-page) */}
+      {showPerlengkapanModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/80 backdrop-blur-xs animate-in fade-in duration-150"
+          onClick={() => setShowPerlengkapanModal(false)}
+        >
+          <div
+            className="bg-white dark:bg-[#1B1638] rounded-2xl max-w-md w-full max-h-[85vh] flex flex-col overflow-hidden shadow-2xl border border-[#5B2BBE]/15 dark:border-[#D63BBE]/25 animate-in zoom-in-95 duration-150"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="bg-[#5B2BBE] text-white p-5 flex items-center justify-between shrink-0">
+              <div>
+                <span className="text-[10px] bg-white/20 text-[#FDE8FA] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider font-display inline-block mb-1">
+                  Perlengkapan Hari-H
+                </span>
+                <h3 className="font-display font-black text-lg text-white leading-tight">
+                  Semua {PERLENGKAPAN_ITEMS.length} Item Wajib Bawa
+                </h3>
+              </div>
+              <button
+                onClick={() => setShowPerlengkapanModal(false)}
+                aria-label="Tutup Modal"
+                className="w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-all cursor-pointer border border-white/20 shrink-0 ml-2"
+              >
+                <span className="material-symbols-outlined text-[18px]">close</span>
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-5 overflow-y-auto flex flex-col gap-2.5 flex-1">
+              {PERLENGKAPAN_ITEMS.map((item, idx) => (
+                <div
+                  key={item.id}
+                  className="p-3 rounded-xl border border-[#5B2BBE]/8 dark:border-[#251F4A] bg-[#FAF9F6]/80 dark:bg-[#251F4A]/50 flex items-start gap-3"
+                >
+                  <div className="w-7 h-7 rounded-lg bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/30 text-[#5B2BBE] dark:text-[#C39BFF] flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs font-display">
+                    {idx + 1}
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-start gap-1.5 flex-wrap">
+                      <p className="text-xs sm:text-sm font-semibold text-[#22202A] dark:text-[#F3F2F8] leading-snug">
+                        {item.text}
+                      </p>
+                      {item.mandatory && (
+                        <span className="text-[9px] bg-[#F06C7D]/15 text-[#F06C7D] dark:text-[#FF8595] font-bold px-1.5 py-0.5 rounded-full border border-[#F06C7D]/30 shrink-0">
+                          Wajib
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Modal Footer */}
+            <div className="p-4 bg-[#FAF9F6] dark:bg-[#151030] border-t border-[#5B2BBE]/10 dark:border-[#251F4A] flex justify-end">
+              <button
+                onClick={() => setShowPerlengkapanModal(false)}
+                className="bg-[#5B2BBE] hover:bg-[#43208F] dark:bg-[#5B2BBE] text-white px-5 py-2 rounded-xl font-bold text-xs transition-all cursor-pointer shadow-xs active:scale-95"
+              >
+                Tutup
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

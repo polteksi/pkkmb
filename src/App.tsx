@@ -5,11 +5,10 @@ import { Header } from './components/Header';
 import { HomeTab } from './components/HomeTab';
 import { ScheduleTab } from './components/ScheduleTab';
 import { GroupTab } from './components/GroupTab';
-import { LocationTab } from './components/LocationTab';
+import { AtributTab } from './components/AtributTab';
 import { FaqTab } from './components/FaqTab';
 import { Footer } from './components/Footer';
 import { ScheduleModal } from './components/ScheduleModal';
-import { LocationModal } from './components/LocationModal';
 import { SearchModal } from './components/SearchModal';
 import { MenuDrawer } from './components/MenuDrawer';
 import { BrandDecoration } from './components/BrandDecoration';
@@ -17,7 +16,7 @@ import { BrandDecoration } from './components/BrandDecoration';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('beranda');
-  const [currentDayNumber, setCurrentDayNumber] = useState<number>(1); // Default to Monday / Hari ke-1 (Senin)
+  const [currentDayNumber, setCurrentDayNumber] = useState<number>(1); // Default to first session
 
 
   // Dark mode state: default to light if not saved
@@ -43,7 +42,6 @@ export default function App() {
 
   // Modal states
   const [scheduleModalDay, setScheduleModalDay] = useState<DaySchedule | null>(null);
-  const [locationModalName, setLocationModalName] = useState<string | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [searchInitialQuery, setSearchInitialQuery] = useState<string>('');
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -54,7 +52,7 @@ export default function App() {
     beranda: 'Beranda Utama',
     jadwal: 'Jadwal 5 Hari',
     kelompok: 'Daftar Kelompok',
-    lokasi: 'Denah & Venue',
+    atribut: 'Atribut PKKMB',
     faq: 'Tanya Jawab (FAQ)',
   };
 
@@ -92,6 +90,7 @@ export default function App() {
       {/* Top Fixed App Bar with Dark Mode Toggle */}
       <Header
         onOpenMenu={() => setIsMenuOpen(true)}
+        onNavigateToBeranda={() => handleNavigate('beranda')}
         isDarkMode={isDarkMode}
         onToggleDarkMode={toggleDarkMode}
         activeTabTitle={tabTitles[activeTab]}
@@ -105,7 +104,6 @@ export default function App() {
             onSelectDay={(dayNum) => setCurrentDayNumber(dayNum)}
             onNavigateTab={handleNavigate}
             onOpenScheduleModal={(day) => setScheduleModalDay(day)}
-            onOpenLocationModal={(loc) => setLocationModalName(loc)}
             onSearchStudent={handleOpenSearchWithQuery}
           />
         )}
@@ -113,18 +111,15 @@ export default function App() {
         {activeTab === 'jadwal' && (
           <ScheduleTab
             initialDayNumber={currentDayNumber}
-            onOpenLocationModal={(loc) => setLocationModalName(loc)}
           />
         )}
 
         {activeTab === 'kelompok' && (
-          <GroupTab
-            onOpenLocationModal={(loc) => setLocationModalName(loc)}
-          />
+          <GroupTab />
         )}
 
-        {activeTab === 'lokasi' && (
-          <LocationTab />
+        {activeTab === 'atribut' && (
+          <AtributTab />
         )}
 
         {activeTab === 'faq' && (
@@ -138,12 +133,6 @@ export default function App() {
       <ScheduleModal
         day={scheduleModalDay}
         onClose={() => setScheduleModalDay(null)}
-        onOpenLocation={(loc) => setLocationModalName(loc)}
-      />
-
-      <LocationModal
-        locationName={locationModalName}
-        onClose={() => setLocationModalName(null)}
       />
 
       <SearchModal

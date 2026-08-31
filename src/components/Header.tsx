@@ -2,6 +2,7 @@ import React from 'react';
 
 interface HeaderProps {
   onOpenMenu: () => void;
+  onNavigateToBeranda: () => void;
   isDarkMode: boolean;
   onToggleDarkMode: () => void;
   activeTabTitle?: string;
@@ -9,6 +10,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ 
   onOpenMenu, 
+  onNavigateToBeranda,
   isDarkMode, 
   onToggleDarkMode, 
   activeTabTitle 
@@ -37,10 +39,12 @@ export const Header: React.FC<HeaderProps> = ({
           )}
         </div>
 
-        {/* Center: Brand Identity */}
-        <div 
-          onClick={onOpenMenu}
-          className="flex items-center gap-2 cursor-pointer select-none group"
+        {/* Center: Brand Identity — navigates to Beranda on click */}
+        <button
+          id="btn-brand-home"
+          onClick={onNavigateToBeranda}
+          aria-label="Kembali ke Beranda"
+          className="flex items-center gap-2 cursor-pointer select-none group bg-transparent border-0 p-0"
         >
           <img src="/favicon.png" alt="ORVOKS Logo" className="h-7 w-7 sm:h-8 sm:w-8 shrink-0" />
           <span className="font-display text-[22px] sm:text-[24px] font-black text-[#5B2BBE] dark:text-white tracking-tight group-hover:opacity-90 transition-opacity">
@@ -49,7 +53,7 @@ export const Header: React.FC<HeaderProps> = ({
           <span className="bg-[#5B2BBE] text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full shadow-xs tracking-wider font-display">
             2026
           </span>
-        </div>
+        </button>
 
         {/* Right: Dark / Light Mode Toggle Button */}
         <div className="flex items-center gap-2">

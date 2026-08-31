@@ -8,7 +8,7 @@ export const FaqTab: React.FC = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   // Categories
-  const categories = ['all', 'Tata Tertib', 'Atribut', 'Fasilitas'];
+  const categories = ['all', 'Umum', 'Hak & Kewajiban', 'Larangan & Sanksi', 'Kesehatan & Teknis'];
 
   const filteredFaqs = FAQ_ITEMS.filter((faq) => {
     const matchesSearch =

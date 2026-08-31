@@ -21,7 +21,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
     { id: 'beranda', label: 'Beranda Utama', icon: 'home', desc: 'Ringkasan & status orientasi harian' },
     { id: 'jadwal', label: 'Jadwal 5 Hari', icon: 'calendar_month', desc: 'Susunan lengkap rundown & sesi' },
     { id: 'kelompok', label: 'Daftar Kelompok', icon: 'groups', desc: 'Mentor, ruangan & data anggota' },
-    { id: 'lokasi', label: 'Denah & Venue', icon: 'map', desc: 'Peta fasilitas kampus & titik kumpul' },
+    { id: 'atribut', label: 'Atribut PKKMB', icon: 'checkroom', desc: 'Perlengkapan & dresscode per hari' },
     { id: 'faq', label: 'Tanya Jawab (FAQ)', icon: 'help', desc: 'Tata tertib, atribut & tanya jawab' },
   ];
 
