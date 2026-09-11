@@ -314,8 +314,8 @@ export const HomeTab: React.FC<HomeTabProps> = ({
 
           {/* Penugasan Pra-Acara + Pengumpulan: side-by-side on desktop, stacked on mobile */}
           <div className="lg:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
-            <div className="campus-card campus-card-hover bg-white dark:bg-[#1B1638] p-4 sm:p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 grid grid-rows-[auto_1fr_auto] gap-4 shadow-xs h-full min-w-0">
-              <div className="flex items-start justify-between gap-2 border-b border-slate-100 dark:border-[#251F4A] pb-3 min-h-12">
+            <div className="campus-card campus-card-hover bg-white dark:bg-[#1B1638] p-4 sm:p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 flex flex-col gap-4 shadow-xs h-full min-w-0">
+              <div className="flex items-start justify-between gap-2 border-b border-slate-100 dark:border-[#251F4A] pb-3">
                 <div className="flex items-start gap-2 text-[#5B2BBE] dark:text-[#C39BFF] min-w-0">
                   <span className="material-symbols-outlined text-[20px] shrink-0">picture_as_pdf</span>
                   <span className="font-bold text-[11px] sm:text-xs uppercase leading-tight tracking-wide font-display">
@@ -327,16 +327,17 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                 </span>
               </div>
 
-              <div className="md:min-h-24">
-                <h3 className="font-display font-bold text-sm text-[#22202A] dark:text-white leading-snug">
-                  Penugasan ORVOKS POLTEKSI 2026
-                </h3>
-                <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] mt-1 font-medium leading-relaxed">
-                  Baca petunjuk penugasan pra-acara atau simpan PDF ke perangkatmu.
-                </p>
-              </div>
+              <div className="flex flex-col sm:flex-row sm:items-end gap-4 flex-1">
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-display font-bold text-sm text-[#22202A] dark:text-white leading-snug">
+                    Penugasan ORVOKS POLTEKSI 2026
+                  </h3>
+                  <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] mt-1 font-medium leading-relaxed">
+                    Baca petunjuk penugasan pra-acara atau simpan PDF ke perangkatmu.
+                  </p>
+                </div>
 
-              <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-2 w-full sm:w-[220px] shrink-0">
                 <a
                   href={PRA_ACARA_PDF}
                   target="_blank"
@@ -356,12 +357,13 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                   <span className="material-symbols-outlined text-[16px]">download</span>
                   <span>Unduh</span>
                 </a>
+                </div>
               </div>
             </div>
 
             {/* Card 4: Pengumpulan Tugas */}
-            <div className="campus-card campus-card-hover bg-white dark:bg-[#1B1638] p-4 sm:p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 grid grid-rows-[auto_1fr_auto] gap-4 shadow-xs h-full min-w-0">
-              <div className="flex items-start justify-between gap-2 border-b border-slate-100 dark:border-[#251F4A] pb-3 min-h-12">
+            <div className="campus-card campus-card-hover bg-white dark:bg-[#1B1638] p-4 sm:p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 flex flex-col gap-4 shadow-xs h-full min-w-0">
+              <div className="flex items-start justify-between gap-2 border-b border-slate-100 dark:border-[#251F4A] pb-3">
                 <div className="flex items-start gap-2 text-[#5B2BBE] dark:text-[#C39BFF] min-w-0">
                   <span className="material-symbols-outlined text-[20px] shrink-0">assignment</span>
                   <span className="font-bold text-[11px] sm:text-xs uppercase leading-tight tracking-wide font-display">
@@ -373,24 +375,26 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                 </span>
               </div>
 
-              <div className="md:min-h-24">
-                <h3 className="font-display font-bold text-sm text-[#22202A] dark:text-white leading-snug">
-                  Tempat Pengumpulan Tugas PKKMB
-                </h3>
-                <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] mt-1 font-medium leading-relaxed">
-                  Isi formulir dan unggah berkas tugas PKKMB melalui Google Form resmi.
-                </p>
-              </div>
+              <div className="flex flex-col sm:flex-row sm:items-end gap-4 flex-1">
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-display font-bold text-sm text-[#22202A] dark:text-white leading-snug">
+                    Tempat Pengumpulan Tugas PKKMB
+                  </h3>
+                  <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] mt-1 font-medium leading-relaxed">
+                    Isi formulir dan unggah berkas tugas PKKMB melalui Google Form resmi.
+                  </p>
+                </div>
 
-              <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSfUqRIP_uAYehse677ygmldbhE38o0DLupajKuIWxr2oIISZQ/viewform?usp=publish-editor"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full min-h-11 bg-[#5B2BBE] dark:bg-[#5B2BBE] hover:bg-[#43208F] dark:hover:bg-[#7D3BD6] text-white font-bold text-xs py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer active:scale-98 whitespace-nowrap"
-              >
-                <span className="material-symbols-outlined text-[16px]">open_in_new</span>
-                <span>Buka Form</span>
-              </a>
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSfUqRIP_uAYehse677ygmldbhE38o0DLupajKuIWxr2oIISZQ/viewform?usp=publish-editor"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto sm:min-w-[180px] min-h-11 bg-[#5B2BBE] dark:bg-[#5B2BBE] hover:bg-[#43208F] dark:hover:bg-[#7D3BD6] text-white font-bold text-xs py-2.5 px-4 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer active:scale-98 whitespace-nowrap shrink-0"
+                >
+                  <span className="material-symbols-outlined text-[16px]">open_in_new</span>
+                  <span>Buka Form</span>
+                </a>
+              </div>
             </div>
           </div>
 
