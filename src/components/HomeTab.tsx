@@ -361,12 +361,14 @@ export const HomeTab: React.FC<HomeTabProps> = ({
             <div className="campus-card bg-white dark:bg-[#1B1638] p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 flex flex-col justify-between gap-3 shadow-xs">
             <div className="flex items-center justify-between border-b border-slate-100 dark:border-[#251F4A] pb-2.5">
               <div className="flex items-center gap-1.5 text-[#5B2BBE] dark:text-[#C39BFF]">
-                <span className="material-symbols-outlined text-[18px]">folder</span>
+                <span className="material-symbols-outlined text-[18px]">assignment</span>
                 <span className="font-bold text-xs uppercase tracking-wider font-display">
                   Pengumpulan Tugas
                 </span>
               </div>
-
+              <span className="text-[10px] bg-[#2F9672]/10 text-[#2F9672] dark:text-[#4ADE80] font-bold px-2 py-0.5 rounded-full border border-[#2F9672]/25 shrink-0">
+                Google Form
+              </span>
             </div>
 
             <div>
@@ -374,18 +376,18 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                 Tempat Pengumpulan Tugas PKKMB
               </h3>
               <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] mt-0.5 font-medium">
-                Unduh dan kumpulkan tugas serta berkas PKKMB melalui Google Drive resmi.
+                Isi formulir dan unggah berkas tugas PKKMB melalui Google Form resmi.
               </p>
             </div>
 
             <a
-              href="https://drive.google.com/drive/folders/1fQp5sS3EZm8XD5R-f2yjHXnPj9K-f6FI?usp=sharing"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfUqRIP_uAYehse677ygmldbhE38o0DLupajKuIWxr2oIISZQ/viewform?usp=publish-editor"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full bg-[#5B2BBE] dark:bg-[#5B2BBE] hover:bg-[#43208F] dark:hover:bg-[#7D3BD6] text-white font-bold text-xs py-2.5 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer active:scale-98"
             >
               <span className="material-symbols-outlined text-[16px]">open_in_new</span>
-              <span>Buka Google Drive</span>
+              <span>Buka Form Pengumpulan</span>
             </a>
             </div>
           </div>
