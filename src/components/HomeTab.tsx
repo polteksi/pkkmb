@@ -13,6 +13,7 @@ interface HomeTabProps {
 }
 
 const PREVIEW_COUNT = 4;
+const PRA_ACARA_PDF = '/documents/penugasan-orvoks-pra-acara-2026.pdf';
 
 export const HomeTab: React.FC<HomeTabProps> = ({
   currentDay,
@@ -77,8 +78,8 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                       key={idx}
                       src={src}
                       alt={`Orientasi Vokasional 2026 - Slide ${idx + 1}`}
-                      className={`absolute inset-0 w-full h-full object-contain object-center transition-all duration-700 ease-in-out ${
-                        idx === currentSlide ? `opacity-100 ${idx === 2 ? 'scale-125' : 'scale-100'} group-hover:scale-105` : 'opacity-0 scale-105 pointer-events-none'
+                      className={`absolute inset-0 w-full h-full object-contain object-center transition-opacity duration-700 ease-in-out ${
+                        idx === currentSlide ? 'opacity-100' : 'opacity-0 pointer-events-none'
                       }`}
                       onError={() => setBannerLoadError(true)}
                     />
@@ -251,11 +252,8 @@ export const HomeTab: React.FC<HomeTabProps> = ({
               {PERLENGKAPAN_ITEMS.slice(0, PREVIEW_COUNT).map((item) => (
                 <div
                   key={item.id}
-                  className="p-2.5 rounded-xl border border-[#5B2BBE]/8 dark:border-[#251F4A] bg-[#FAF9F6]/80 dark:bg-[#251F4A]/50 flex items-start gap-2.5"
+                  className="p-2.5 rounded-xl border border-[#5B2BBE]/8 dark:border-[#251F4A] bg-[#FAF9F6]/80 dark:bg-[#251F4A]/50"
                 >
-                  <div className="w-5 h-5 rounded-md bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/30 text-[#5B2BBE] dark:text-[#C39BFF] flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="material-symbols-outlined text-[13px]">check_circle</span>
-                  </div>
                   <div className="flex-1 flex items-center gap-1.5 flex-wrap">
                     <p className="text-xs font-semibold text-[#22202A] dark:text-[#F3F2F8] leading-snug">
                       {item.text}
@@ -312,8 +310,55 @@ export const HomeTab: React.FC<HomeTabProps> = ({
             </button>
           </div>
 
-          {/* Card 4: Pengumpulan Tugas */}
-          <div className="campus-card bg-white dark:bg-[#1B1638] p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 flex flex-col justify-between gap-3 shadow-xs">
+          {/* Penugasan Pra-Acara + Pengumpulan: side-by-side on desktop, stacked on mobile */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="campus-card campus-card-hover bg-white dark:bg-[#1B1638] p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 flex flex-col justify-between gap-3 shadow-xs">
+              <div className="flex items-center justify-between border-b border-slate-100 dark:border-[#251F4A] pb-2.5">
+                <div className="flex items-center gap-1.5 text-[#5B2BBE] dark:text-[#C39BFF]">
+                  <span className="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+                  <span className="font-bold text-xs uppercase tracking-wider font-display">
+                    Penugasan Pra-Acara
+                  </span>
+                </div>
+                <span className="text-[10px] bg-[#EFE9FF] dark:bg-[#5B2BBE]/35 text-[#5B2BBE] dark:text-[#C39BFF] font-bold px-2 py-0.5 rounded-full border border-[#5B2BBE]/20 font-mono">
+                  .PDF
+                </span>
+              </div>
+
+              <div>
+                <h3 className="font-display font-bold text-sm text-[#22202A] dark:text-white leading-snug">
+                  Penugasan ORVOKS POLTEKSI 2026
+                </h3>
+                <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] mt-0.5 font-medium">
+                  Baca petunjuk penugasan pra-acara atau simpan PDF ke perangkatmu.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2">
+                <a
+                  href={PRA_ACARA_PDF}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-[#5B2BBE] hover:bg-[#43208F] dark:hover:bg-[#7D3BD6] text-white font-bold text-xs py-2.5 px-2 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer active:scale-98"
+                  aria-label="Lihat PDF penugasan pra-acara"
+                >
+                  <span className="material-symbols-outlined text-[16px]">visibility</span>
+                  <span>Lihat PDF</span>
+                </a>
+                <a
+                  href={PRA_ACARA_PDF}
+                  download="PENUGASAN ORVOKS POLTEKSI 2026 (pra-acara).pdf"
+                  className="w-full bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/25 hover:bg-[#5B2BBE]/15 dark:hover:bg-[#5B2BBE]/40 text-[#5B2BBE] dark:text-[#C39BFF] font-bold text-xs py-2.5 px-2 rounded-xl border border-[#5B2BBE]/20 dark:border-[#5B2BBE]/40 transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-98"
+                  aria-label="Unduh PDF penugasan pra-acara"
+                >
+                  <span className="material-symbols-outlined text-[16px]">download</span>
+                  <span>Unduh</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Card 4: Pengumpulan Tugas */}
+            <div className="campus-card bg-white dark:bg-[#1B1638] p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 flex flex-col justify-between gap-3 shadow-xs">
             <div className="flex items-center justify-between border-b border-slate-100 dark:border-[#251F4A] pb-2.5">
               <div className="flex items-center gap-1.5 text-[#5B2BBE] dark:text-[#C39BFF]">
                 <span className="material-symbols-outlined text-[18px]">folder</span>
@@ -321,9 +366,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                   Pengumpulan Tugas
                 </span>
               </div>
-              <span className="text-[10px] bg-[#2F9672]/10 text-[#2F9672] dark:text-[#4ADE80] font-bold px-2 py-0.5 rounded-full border border-[#2F9672]/25 shrink-0">
-                Google Drive
-              </span>
+
             </div>
 
             <div>
@@ -344,6 +387,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({
               <span className="material-symbols-outlined text-[16px]">open_in_new</span>
               <span>Buka Google Drive</span>
             </a>
+            </div>
           </div>
 
           {/* Card 5: Guidebook PKKMB (PDF Download) */}
