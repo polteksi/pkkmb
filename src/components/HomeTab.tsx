@@ -310,26 +310,28 @@ export const HomeTab: React.FC<HomeTabProps> = ({
             </button>
           </div>
 
+        </div>
+
           {/* Penugasan Pra-Acara + Pengumpulan: side-by-side on desktop, stacked on mobile */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <div className="campus-card campus-card-hover bg-white dark:bg-[#1B1638] p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 flex flex-col justify-between gap-3 shadow-xs">
-              <div className="flex items-center justify-between border-b border-slate-100 dark:border-[#251F4A] pb-2.5">
-                <div className="flex items-center gap-1.5 text-[#5B2BBE] dark:text-[#C39BFF]">
-                  <span className="material-symbols-outlined text-[18px]">picture_as_pdf</span>
-                  <span className="font-bold text-xs uppercase tracking-wider font-display">
+          <div className="lg:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
+            <div className="campus-card campus-card-hover bg-white dark:bg-[#1B1638] p-4 sm:p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 grid grid-rows-[auto_1fr_auto] gap-4 shadow-xs h-full min-w-0">
+              <div className="flex items-start justify-between gap-2 border-b border-slate-100 dark:border-[#251F4A] pb-3 min-h-12">
+                <div className="flex items-start gap-2 text-[#5B2BBE] dark:text-[#C39BFF] min-w-0">
+                  <span className="material-symbols-outlined text-[20px] shrink-0">picture_as_pdf</span>
+                  <span className="font-bold text-[11px] sm:text-xs uppercase leading-tight tracking-wide font-display">
                     Penugasan Pra-Acara
                   </span>
                 </div>
-                <span className="text-[10px] bg-[#EFE9FF] dark:bg-[#5B2BBE]/35 text-[#5B2BBE] dark:text-[#C39BFF] font-bold px-2 py-0.5 rounded-full border border-[#5B2BBE]/20 font-mono">
-                  .PDF
+                <span className="text-[9px] bg-[#EFE9FF] dark:bg-[#5B2BBE]/35 text-[#5B2BBE] dark:text-[#C39BFF] font-bold px-2.5 py-1 rounded-full border border-[#5B2BBE]/20 whitespace-nowrap shrink-0">
+                  PDF
                 </span>
               </div>
 
-              <div>
+              <div className="md:min-h-24">
                 <h3 className="font-display font-bold text-sm text-[#22202A] dark:text-white leading-snug">
                   Penugasan ORVOKS POLTEKSI 2026
                 </h3>
-                <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] mt-0.5 font-medium">
+                <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] mt-1 font-medium leading-relaxed">
                   Baca petunjuk penugasan pra-acara atau simpan PDF ke perangkatmu.
                 </p>
               </div>
@@ -339,16 +341,16 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                   href={PRA_ACARA_PDF}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-[#5B2BBE] hover:bg-[#43208F] dark:hover:bg-[#7D3BD6] text-white font-bold text-xs py-2.5 px-2 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer active:scale-98"
+                  className="w-full min-h-11 bg-[#5B2BBE] hover:bg-[#43208F] dark:hover:bg-[#7D3BD6] text-white font-bold text-xs py-2.5 px-2 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer active:scale-98 whitespace-nowrap"
                   aria-label="Lihat PDF penugasan pra-acara"
                 >
                   <span className="material-symbols-outlined text-[16px]">visibility</span>
-                  <span>Lihat PDF</span>
+                  <span>Lihat</span>
                 </a>
                 <a
                   href={PRA_ACARA_PDF}
                   download="PENUGASAN ORVOKS POLTEKSI 2026 (pra-acara).pdf"
-                  className="w-full bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/25 hover:bg-[#5B2BBE]/15 dark:hover:bg-[#5B2BBE]/40 text-[#5B2BBE] dark:text-[#C39BFF] font-bold text-xs py-2.5 px-2 rounded-xl border border-[#5B2BBE]/20 dark:border-[#5B2BBE]/40 transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-98"
+                  className="w-full min-h-11 bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/25 hover:bg-[#5B2BBE]/15 dark:hover:bg-[#5B2BBE]/40 text-[#5B2BBE] dark:text-[#C39BFF] font-bold text-xs py-2.5 px-2 rounded-xl border border-[#5B2BBE]/20 dark:border-[#5B2BBE]/40 transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-98 whitespace-nowrap"
                   aria-label="Unduh PDF penugasan pra-acara"
                 >
                   <span className="material-symbols-outlined text-[16px]">download</span>
@@ -358,39 +360,41 @@ export const HomeTab: React.FC<HomeTabProps> = ({
             </div>
 
             {/* Card 4: Pengumpulan Tugas */}
-            <div className="campus-card bg-white dark:bg-[#1B1638] p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 flex flex-col justify-between gap-3 shadow-xs">
-            <div className="flex items-center justify-between border-b border-slate-100 dark:border-[#251F4A] pb-2.5">
-              <div className="flex items-center gap-1.5 text-[#5B2BBE] dark:text-[#C39BFF]">
-                <span className="material-symbols-outlined text-[18px]">assignment</span>
-                <span className="font-bold text-xs uppercase tracking-wider font-display">
-                  Pengumpulan Tugas
+            <div className="campus-card campus-card-hover bg-white dark:bg-[#1B1638] p-4 sm:p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 grid grid-rows-[auto_1fr_auto] gap-4 shadow-xs h-full min-w-0">
+              <div className="flex items-start justify-between gap-2 border-b border-slate-100 dark:border-[#251F4A] pb-3 min-h-12">
+                <div className="flex items-start gap-2 text-[#5B2BBE] dark:text-[#C39BFF] min-w-0">
+                  <span className="material-symbols-outlined text-[20px] shrink-0">assignment</span>
+                  <span className="font-bold text-[11px] sm:text-xs uppercase leading-tight tracking-wide font-display">
+                    Pengumpulan Tugas
+                  </span>
+                </div>
+                <span className="text-[9px] bg-[#2F9672]/10 text-[#2F9672] dark:text-[#4ADE80] font-bold px-2.5 py-1 rounded-full border border-[#2F9672]/25 whitespace-nowrap shrink-0">
+                  Google Form
                 </span>
               </div>
-              <span className="text-[10px] bg-[#2F9672]/10 text-[#2F9672] dark:text-[#4ADE80] font-bold px-2 py-0.5 rounded-full border border-[#2F9672]/25 shrink-0">
-                Google Form
-              </span>
-            </div>
 
-            <div>
-              <h3 className="font-display font-bold text-sm text-[#22202A] dark:text-white leading-snug">
-                Tempat Pengumpulan Tugas PKKMB
-              </h3>
-              <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] mt-0.5 font-medium">
-                Isi formulir dan unggah berkas tugas PKKMB melalui Google Form resmi.
-              </p>
-            </div>
+              <div className="md:min-h-24">
+                <h3 className="font-display font-bold text-sm text-[#22202A] dark:text-white leading-snug">
+                  Tempat Pengumpulan Tugas PKKMB
+                </h3>
+                <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] mt-1 font-medium leading-relaxed">
+                  Isi formulir dan unggah berkas tugas PKKMB melalui Google Form resmi.
+                </p>
+              </div>
 
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSfUqRIP_uAYehse677ygmldbhE38o0DLupajKuIWxr2oIISZQ/viewform?usp=publish-editor"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full bg-[#5B2BBE] dark:bg-[#5B2BBE] hover:bg-[#43208F] dark:hover:bg-[#7D3BD6] text-white font-bold text-xs py-2.5 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer active:scale-98"
-            >
-              <span className="material-symbols-outlined text-[16px]">open_in_new</span>
-              <span>Buka Form Pengumpulan</span>
-            </a>
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfUqRIP_uAYehse677ygmldbhE38o0DLupajKuIWxr2oIISZQ/viewform?usp=publish-editor"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full min-h-11 bg-[#5B2BBE] dark:bg-[#5B2BBE] hover:bg-[#43208F] dark:hover:bg-[#7D3BD6] text-white font-bold text-xs py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer active:scale-98 whitespace-nowrap"
+              >
+                <span className="material-symbols-outlined text-[16px]">open_in_new</span>
+                <span>Buka Form</span>
+              </a>
             </div>
           </div>
+
+        <div className="lg:col-start-8 lg:col-span-5 flex flex-col gap-4">
 
           {/* Card 5: Guidebook PKKMB (PDF Download) */}
           <div className="campus-card bg-white dark:bg-[#1B1638] p-5 border border-[#5B2BBE]/12 dark:border-[#5B2BBE]/25 flex flex-col justify-between gap-3 shadow-xs">
