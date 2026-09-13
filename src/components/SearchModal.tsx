@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { ALL_STUDENTS, GROUPS_DATA } from '../data/orientationData';
+import React, { useEffect, useState, useMemo } from 'react';
+import { ALL_STUDENTS, GROUPS_DATA, getGenderLabel, matchesStudentSearch } from '../data/groupData';
 import { StudentMember } from '../types';
 import { BrandDecoration } from './BrandDecoration';
 
@@ -18,16 +18,13 @@ export const SearchModal: React.FC<SearchModalProps> = ({
 }) => {
   const [query, setQuery] = useState(initialQuery);
 
+  useEffect(() => {
+    if (isOpen) setQuery(initialQuery);
+  }, [initialQuery, isOpen]);
+
   const searchResults = useMemo(() => {
     if (!query.trim()) return [];
-    const q = query.toLowerCase().trim();
-    return ALL_STUDENTS.filter(
-      (s) =>
-        s.name.toLowerCase().includes(q) ||
-        s.nim.includes(q) ||
-        s.groupName.toLowerCase().includes(q) ||
-        s.major.toLowerCase().includes(q)
-    );
+    return ALL_STUDENTS.filter((student) => matchesStudentSearch(student, query));
   }, [query]);
 
   if (!isOpen) return null;
@@ -46,7 +43,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           <div className="flex items-center gap-2 relative z-10">
             <span className="material-symbols-outlined text-[24px]">person_search</span>
             <h3 className="font-display font-bold text-lg text-white">
-              Cari Data Mahasiswa / Kelompok
+              Cari Mahasiswa Baru
             </h3>
           </div>
           <button
@@ -69,7 +66,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
               autoFocus
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Ketik nama / NIM / prodi / kelompok..."
+              placeholder="Ketik nama, prodi, atau kelompok..."
               className="w-full bg-white dark:bg-[#1B1638] border border-slate-200 dark:border-[#322B60] py-2.5 pl-10 pr-9 text-xs sm:text-sm rounded-xl shadow-xs focus:outline-none focus:ring-2 focus:ring-[#5B2BBE]/20 dark:focus:ring-[#C39BFF]/30 focus:border-[#5B2BBE] dark:focus:border-[#C39BFF] text-[#22202A] dark:text-white placeholder:text-[#6B6874] dark:placeholder:text-[#A39EB8] font-medium transition-all"
             />
             {query && (
@@ -103,15 +100,20 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                     {student.name.slice(0, 2).toUpperCase()}
                   </div>
                   <div className="min-w-0">
-                    <h4 className="font-bold text-xs sm:text-sm text-[#22202A] dark:text-white truncate">
+                    <h4 className="font-bold text-xs sm:text-sm text-[#22202A] dark:text-white leading-snug break-words">
                       {student.name}
                     </h4>
-                    <p className="text-[11px] text-[#6B6874] dark:text-[#A39EB8] truncate mt-0.5 font-medium">
-                      NIM: {student.nim} &bull; {student.major}
+                    <p className="text-[11px] text-[#6B6874] dark:text-[#A39EB8] leading-snug break-words mt-0.5 font-medium">
+                      {student.major}
                     </p>
-                    <span className="inline-block mt-1 text-[10px] bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/30 text-[#5B2BBE] dark:text-[#C39BFF] font-bold px-2 py-0.2 rounded-full border border-[#5B2BBE]/20 dark:border-[#5B2BBE]/35">
-                      {student.groupName} ({student.role})
-                    </span>
+                    <div className="flex items-center gap-1.5 flex-wrap mt-1">
+                      <span className="text-[10px] bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/30 text-[#5B2BBE] dark:text-[#C39BFF] font-bold px-2 py-0.5 rounded-full border border-[#5B2BBE]/20 dark:border-[#5B2BBE]/35">
+                        {student.groupName} · {student.groupAlias}
+                      </span>
+                      <span className="text-[10px] bg-[#2F9672]/10 text-[#2F9672] dark:text-[#4ADE80] font-bold px-2 py-0.5 rounded-full border border-[#2F9672]/20">
+                        {getGenderLabel(student.gender)}
+                      </span>
+                    </div>
                   </div>
                 </div>
 
@@ -132,7 +134,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
               {GROUPS_DATA.length > 0 ? (
                 <>
                   <span className="text-xs font-bold text-[#6B6874] dark:text-[#A39EB8] uppercase tracking-wider font-display">
-                    Grup Orientasi Terdaftar:
+                    Kelompok Orientasi Terdaftar:
                   </span>
                   <div className="grid grid-cols-2 gap-2">
                     {GROUPS_DATA.map((grp) => (
@@ -143,7 +145,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                       >
                         <span className="text-[#22202A] dark:text-white font-display">{grp.name}</span>
                         <span className="text-[10px] text-[#6B6874] dark:text-[#A39EB8] font-normal mt-0.5">
-                          {grp.members.length} Mahasiswa
+                          {grp.alias} · {grp.members.length} Mahasiswa
                         </span>
                       </button>
                     ))}

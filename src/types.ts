@@ -15,14 +15,13 @@ export interface DaySchedule {
 export interface StudentMember {
   id: string;
   name: string;
-  nim: string;
   major: string;
+  gender: 'L' | 'P' | '';
   groupName: string;
+  groupAlias: string;
   groupId: string;
-  role: 'Ketua Kelompok' | 'Wakil' | 'Anggota';
   avatarColor: string;
   mentorName: string;
-  mentorContact: string;
 }
 
 export interface OrientationGroup {
@@ -30,10 +29,7 @@ export interface OrientationGroup {
   name: string;
   alias: string;
   mentor: string;
-  mentorPhone: string;
   memberCount: number;
-  room: string;
-  motto: string;
   members: StudentMember[];
 }
 
@@ -66,6 +62,7 @@ export interface DresscodeHari {
   label: string;        // e.g. "Pra-PKKMB", "PPKKMB Day 1"
   tanggal: string;      // e.g. "Jumat, 18 September 2026"
   image: string;        // e.g. "/day1.png"
+  images?: string[];    // optional gallery when a day has multiple examples
   putra: string[];
   putri: string[];
   wajibMembawa?: string[];

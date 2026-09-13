@@ -172,8 +172,8 @@ export const DRESSCODE_DATA: DresscodeHari[] = [
   },
   {
     label: 'Pra-PKKMB',
-    tanggal: 'Sabato, 19 September 2026',
-    image: '/day2.png',
+    tanggal: 'Sabtu, 19 September 2026',
+    image: '/day1.png',
     putra: [
       'Kemeja batik lengan panjang',
       'Rambut harus rapi sesuai ketentuan tata tertib',
@@ -201,7 +201,7 @@ export const DRESSCODE_DATA: DresscodeHari[] = [
   {
     label: 'PPKKMB Day 1',
     tanggal: 'Senin, 21 September 2026',
-    image: '/day3.png',
+    image: '/day2.png',
     putra: [
       'Helm dan Name Tag, dengan ketentuan warna biru\n(peserta laki-laki) dan warna pita sesuai kelompok.',
       'Kemeja putih lengan panjang',
@@ -231,7 +231,7 @@ export const DRESSCODE_DATA: DresscodeHari[] = [
   {
     label: 'PPKKMB Day 2',
     tanggal: 'Selasa, 22 September 2026',
-    image: '/day4.png',
+    image: '/day3.png',
     putra: [
       'Helm dan Name Tag, dengan ketentuan warna biru\n(peserta laki-laki) dan warna pita sesuai kelompok.',
       'Rambut harus rapi sesuai ketentuan tata tertib.',
@@ -260,7 +260,7 @@ export const DRESSCODE_DATA: DresscodeHari[] = [
   {
     label: 'PPKKMB Day 3',
     tanggal: 'Rabu, 23 September 2026',
-    image: '/day5.png',
+    image: '/day2.png',
     putra: [
       'Helm dan Name Tag, dengan ketentuan warna biru (peserta\nlaki-laki) dan warna pita sesuai kelompok.',
       'Rambut harus rapi sesuai ketentuan tata tertib.',
@@ -294,7 +294,7 @@ export const DRESSCODE_DATA: DresscodeHari[] = [
   {
     label: 'PPKKMB Day 4',
     tanggal: 'Kamis, 24 September 2026',
-    image: '/day6.png',
+    image: '/day1.png',
     putra: [
       'Helm dan Name Tag, dengan ketentuan warna biru (peserta\nlaki-laki) dan warna pita sesuai kelompok.',
       'Kemeja batik lengan panjang',
@@ -322,7 +322,8 @@ export const DRESSCODE_DATA: DresscodeHari[] = [
   {
     label: 'PPKKMB Day 5',
     tanggal: 'Jumat, 25 September 2026',
-    image: '/day7.png',
+    image: '/day6.png',
+    images: ['/day6.png', '/day7.png'],
     putra: [
       'Helm dan Name Tag, dengan ketentuan warna biru (peserta\nlaki-laki) dan warna pita sesuai kelompok',
       'Rambut harus rapi sesuai ketentuan tata tertib.',

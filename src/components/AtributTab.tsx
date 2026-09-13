@@ -1,21 +1,67 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { PERLENGKAPAN_ITEMS, DRESSCODE_DATA } from '../data/orientationData';
 import { BrandDecoration } from './BrandDecoration';
+
+interface DresscodeImageCardProps {
+  src: string;
+  label: string;
+  index: number;
+  total: number;
+}
+
+const DresscodeImageCard: React.FC<DresscodeImageCardProps> = ({ src, label, index, total }) => {
+  const [hasError, setHasError] = useState(false);
+
+  return (
+    <figure className="min-w-0 overflow-hidden rounded-xl border border-[#5B2BBE]/10 bg-white shadow-xs dark:border-[#5B2BBE]/25 dark:bg-[#15112E]">
+      {hasError ? (
+        <div className="flex min-h-48 flex-col items-center justify-center px-4 py-8 text-center text-[#6B6874] dark:text-[#A39EB8]">
+          <span className="material-symbols-outlined mb-2 block text-[48px]">image_broken</span>
+          <p className="text-sm">Contoh gambar dresscode belum tersedia.</p>
+        </div>
+      ) : (
+        <img
+          src={src}
+          alt={`Contoh dresscode ${label} ${index + 1}`}
+          className="block h-auto max-h-[70vh] w-full object-contain"
+          onError={() => setHasError(true)}
+        />
+      )}
+      {total > 1 && (
+        <figcaption className="border-t border-[#5B2BBE]/10 px-3 py-2 text-center text-xs font-semibold text-[#6B6874] dark:border-[#5B2BBE]/25 dark:text-[#A39EB8]">
+          Contoh {index + 1} dari {total}
+        </figcaption>
+      )}
+    </figure>
+  );
+};
 
 export const AtributTab: React.FC = () => {
   const [activeDresscodeIdx, setActiveDresscodeIdx] = useState(0);
   const [showImageModal, setShowImageModal] = useState(false);
 
   const activeDresscode = DRESSCODE_DATA[activeDresscodeIdx];
+  const activeDresscodeImages = activeDresscode.images?.length
+    ? activeDresscode.images
+    : activeDresscode.image
+      ? [activeDresscode.image]
+      : [];
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (showImageModal) setShowImageModal(false);
+      if (e.key === 'Escape') setShowImageModal(false);
     };
+
     if (showImageModal) {
+      const previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
       document.addEventListener('keydown', handleEscape);
+      return () => {
+        document.body.style.overflow = previousOverflow;
+        document.removeEventListener('keydown', handleEscape);
+      };
     }
-    return () => document.removeEventListener('keydown', handleEscape);
   }, [showImageModal]);
 
   const renderItemList = (items: string[], icon: string = 'check_small', iconColor: string = 'text-[#5B2BBE] dark:text-[#C39BFF]') => (
@@ -181,7 +227,7 @@ export const AtributTab: React.FC = () => {
               className="inline-flex items-center justify-center gap-2 bg-[#5B2BBE] dark:bg-[#5B2BBE] hover:bg-[#43208F] dark:hover:bg-[#7D3BD6] text-white font-bold text-sm py-3 px-6 rounded-xl transition-all shadow-xs cursor-pointer active:scale-98"
             >
               <span className="material-symbols-outlined text-[20px]">visibility</span>
-              <span>👁 Lihat Contoh Dresscode</span>
+              <span>Lihat Contoh Dresscode</span>
             </button>
           </div>
 
@@ -274,23 +320,23 @@ export const AtributTab: React.FC = () => {
       </section>
 
       {/* Image Modal / Lightbox */}
-      {showImageModal && (
+      {showImageModal && createPortal(
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm transition-opacity duration-200"
           onClick={(e) => {
             if (e.target === e.currentTarget) setShowImageModal(false);
           }}
         >
-           <div
-            className="relative bg-white dark:bg-[#1B1638] rounded-2xl overflow-hidden shadow-2xl border border-[#5B2BBE]/20 max-w-5xl w-full max-h-[90vh] flex flex-col"
+          <div
+            className="relative flex max-h-[90vh] w-full max-w-6xl flex-col overflow-hidden rounded-2xl border border-[#5B2BBE]/20 bg-white shadow-2xl dark:bg-[#1B1638]"
           >
             {/* Modal Header */}
             <div className="bg-[#5B2BBE]/8 dark:bg-[#5B2BBE]/15 border-b border-[#5B2BBE]/15 dark:border-[#5B2BBE]/25 p-4 flex items-center justify-between gap-3">
-              <div>
+              <div className="min-w-0">
                 <h3 className="font-display font-black text-lg text-[#22202A] dark:text-white">
                   Contoh Dresscode
                 </h3>
-                <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] font-medium">
+                <p className="text-xs font-medium text-[#6B6874] dark:text-[#A39EB8]">
                   {activeDresscode.label} - {activeDresscode.tanggal}
                 </p>
               </div>
@@ -303,23 +349,20 @@ export const AtributTab: React.FC = () => {
               </button>
             </div>
 
-            {/* Modal Body - Image */}
-            <div className="p-4 overflow-y-auto flex justify-center bg-[#FAF9F6] dark:bg-[#1B1638]">
-              {activeDresscode.image ? (
-                <img
-                  src={activeDresscode.image}
-                  alt={`Contoh dresscode ${activeDresscode.label}`}
-                  className="max-w-full h-auto object-contain rounded-xl border border-[#5B2BBE]/10 dark:border-[#5B2BBE]/25 shadow-xs"
-                  style={{ maxHeight: 'calc(90vh - 120px)' }}
-                  onError={(e) => {
-                    const img = e.target as HTMLImageElement;
-                    img.style.display = 'none';
-                    const parent = img.parentElement;
-                    if (parent) {
-                      parent.innerHTML = '<div class="text-center py-8 text-[#6B6874] dark:text-[#A39EB8]"><span class="material-symbols-outlined text-[48px] mb-2 block">image_broken</span><p class="text-sm">Contoh gambar dresscode belum tersedia.</p></div>';
-                    }
-                  }}
-                />
+            {/* Modal Body - Responsive image gallery */}
+            <div className="overflow-y-auto bg-[#FAF9F6] p-3 sm:p-4 dark:bg-[#1B1638]">
+              {activeDresscodeImages.length > 0 ? (
+                <div className={`mx-auto grid w-full gap-3 sm:gap-4 ${activeDresscodeImages.length > 1 ? 'grid-cols-1 md:grid-cols-2' : 'max-w-3xl grid-cols-1'}`}>
+                  {activeDresscodeImages.map((src, index) => (
+                    <DresscodeImageCard
+                      key={`${activeDresscode.label}-${src}`}
+                      src={src}
+                      label={activeDresscode.label}
+                      index={index}
+                      total={activeDresscodeImages.length}
+                    />
+                  ))}
+                </div>
               ) : (
                 <div className="text-center py-8 text-[#6B6874] dark:text-[#A39EB8]">
                   <span className="material-symbols-outlined text-[48px] mb-2 block">image_broken</span>
@@ -328,7 +371,8 @@ export const AtributTab: React.FC = () => {
               )}
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
     </div>

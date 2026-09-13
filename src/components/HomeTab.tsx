@@ -184,7 +184,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                   Cari Kelompokmu
                 </h3>
                 <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] font-medium mt-0.5">
-                  Klik untuk mencari nama lengkap, NIM, prodi, atau kelompok mahasiswa
+                  Cari berdasarkan nama, program studi, atau kelompok mahasiswa baru
                 </p>
               </div>
             </div>

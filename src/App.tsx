@@ -49,6 +49,7 @@ export default function App() {
   const [isPerlengkapanOpen, setIsPerlengkapanOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [searchInitialQuery, setSearchInitialQuery] = useState<string>('');
+  const [selectedStudent, setSelectedStudent] = useState<StudentMember | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const currentDay = DAYS_DATA.find((d) => d.dayNumber === currentDayNumber) || DAYS_DATA[0];
@@ -67,8 +68,10 @@ export default function App() {
     setIsSearchOpen(true);
   };
 
-  const handleSelectStudentFromSearch = (_student: StudentMember) => {
+  const handleSelectStudentFromSearch = (student: StudentMember) => {
+    setSelectedStudent(student);
     setActiveTab('kelompok');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleNavigate = (tab: TabType) => {
@@ -122,7 +125,7 @@ export default function App() {
         )}
 
         {activeTab === 'kelompok' && (
-          <GroupTab />
+          <GroupTab initialStudent={selectedStudent} />
         )}
 
         {activeTab === 'atribut' && (

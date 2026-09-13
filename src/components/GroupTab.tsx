@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { GROUPS_DATA } from '../data/orientationData';
+import { ALL_STUDENTS, GROUPS_DATA, getGenderLabel, matchesStudentSearch } from '../data/groupData';
 import { StudentMember, OrientationGroup } from '../types';
 import { BrandDecoration } from './BrandDecoration';
 
@@ -8,6 +8,7 @@ interface GroupTabProps {
   isLoading?: boolean;
   onRefresh?: () => void | Promise<void>;
   onSelectStudent?: (student: StudentMember) => void;
+  initialStudent?: StudentMember | null;
 }
 
 /**
@@ -208,6 +209,7 @@ export const GroupTab: React.FC<GroupTabProps> = ({
   isLoading: propIsLoading = false,
   onRefresh: propOnRefresh,
   onSelectStudent,
+  initialStudent,
 }) => {
   // Use prop groups if provided (including explicit null/[]), otherwise default to GROUPS_DATA
   const groups = propGroups !== undefined ? propGroups : GROUPS_DATA;
@@ -224,6 +226,12 @@ export const GroupTab: React.FC<GroupTabProps> = ({
       });
     }
   }, [groups]);
+
+  useEffect(() => {
+    if (!initialStudent) return;
+    setSelectedGroupId(initialStudent.groupId);
+    setSearchMember(initialStudent.name);
+  }, [initialStudent]);
 
   const handleRefresh = async () => {
     setIsCheckingRefresh(true);
@@ -257,10 +265,9 @@ export const GroupTab: React.FC<GroupTabProps> = ({
   // 3. Populated State -> Render Active Group View
   const currentGroup = groups.find((g) => g.id === selectedGroupId) || groups[0];
 
-  const filteredMembers = currentGroup.members.filter((m) =>
-    m.name.toLowerCase().includes(searchMember.toLowerCase()) ||
-    m.nim.includes(searchMember) ||
-    m.major.toLowerCase().includes(searchMember.toLowerCase())
+  const isSearching = searchMember.trim().length > 0;
+  const filteredMembers = (isSearching ? ALL_STUDENTS : currentGroup.members).filter((member) =>
+    matchesStudentSearch(member, searchMember)
   );
 
   return (
@@ -278,7 +285,7 @@ export const GroupTab: React.FC<GroupTabProps> = ({
                 Kelompok Orientasi
               </h2>
               <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] font-medium hidden sm:block">
-                Pilih kelompok untuk melihat mentor, ruang harian & daftar anggota
+                Cari mahasiswa baru atau pilih kelompok untuk melihat mentor dan anggota
               </p>
             </div>
           </div>
@@ -333,22 +340,16 @@ export const GroupTab: React.FC<GroupTabProps> = ({
             </span>
           </div>
 
-          {/* Group Title & Motto */}
-          <div>
-            <h3 className="font-display font-black text-2xl sm:text-3xl text-white tracking-tight">
-              {currentGroup.name}
-            </h3>
-            <div className="mt-2.5 bg-black/25 backdrop-blur-xs p-3.5 rounded-xl border border-white/15">
-              <p className="text-xs sm:text-sm text-[#EFE9FF] italic font-medium leading-relaxed">
-                "{currentGroup.motto}"
-              </p>
-            </div>
-          </div>
+          <h3 className="font-display font-black text-2xl sm:text-3xl text-white tracking-tight">
+            {currentGroup.name}
+          </h3>
 
-          {/* Mentor & Room Detail Cards */}
+          {/* Data resmi yang tersedia di workbook */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-            {/* Mentor Info */}
-            <div className="bg-white/10 backdrop-blur-xs p-4 rounded-xl border border-white/20 flex flex-col justify-between gap-3">
+            <div className="bg-white/10 backdrop-blur-xs p-4 rounded-xl border border-white/20 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0">
+                <span className="material-symbols-outlined text-[22px]">school</span>
+              </div>
               <div>
                 <span className="text-[10px] text-[#EFE9FF] font-bold uppercase tracking-wider block font-display">
                   MENTOR PENDAMPING
@@ -357,30 +358,19 @@ export const GroupTab: React.FC<GroupTabProps> = ({
                   {currentGroup.mentor}
                 </span>
               </div>
-              <a
-                href={`https://wa.me/62${currentGroup.mentorPhone.replace(/[^0-9]/g, '')}`}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-bold text-white bg-[#2F9672] hover:bg-[#257A5D] px-4 py-2 rounded-xl w-max shadow-sm transition-all active:scale-98"
-              >
-                <span className="material-symbols-outlined text-[18px]">call</span>
-                <span>{currentGroup.mentorPhone} (WhatsApp)</span>
-              </a>
             </div>
 
-            {/* Room Info */}
-            <div className="bg-white/10 backdrop-blur-xs p-4 rounded-xl border border-white/20 flex flex-col gap-3">
+            <div className="bg-white/10 backdrop-blur-xs p-4 rounded-xl border border-white/20 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0">
+                <span className="material-symbols-outlined text-[22px]">groups</span>
+              </div>
               <div>
                 <span className="text-[10px] text-[#EFE9FF] font-bold uppercase tracking-wider block font-display">
-                  RUANG DISKUSI HARIAN
+                  JUMLAH ANGGOTA
                 </span>
                 <span className="font-bold text-sm sm:text-base text-white block mt-1">
-                  {currentGroup.room}
+                  {currentGroup.memberCount} Mahasiswa Baru
                 </span>
-              </div>
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-white/70 bg-white/10 px-3 py-1.5 rounded-xl w-max border border-white/15">
-                <span className="material-symbols-outlined text-[16px]">meeting_room</span>
-                <span>Ruang Kelompok</span>
               </div>
             </div>
           </div>
@@ -392,17 +382,21 @@ export const GroupTab: React.FC<GroupTabProps> = ({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-[#251F4A] pb-4">
           <div>
             <h4 className="font-display font-bold text-lg text-[#22202A] dark:text-white">
-              Daftar Anggota ({currentGroup.members.length} Mahasiswa)
+              {isSearching
+                ? `Hasil Pencarian (${filteredMembers.length} Mahasiswa)`
+                : `Daftar Anggota (${currentGroup.members.length} Mahasiswa)`}
             </h4>
             <p className="text-xs text-[#6B6874] dark:text-[#A39EB8]">
-              Mahasiswa baru terdaftar di {currentGroup.name}
+              {isSearching
+                ? 'Pencarian mencakup seluruh kelompok berdasarkan data resmi'
+                : `Mahasiswa baru terdaftar di ${currentGroup.name}`}
             </p>
           </div>
 
           <div className="relative w-full sm:w-64">
             <input
               type="text"
-              placeholder="Cari nama / NIM / prodi..."
+              placeholder="Cari nama, prodi, atau kelompok..."
               value={searchMember}
               onChange={(e) => setSearchMember(e.target.value)}
               className="w-full bg-[#FAF9F6] dark:bg-[#251F4A] border border-slate-200 dark:border-[#322B60] px-3 py-2 text-xs rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5B2BBE]/20 dark:focus:ring-[#C39BFF]/30 focus:border-[#5B2BBE] dark:focus:border-[#C39BFF] focus:bg-white dark:focus:bg-[#251F4A] text-[#22202A] dark:text-white font-medium transition-all"
@@ -423,7 +417,11 @@ export const GroupTab: React.FC<GroupTabProps> = ({
           {filteredMembers.map((member, index) => (
             <div
               key={member.id}
-              onClick={() => onSelectStudent?.(member)}
+              onClick={() => {
+                setSelectedGroupId(member.groupId);
+                setSearchMember('');
+                onSelectStudent?.(member);
+              }}
               className="p-3.5 rounded-xl border border-[#5B2BBE]/10 dark:border-[#251F4A] bg-white dark:bg-[#251F4A]/60 hover:border-[#5B2BBE]/30 dark:hover:border-[#5B2BBE]/50 hover:shadow-xs transition-all flex items-center justify-between gap-3 cursor-pointer group"
             >
               <div className="flex items-center gap-3 min-w-0">
@@ -434,19 +432,20 @@ export const GroupTab: React.FC<GroupTabProps> = ({
                   {index + 1}
                 </div>
                 <div className="min-w-0">
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    <h5 className="font-bold text-xs sm:text-sm text-[#22202A] dark:text-white truncate">
-                      {member.name}
-                    </h5>
-                    {member.role !== 'Anggota' && (
-                      <span className="text-[9px] bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/30 text-[#5B2BBE] dark:text-[#C39BFF] font-bold px-1.5 py-0.2 rounded-full border border-[#5B2BBE]/20">
-                        {member.role}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-[11px] text-[#6B6874] dark:text-[#A39EB8] font-medium truncate mt-0.5">
-                    {member.nim} &bull; {member.major}
+                  <h5 className="font-bold text-xs sm:text-sm text-[#22202A] dark:text-white leading-snug break-words">
+                    {member.name}
+                  </h5>
+                  <p className="text-[11px] text-[#6B6874] dark:text-[#A39EB8] font-medium leading-snug break-words mt-0.5">
+                    {member.major}
                   </p>
+                  <div className="flex items-center gap-1.5 flex-wrap mt-1">
+                    <span className="text-[9px] bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/30 text-[#5B2BBE] dark:text-[#C39BFF] font-bold px-1.5 py-0.5 rounded-full border border-[#5B2BBE]/20">
+                      {member.groupName} · {member.groupAlias}
+                    </span>
+                    <span className="text-[9px] bg-[#2F9672]/10 text-[#2F9672] dark:text-[#4ADE80] font-bold px-1.5 py-0.5 rounded-full border border-[#2F9672]/20">
+                      {getGenderLabel(member.gender)}
+                    </span>
+                  </div>
                 </div>
               </div>
 
