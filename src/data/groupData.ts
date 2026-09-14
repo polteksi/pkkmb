@@ -1645,12 +1645,6 @@ export const GROUPS_DATA: OrientationGroup[] = [
 
 export const ALL_STUDENTS: StudentMember[] = GROUPS_DATA.flatMap((group) => group.members);
 
-export const getGenderLabel = (gender: StudentMember['gender']): string => {
-  if (gender === 'L') return 'Laki-laki';
-  if (gender === 'P') return 'Perempuan';
-  return 'Belum diisi';
-};
-
 const normalizeSearchText = (value: string): string =>
   value
     .toLocaleLowerCase('id-ID')
@@ -1669,7 +1663,6 @@ export const matchesStudentSearch = (student: StudentMember, query: string): boo
     student.groupName,
     student.groupAlias,
     student.mentorName,
-    getGenderLabel(student.gender),
   ].join(' '));
 
   return searchableText.includes(normalizedQuery);

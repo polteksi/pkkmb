@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { ALL_STUDENTS, GROUPS_DATA, getGenderLabel, matchesStudentSearch } from '../data/groupData';
+import { ALL_STUDENTS, GROUPS_DATA, matchesStudentSearch } from '../data/groupData';
 import { StudentMember } from '../types';
 import { BrandDecoration } from './BrandDecoration';
 
@@ -109,9 +109,6 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                     <div className="flex items-center gap-1.5 flex-wrap mt-1">
                       <span className="text-[10px] bg-[#5B2BBE]/10 dark:bg-[#5B2BBE]/30 text-[#5B2BBE] dark:text-[#C39BFF] font-bold px-2 py-0.5 rounded-full border border-[#5B2BBE]/20 dark:border-[#5B2BBE]/35">
                         {student.groupName} · {student.groupAlias}
-                      </span>
-                      <span className="text-[10px] bg-[#2F9672]/10 text-[#2F9672] dark:text-[#4ADE80] font-bold px-2 py-0.5 rounded-full border border-[#2F9672]/20">
-                        {getGenderLabel(student.gender)}
                       </span>
                     </div>
                   </div>
