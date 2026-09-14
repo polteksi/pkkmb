@@ -374,6 +374,18 @@ export const GroupTab: React.FC<GroupTabProps> = ({
               </div>
             </div>
           </div>
+
+          <a
+            href={currentGroup.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/25 bg-[#25D366] px-4 py-3 text-center text-sm font-extrabold text-[#102A1A] shadow-sm transition-all hover:bg-[#20BD5A] focus:outline-none focus:ring-2 focus:ring-white/70 active:scale-[0.99] sm:w-auto sm:self-start sm:px-6"
+            aria-label={`Gabung grup WhatsApp ${currentGroup.name}`}
+          >
+            <span className="material-symbols-outlined text-[20px]" aria-hidden="true">chat</span>
+            <span>Gabung Grup WhatsApp</span>
+            <span className="material-symbols-outlined text-[18px]" aria-hidden="true">open_in_new</span>
+          </a>
         </div>
       </div>
 

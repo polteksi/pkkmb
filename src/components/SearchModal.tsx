@@ -90,7 +90,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   onSelectStudent?.(student);
                   onClose();
                 }}
-                className="bg-white dark:bg-[#251F4A]/60 border border-[#5B2BBE]/10 dark:border-[#322B60] rounded-xl p-3.5 flex items-center justify-between hover:border-[#5B2BBE]/30 dark:hover:border-[#5B2BBE]/50 hover:bg-[#FAF9F6] dark:hover:bg-[#251F4A] cursor-pointer transition-all shadow-xs group"
+                className="group flex cursor-pointer flex-col gap-3 rounded-xl border border-[#5B2BBE]/10 bg-white p-3.5 shadow-xs transition-all hover:border-[#5B2BBE]/30 hover:bg-[#FAF9F6] sm:flex-row sm:items-center sm:justify-between dark:border-[#322B60] dark:bg-[#251F4A]/60 dark:hover:border-[#5B2BBE]/50 dark:hover:bg-[#251F4A]"
               >
                 <div className="flex items-center gap-3 min-w-0">
                   <div
@@ -117,9 +117,18 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   </div>
                 </div>
 
-                <span className="material-symbols-outlined text-[18px] text-slate-300 dark:text-[#322B60] group-hover:text-[#5B2BBE] dark:group-hover:text-[#C39BFF] group-hover:translate-x-0.5 transition-all shrink-0">
-                  chevron_right
-                </span>
+                <a
+                  href={GROUPS_DATA.find((group) => group.id === student.groupId)?.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(event) => event.stopPropagation()}
+                  className="flex w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-[#1EAD52]/25 bg-[#25D366]/12 px-3 py-2 text-center text-xs font-extrabold text-[#177B3B] transition-all hover:bg-[#25D366]/20 focus:outline-none focus:ring-2 focus:ring-[#25D366]/30 sm:w-auto dark:text-[#72E69A]"
+                  aria-label={`Gabung grup WhatsApp ${student.groupName}`}
+                >
+                  <span className="material-symbols-outlined text-[17px]" aria-hidden="true">chat</span>
+                  <span>Gabung WA</span>
+                  <span className="material-symbols-outlined text-[14px]" aria-hidden="true">open_in_new</span>
+                </a>
               </div>
             ))
           ) : query.trim() ? (

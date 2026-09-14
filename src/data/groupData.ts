@@ -8,6 +8,7 @@ export const GROUPS_DATA: OrientationGroup[] = [
     "name": "Kelompok 1",
     "alias": "GEVORA",
     "mentor": "Jessica Anggrainie Rahma",
+    "whatsappUrl": "https://chat.whatsapp.com/DbAiNLdo05tHhqinrVdDIN?s=cl&p=a&mlu=4&ilr=4",
     "memberCount": 11,
     "members": [
       {
@@ -138,6 +139,7 @@ export const GROUPS_DATA: OrientationGroup[] = [
     "name": "Kelompok 2",
     "alias": "GEVONIX",
     "mentor": "Arif Budi Nugroho",
+    "whatsappUrl": "https://chat.whatsapp.com/BJrt7NC5nCx80TYz2j655z?s=cl&p=a&mlu=4&ilr=4",
     "memberCount": 11,
     "members": [
       {
@@ -268,6 +270,7 @@ export const GROUPS_DATA: OrientationGroup[] = [
     "name": "Kelompok 3",
     "alias": "GEVORADE",
     "mentor": "Giva Ayu Lestari",
+    "whatsappUrl": "https://chat.whatsapp.com/HyRQbjXsaZ4Aw7KGcd6TFs?s=cl&p=a&mlu=4&ilr=4",
     "memberCount": 11,
     "members": [
       {
@@ -398,6 +401,7 @@ export const GROUPS_DATA: OrientationGroup[] = [
     "name": "Kelompok 4",
     "alias": "GEVORIA",
     "mentor": "Ria Armelia",
+    "whatsappUrl": "https://chat.whatsapp.com/CbItlekG36m2cOtOcwxtDf?s=cl&p=a&mlu=4&ilr=4",
     "memberCount": 12,
     "members": [
       {
@@ -539,6 +543,7 @@ export const GROUPS_DATA: OrientationGroup[] = [
     "name": "Kelompok 5",
     "alias": "TABERA",
     "mentor": "Shairlil Inayah",
+    "whatsappUrl": "https://chat.whatsapp.com/J2hIsOG6R4s7GiquCdOyyP",
     "memberCount": 11,
     "members": [
       {
@@ -669,6 +674,7 @@ export const GROUPS_DATA: OrientationGroup[] = [
     "name": "Kelompok 6",
     "alias": "TABENIX",
     "mentor": "Syafira Citra Nur Febriyanti",
+    "whatsappUrl": "https://chat.whatsapp.com/KBXAvMSEI026DFRwQ7vbcZ",
     "memberCount": 12,
     "members": [
       {
@@ -810,6 +816,7 @@ export const GROUPS_DATA: OrientationGroup[] = [
     "name": "Kelompok 7",
     "alias": "TABEVIA",
     "mentor": "Sabila Putri Patrecia",
+    "whatsappUrl": "https://chat.whatsapp.com/FVxDAlunYMeFKyZrpVdVeH?s=cl&p=a&mlu=4&ilr=4",
     "memberCount": 11,
     "members": [
       {
@@ -940,6 +947,7 @@ export const GROUPS_DATA: OrientationGroup[] = [
     "name": "Kelompok 8",
     "alias": "SIVORA",
     "mentor": "Yoram Yulian Supit",
+    "whatsappUrl": "https://chat.whatsapp.com/EqIaFioNf0PDpyP88q4Kjq?s=cl&p=a&mlu=4&ilr=4",
     "memberCount": 12,
     "members": [
       {
@@ -1081,6 +1089,7 @@ export const GROUPS_DATA: OrientationGroup[] = [
     "name": "Kelompok 9",
     "alias": "SIVONIX",
     "mentor": "Sinaryo Putra Utama",
+    "whatsappUrl": "https://chat.whatsapp.com/Bbv0gyGQfOBGuIveoGx8j9?s=cl&p=i&mlu=4&ilr=4",
     "memberCount": 11,
     "members": [
       {
@@ -1211,6 +1220,7 @@ export const GROUPS_DATA: OrientationGroup[] = [
     "name": "Kelompok 10",
     "alias": "SIVORADE",
     "mentor": "Bagas Satria Aribowo",
+    "whatsappUrl": "https://chat.whatsapp.com/CyxJeilPRkYBTBcE2spS6l?s=cl&p=a&mlu=4&ilr=4",
     "memberCount": 12,
     "members": [
       {
@@ -1352,6 +1362,7 @@ export const GROUPS_DATA: OrientationGroup[] = [
     "name": "Kelompok 11",
     "alias": "SIVORIA",
     "mentor": "Muhammad Azka Najhan Farhadi",
+    "whatsappUrl": "https://chat.whatsapp.com/DZIZpDFd8noI464m1WW1ZF?s=cl&p=a&mlu=4&ilr=4",
     "memberCount": 12,
     "members": [
       {
@@ -1493,6 +1504,7 @@ export const GROUPS_DATA: OrientationGroup[] = [
     "name": "Kelompok 12",
     "alias": "SIVENTA",
     "mentor": "Rizki Yandra Wardana",
+    "whatsappUrl": "https://chat.whatsapp.com/Cz60LKO5wpj20D59xssA00?s=cl&p=a&mlu=0&ilr=4",
     "memberCount": 12,
     "members": [
       {
