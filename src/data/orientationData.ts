@@ -127,7 +127,7 @@ export const DAYS_DATA: DaySchedule[] = [
 export const PERLENGKAPAN_ITEMS: PerlengkapanItem[] = [
   { id: 'p-1',  text: 'Sarapan sebelum mengikuti rangkaian kegiatan.', mandatory: true },
   { id: 'p-2',  text: 'Name Tag yang sudah dibuat sebelum Pra-PKKMB.', mandatory: true },
-  { id: 'p-3',  text: 'Name Tag dengan warna pita sesuai kelompok.', mandatory: true },
+  { id: 'p-3',  text: 'Name Tag dengan warna pita Merah Cabai.', mandatory: true },
   { id: 'p-4',  text: 'Peserta putri diimbau memakai legging/celana panjang.', mandatory: false },
   { id: 'p-5',  text: 'Barang-barang penugasan sesuai ketentuan.', mandatory: true },
   { id: 'p-6',  text: 'Alat tulis.', mandatory: true },
