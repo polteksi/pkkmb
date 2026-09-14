@@ -151,7 +151,7 @@ export const DRESSCODE_DATA: DresscodeHari[] = [
       'Rambut harus rapi sesuai ketentuan tata tertib',
       'Celana panjang dengan bahan non-jeans, dan tidak ketat',
       'Sepatu bebas dan menggunakan kaos kaki',
-      'Memakai Name Tag, dengan ketentuan warna (peserta laki-laki) dan\nwarna pita sesuai kelompok.',
+      'Memakai Name Tag, dengan ketentuan warna (peserta laki-laki) dan\nwarna pita Merah Cabai.',
     ],
     putri: [
       'Kemeja batik lengan panjang',
@@ -179,7 +179,7 @@ export const DRESSCODE_DATA: DresscodeHari[] = [
       'Rambut harus rapi sesuai ketentuan tata tertib',
       'Celana panjang dengan bahan non-jeans, dan tidak ketat',
       'Sepatu bebas dan menggunakan kaos kaki',
-      'Memakai Name Tag, dengan ketentuan warna (peserta laki-laki) dan\nwarna pita sesuai kelompok.',
+      'Memakai Name Tag, dengan ketentuan warna (peserta laki-laki) dan\nwarna pita Merah Cabai.',
     ],
     putri: [
       'Kemeja batik lengan panjang',
@@ -203,7 +203,7 @@ export const DRESSCODE_DATA: DresscodeHari[] = [
     tanggal: 'Senin, 21 September 2026',
     image: '/day2.png',
     putra: [
-      'Helm dan Name Tag, dengan ketentuan warna biru\n(peserta laki-laki) dan warna pita sesuai kelompok.',
+      'Helm dan Name Tag, dengan ketentuan warna biru\n(peserta laki-laki) dan warna pita Merah Cabai.',
       'Kemeja putih lengan panjang',
       'Berdasi merah maroon',
       'celana hitam panjang berbahan non-jeans dan tidak ketat',
@@ -215,7 +215,7 @@ export const DRESSCODE_DATA: DresscodeHari[] = [
       'Kaos kaki putih panjang.',
     ],
     putri: [
-      'Memakai Helm dan Name Tag, dengan ketentuan warna pink\n(peserta Perempuan) dan warna pita sesuai kelompok',
+      'Memakai Helm dan Name Tag, dengan ketentuan warna pink\n(peserta Perempuan) dan warna pita Merah Cabai',
       'Menggunakan hijab hitam segi empat rapi bagi yang berhijab\nsesuai ketentuan tata tertib',
       'Bagi yang tidak berkerudung, rambut diikat rapi kuncir kuda,\nbagi peserta yang memiliki rambut pendek dan tidak dapat\ndiikat, rambut dapat dirapikan, atau dijepit di bagian belakang\ntelinga.',
       'Kemeja putih lengan panjang',
@@ -233,7 +233,7 @@ export const DRESSCODE_DATA: DresscodeHari[] = [
     tanggal: 'Selasa, 22 September 2026',
     image: '/day3.png',
     putra: [
-      'Helm dan Name Tag, dengan ketentuan warna biru\n(peserta laki-laki) dan warna pita sesuai kelompok.',
+      'Helm dan Name Tag, dengan ketentuan warna biru\n(peserta laki-laki) dan warna pita Merah Cabai.',
       'Rambut harus rapi sesuai ketentuan tata tertib.',
       'Pita lengan penanda prodi, lengan sebelah kanan.',
       'Pita lengan warna hitam penanda sakit (bagi yang sakit),\nlengan sebelah kiri.',
@@ -242,7 +242,7 @@ export const DRESSCODE_DATA: DresscodeHari[] = [
       'Sepatu Bertali, berwarna bebas.',
     ],
     putri: [
-      'Helm dan Name Tag, dengan ketentuan warna pink\n(peserta perempuan) dan warna pita sesuai kelompok',
+      'Helm dan Name Tag, dengan ketentuan warna pink\n(peserta perempuan) dan warna pita Merah Cabai',
       'Baju merah lengan panjang',
       'Celana trining berwarna hitak, dan tidak ketat',
       'Sepatu Bertali, berwarna bebas',
@@ -262,7 +262,7 @@ export const DRESSCODE_DATA: DresscodeHari[] = [
     tanggal: 'Rabu, 23 September 2026',
     image: '/day2.png',
     putra: [
-      'Helm dan Name Tag, dengan ketentuan warna biru (peserta\nlaki-laki) dan warna pita sesuai kelompok.',
+      'Helm dan Name Tag, dengan ketentuan warna biru (peserta\nlaki-laki) dan warna pita Merah Cabai.',
       'Rambut harus rapi sesuai ketentuan tata tertib.',
       'Pita lengan penanda prodi, lengan sebelah kanan.',
       'Pita lengan warna hitam penanda sakit (bagi yang sakit),\nlengan sebelah kiri.',
@@ -272,7 +272,7 @@ export const DRESSCODE_DATA: DresscodeHari[] = [
       'Menggunakan ikat pinggang hitak.',
     ],
     putri: [
-      'Helm dan Name Tag, dengan ketentuan warna pink\n(peserta perempuan) dan warna pita sesuai kelompok',
+      'Helm dan Name Tag, dengan ketentuan warna pink\n(peserta perempuan) dan warna pita Merah Cabai',
       'Kemeja putih lengan panjang berdasi merah maroon',
       'Mengenakan kerudung segi empat berwarna hitam, bagi\nyang berkerudung.',
       'Bagi yang tidak berkerudung, rambut diikat rapi kuncir\nkuda, bagi peserta yang memiliki rambut pendek dan tidak\ndapat diikat, rambut dapat dirapikan, atau dijepit di bagian belakang\ntelinga.',
@@ -296,7 +296,7 @@ export const DRESSCODE_DATA: DresscodeHari[] = [
     tanggal: 'Kamis, 24 September 2026',
     image: '/day1.png',
     putra: [
-      'Helm dan Name Tag, dengan ketentuan warna biru (peserta\nlaki-laki) dan warna pita sesuai kelompok.',
+      'Helm dan Name Tag, dengan ketentuan warna biru (peserta\nlaki-laki) dan warna pita Merah Cabai.',
       'Kemeja batik lengan panjang',
       'Pita lengan penanda prodi, lengan sebelah kanan.',
       'Pita lengan warna hitam penanda sakit (bagi yang sakit),\nlengan sebelah kiri.',
@@ -306,7 +306,7 @@ export const DRESSCODE_DATA: DresscodeHari[] = [
       'Menggunakan ikat pinggang hitak (Kondisional)',
     ],
     putri: [
-      'Helm dan Name Tag, dengan ketentuan warna pink\n(peserta Perempuan) dan warna pita sesuai kelompok.',
+      'Helm dan Name Tag, dengan ketentuan warna pink\n(peserta Perempuan) dan warna pita Merah Cabai.',
       'Kemeja batik lengan panjang',
       'Pita lengan penanda prodi, lengan sebelah kanan.',
       'Pita lengan berwarna hitam penanda sakit (bagi yang\nsakit), lengan sebelah kiri.',
@@ -325,7 +325,7 @@ export const DRESSCODE_DATA: DresscodeHari[] = [
     image: '/day6.png',
     images: ['/day6.png', '/day7.png'],
     putra: [
-      'Helm dan Name Tag, dengan ketentuan warna biru (peserta\nlaki-laki) dan warna pita sesuai kelompok',
+      'Helm dan Name Tag, dengan ketentuan warna biru (peserta\nlaki-laki) dan warna pita Merah Cabai',
       'Rambut harus rapi sesuai ketentuan tata tertib.',
       'Pita lengan penanda prodi, lengan sebelah kanan.',
       'Pita lengan warna hitam penanda sakit (bagi yang sakit),\nlengan sebelah kiri.',
@@ -334,7 +334,7 @@ export const DRESSCODE_DATA: DresscodeHari[] = [
       'Sepatu Bertali, berwarna bebas.',
     ],
     putri: [
-      'Helm dan Name Tag, dengan ketentuan warna pink (peserta\nperempuan) dan warna pita sesuai kelompok',
+      'Helm dan Name Tag, dengan ketentuan warna pink (peserta\nperempuan) dan warna pita Merah Cabai',
       'Baju hitak lengan panjang',
       'Celana trining berwarna hitak, dan tidak ketat',
       'Sepatu Bertali, berwarna bebas',
