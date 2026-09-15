@@ -29,7 +29,6 @@ export interface OrientationGroup {
   name: string;
   alias: string;
   mentor: string;
-  whatsappUrl: string;
   memberCount: number;
   members: StudentMember[];
 }
