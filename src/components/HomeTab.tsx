@@ -373,19 +373,34 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                     Tempat Pengumpulan Tugas PKKMB
                   </h3>
                   <p className="text-xs text-[#6B6874] dark:text-[#A39EB8] mt-1 font-medium leading-relaxed">
-                    Isi formulir dan unggah berkas tugas PKKMB melalui Google Form resmi.
+                    Pilih formulir sesuai jenis penugasan, lalu unggah berkas melalui Google Form resmi.
                   </p>
               </div>
 
+              <div className="grid grid-cols-1 gap-2">
                 <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSfUqRIP_uAYehse677ygmldbhE38o0DLupajKuIWxr2oIISZQ/viewform?usp=publish-editor"
+                  href="https://forms.gle/oZGQ7apnoRDqCcRC6"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full min-h-11 bg-[#5B2BBE] dark:bg-[#5B2BBE] hover:bg-[#43208F] dark:hover:bg-[#7D3BD6] text-white font-bold text-xs py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer active:scale-98 whitespace-nowrap"
+                  aria-label="Buka Form Penugasan Individu"
                 >
-                  <span className="material-symbols-outlined text-[16px]">open_in_new</span>
-                  <span>Buka Form</span>
+                  <span className="material-symbols-outlined text-[17px]">person</span>
+                  <span>Penugasan Individu</span>
+                  <span className="material-symbols-outlined text-[15px]">open_in_new</span>
                 </a>
+                <a
+                  href="https://forms.gle/2Xv22S4hypnmDVya6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex min-h-11 w-full cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-[#5B2BBE]/25 bg-[#5B2BBE]/10 px-3 py-2.5 text-xs font-bold text-[#5B2BBE] shadow-xs transition-all hover:bg-[#5B2BBE]/15 active:scale-98 dark:border-[#C39BFF]/35 dark:bg-[#5B2BBE]/25 dark:text-[#E1C9FF] dark:hover:bg-[#5B2BBE]/40"
+                  aria-label="Buka Form Penugasan Kelompok"
+                >
+                  <span className="material-symbols-outlined text-[17px]">groups</span>
+                  <span>Penugasan Kelompok</span>
+                  <span className="material-symbols-outlined text-[15px]">open_in_new</span>
+                </a>
+              </div>
             </div>
           </div>
 
