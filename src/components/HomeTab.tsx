@@ -382,23 +382,21 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                   href="https://forms.gle/oZGQ7apnoRDqCcRC6"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full min-h-11 bg-[#5B2BBE] dark:bg-[#5B2BBE] hover:bg-[#43208F] dark:hover:bg-[#7D3BD6] text-white font-bold text-xs py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer active:scale-98 whitespace-nowrap"
+                  className="flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#5B2BBE] px-2.5 py-2.5 text-center text-[11px] font-bold leading-tight text-white shadow-xs transition-all hover:bg-[#43208F] active:scale-98 sm:text-xs dark:bg-[#5B2BBE] dark:hover:bg-[#7D3BD6]"
                   aria-label="Buka Form Penugasan Individu"
                 >
                   <span className="material-symbols-outlined text-[17px]">person</span>
                   <span>Penugasan Individu</span>
-                  <span className="material-symbols-outlined text-[15px]">open_in_new</span>
                 </a>
                 <a
                   href="https://forms.gle/2Xv22S4hypnmDVya6"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex min-h-11 w-full cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-[#5B2BBE]/25 bg-[#5B2BBE]/10 px-3 py-2.5 text-xs font-bold text-[#5B2BBE] shadow-xs transition-all hover:bg-[#5B2BBE]/15 active:scale-98 dark:border-[#C39BFF]/35 dark:bg-[#5B2BBE]/25 dark:text-[#E1C9FF] dark:hover:bg-[#5B2BBE]/40"
+                  className="flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-[#5B2BBE]/25 bg-[#5B2BBE]/10 px-2.5 py-2.5 text-center text-[11px] font-bold leading-tight text-[#5B2BBE] shadow-xs transition-all hover:bg-[#5B2BBE]/15 active:scale-98 sm:text-xs dark:border-[#C39BFF]/35 dark:bg-[#5B2BBE]/25 dark:text-[#E1C9FF] dark:hover:bg-[#5B2BBE]/40"
                   aria-label="Buka Form Penugasan Kelompok"
                 >
                   <span className="material-symbols-outlined text-[17px]">groups</span>
                   <span>Penugasan Kelompok</span>
-                  <span className="material-symbols-outlined text-[15px]">open_in_new</span>
                 </a>
               </div>
             </div>

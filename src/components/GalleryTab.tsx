@@ -68,9 +68,6 @@ export const GalleryTab: React.FC = () => {
             <h2 className="font-display text-xl font-black tracking-tight text-[#22202A] sm:text-2xl dark:text-white">
               Galeri ORVOKS 2026
             </h2>
-            <p className="mt-1 text-xs font-medium leading-relaxed text-[#6B6874] sm:text-sm dark:text-[#A39EB8]">
-              Dokumentasi kegiatan PKKMB selama tujuh hari. Pilih hari, klik foto untuk memperbesar, atau unduh foto ke perangkatmu.
-            </p>
           </div>
         </div>
       </section>
