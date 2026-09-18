@@ -16,12 +16,16 @@ import { SearchModal } from './components/SearchModal';
 import { MenuDrawer } from './components/MenuDrawer';
 import { BrandDecoration } from './components/BrandDecoration';
 import { SplashScreen } from './components/SplashScreen';
+import { getJakartaDateKey, getRelevantDayNumber } from './utils/scheduleStatus';
 
 
 export default function App() {
   const [showSplash, setShowSplash] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<TabType>('beranda');
-  const [currentDayNumber, setCurrentDayNumber] = useState<number>(1); // Default to first session
+  const [currentDate, setCurrentDate] = useState<Date>(() => new Date());
+  const [currentDayNumber, setCurrentDayNumber] = useState<number>(() =>
+    getRelevantDayNumber(DAYS_DATA),
+  );
 
 
   // Dark mode state: default to light if not saved
@@ -40,6 +44,24 @@ export default function App() {
       localStorage.setItem('pkkmb_theme', 'light');
     }
   }, [isDarkMode]);
+
+  useEffect(() => {
+    let activeDateKey = getJakartaDateKey(currentDate);
+
+    const synchronizeDate = () => {
+      const nextDate = new Date();
+      const nextDateKey = getJakartaDateKey(nextDate);
+      setCurrentDate(nextDate);
+
+      if (nextDateKey !== activeDateKey) {
+        activeDateKey = nextDateKey;
+        setCurrentDayNumber(getRelevantDayNumber(DAYS_DATA, nextDate));
+      }
+    };
+
+    const timer = window.setInterval(synchronizeDate, 60_000);
+    return () => window.clearInterval(timer);
+  }, []);
 
   const toggleDarkMode = () => {
     setIsDarkMode((prev) => !prev);
@@ -112,6 +134,7 @@ export default function App() {
         {activeTab === 'beranda' && (
           <HomeTab
             currentDay={currentDay}
+            currentDate={currentDate}
             onSelectDay={(dayNum) => setCurrentDayNumber(dayNum)}
             onNavigateTab={handleNavigate}
             onOpenScheduleModal={(day) => setScheduleModalDay(day)}

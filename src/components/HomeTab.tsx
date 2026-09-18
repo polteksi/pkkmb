@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { HERO_IMAGES, DAYS_DATA, PERLENGKAPAN_ITEMS } from '../data/orientationData';
 import { DaySchedule, TabType } from '../types';
 import { BrandDecoration } from './BrandDecoration';
+import { getScheduleStatus, ScheduleStatus } from '../utils/scheduleStatus';
 
 interface HomeTabProps {
   currentDay: DaySchedule;
+  currentDate: Date;
   onSelectDay: (dayNumber: number) => void;
   onNavigateTab: (tab: TabType) => void;
   onOpenScheduleModal: (day: DaySchedule) => void;
@@ -17,6 +19,7 @@ const PRA_ACARA_PDF = '/documents/penugasan-orvoks-pra-acara-2026.pdf';
 
 export const HomeTab: React.FC<HomeTabProps> = ({
   currentDay,
+  currentDate,
   onSelectDay,
   onNavigateTab,
   onOpenScheduleModal,
@@ -25,6 +28,26 @@ export const HomeTab: React.FC<HomeTabProps> = ({
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [bannerLoadError, setBannerLoadError] = useState(false);
+  const currentDayStatus = getScheduleStatus(currentDay.dateISO, currentDate);
+
+  const statusDisplay: Record<ScheduleStatus, { label: string; className: string; dotClassName: string }> = {
+    upcoming: {
+      label: 'BELUM DIMULAI',
+      className: 'border-[#D1D5DB] bg-[#F1F3F5] text-[#6B7280] dark:border-[#4B5563] dark:bg-[#374151]/40 dark:text-[#D1D5DB]',
+      dotClassName: 'bg-[#9CA3AF]',
+    },
+    active: {
+      label: 'SEDANG BERLANGSUNG',
+      className: 'border-[#2F9672]/30 bg-[#2F9672]/10 text-[#237658] dark:border-[#4ADE80]/35 dark:bg-[#2F9672]/20 dark:text-[#86EFAC]',
+      dotClassName: 'bg-[#2F9672] dark:bg-[#4ADE80]',
+    },
+    completed: {
+      label: 'SELESAI',
+      className: 'border-[#5B2BBE]/25 bg-[#5B2BBE]/10 text-[#5B2BBE] dark:border-[#C39BFF]/35 dark:bg-[#5B2BBE]/25 dark:text-[#D9BCFF]',
+      dotClassName: 'bg-[#5B2BBE] dark:bg-[#C39BFF]',
+    },
+  };
+  const activeStatusDisplay = statusDisplay[currentDayStatus];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -124,8 +147,12 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                   <h2 className="font-display text-xl font-bold text-[#22202A] dark:text-white">
                     {currentDay.theme}
                   </h2>
-                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#F1F3F5] text-[#6B7280] border border-[#D1D5DB]">
-                    BELUM DIMULAI
+                  <span
+                    className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[10px] font-bold ${activeStatusDisplay.className}`}
+                    aria-live="polite"
+                  >
+                    <span className={`h-1.5 w-1.5 rounded-full ${activeStatusDisplay.dotClassName} ${currentDayStatus === 'active' ? 'animate-pulse' : ''}`} />
+                    {activeStatusDisplay.label}
                   </span>
                 </div>
                 <p className="text-[11px] font-bold text-[#5B2BBE] dark:text-[#C39BFF] uppercase tracking-wider font-display">
@@ -144,7 +171,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({
               <div className="grid grid-cols-4 sm:grid-cols-7 gap-1.5 sm:gap-2">
                 {DAYS_DATA.map((d) => {
                   const isActive = currentDay.dayNumber === d.dayNumber;
-                  const isPast = d.dayNumber < currentDay.dayNumber;
+                  const isPast = getScheduleStatus(d.dateISO, currentDate) === 'completed';
                   return (
                     <button
                       key={d.dayNumber}

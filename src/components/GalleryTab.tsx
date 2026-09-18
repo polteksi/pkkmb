@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { BrandDecoration } from './BrandDecoration';
 
-const GOOGLE_DRIVE_GALLERY_URL = 'https://drive.google.com/drive/folders/1f9y3qeqqlpFx2YBkMmlHWr4kDHKLiE2L?usp=drive_link';
+const GOOGLE_DRIVE_GALLERY_URL = 'https://drive.google.com/drive/folders/1JgRi1w24SbyDuVJ3xwErUb1pyzCDKBzc';
 const PLACEHOLDER_IMAGE = '/gallery/placeholder.webp';
 
 interface GalleryImage {

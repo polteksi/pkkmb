@@ -4,6 +4,7 @@ export interface DaySchedule {
   dayNumber: number;
   dayName: string;
   theme: string;
+  dateISO: string;         // YYYY-MM-DD; source for automatic WIB status
   date: string;
   shortDate: string;        // e.g. "18 Sep"
   phase: string;            // e.g. "Pra-PKKMB", "PKKMB Day 1"

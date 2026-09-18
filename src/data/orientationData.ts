@@ -13,6 +13,7 @@ export const DAYS_DATA: DaySchedule[] = [
   {
     dayNumber: 1,
     dayName: 'Jumat',
+    dateISO: '2026-09-18',
     date: '18 September 2026',
     shortDate: '18 Sep',
     phase: 'Pra-PKKMB',
@@ -29,6 +30,7 @@ export const DAYS_DATA: DaySchedule[] = [
   {
     dayNumber: 2,
     dayName: 'Sabtu',
+    dateISO: '2026-09-19',
     date: '19 September 2026',
     shortDate: '19 Sep',
     phase: 'Pra-PKKMB',
@@ -45,6 +47,7 @@ export const DAYS_DATA: DaySchedule[] = [
   {
     dayNumber: 3,
     dayName: 'Senin',
+    dateISO: '2026-09-21',
     date: '21 September 2026',
     shortDate: '21 Sep',
     phase: 'PKKMB Day 1',
@@ -61,6 +64,7 @@ export const DAYS_DATA: DaySchedule[] = [
   {
     dayNumber: 4,
     dayName: 'Selasa',
+    dateISO: '2026-09-22',
     date: '22 September 2026',
     shortDate: '22 Sep',
     phase: 'PKKMB Day 2',
@@ -77,6 +81,7 @@ export const DAYS_DATA: DaySchedule[] = [
   {
     dayNumber: 5,
     dayName: 'Rabu',
+    dateISO: '2026-09-23',
     date: '23 September 2026',
     shortDate: '23 Sep',
     phase: 'PKKMB Day 3',
@@ -95,6 +100,7 @@ export const DAYS_DATA: DaySchedule[] = [
   {
     dayNumber: 6,
     dayName: 'Kamis',
+    dateISO: '2026-09-24',
     date: '24 September 2026',
     shortDate: '24 Sep',
     phase: 'PKKMB Day 4',
@@ -109,6 +115,7 @@ export const DAYS_DATA: DaySchedule[] = [
   {
     dayNumber: 7,
     dayName: 'Jumat',
+    dateISO: '2026-09-25',
     date: '25 September 2026',
     shortDate: '25 Sep',
     phase: 'PKKMB Day 5',
