@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { BrandDecoration } from './BrandDecoration';
 
-const GOOGLE_DRIVE_GALLERY_URL = 'https://drive.google.com/drive/folders/1JgRi1w24SbyDuVJ3xwErUb1pyzCDKBzc';
+const GOOGLE_DRIVE_GALLERY_URL = 'https://drive.google.com/drive/folders/1JgRi1w24SbyDuVJ3xwEUb1pyzCDKBzc';
 const PLACEHOLDER_IMAGE = '/gallery/placeholder.webp';
 
 interface GalleryImage {
@@ -13,17 +13,34 @@ interface GalleryImage {
   alt: string;
 }
 
+const DAY_LABELS = [
+  'Pra-PKKMB Hari 1',
+  'Pra-PKKMB Hari 2',
+  'PKKMB Hari 1',
+  'PKKMB Hari 2',
+  'PKKMB Hari 3',
+  'PKKMB Hari 4',
+  'PKKMB Hari 5',
+];
+
+const PRA_PKKMB_DAY_2_IMAGES = [
+  '/gallery/pra%20pkkmb%202/IMG_4364-01.jpeg',
+  '/gallery/pra%20pkkmb%202/IMG_4400%20(1)-01.jpeg',
+  '/gallery/pra%20pkkmb%202/IMG_4439-01.jpeg',
+  '/gallery/pra%20pkkmb%202/IMG_4472-01.jpeg',
+];
+
 const GALLERY_DAYS = Array.from({ length: 7 }, (_, dayIndex) => {
   const day = dayIndex + 1;
   return {
     day,
-    label: `Hari ${day}`,
+    label: DAY_LABELS[dayIndex],
     images: Array.from({ length: 4 }, (_, imageIndex): GalleryImage => ({
       id: `day-${day}-image-${imageIndex + 1}`,
       day,
       number: imageIndex + 1,
-      src: PLACEHOLDER_IMAGE,
-      alt: `Dokumentasi ORVOKS Hari ${day}, foto ${imageIndex + 1}`,
+      src: day === 2 ? PRA_PKKMB_DAY_2_IMAGES[imageIndex] : PLACEHOLDER_IMAGE,
+      alt: `Dokumentasi ${DAY_LABELS[dayIndex]}, foto ${imageIndex + 1}`,
     })),
   };
 });
@@ -100,7 +117,7 @@ export const GalleryTab: React.FC = () => {
               Dokumentasi Kegiatan
             </span>
             <h3 className="font-display text-lg font-black text-[#22202A] sm:text-xl dark:text-white">
-              ORVOKS Hari {currentGallery.day}
+              {currentGallery.label}
             </h3>
           </div>
           <span className="text-xs font-semibold text-[#6B6874] dark:text-[#A39EB8]">4 foto landscape</span>
@@ -130,7 +147,7 @@ export const GalleryTab: React.FC = () => {
 
               <div className="flex items-center justify-between gap-3 px-4 py-3">
                 <div className="min-w-0">
-                  <p className="font-display text-sm font-bold text-[#22202A] dark:text-white">Hari {image.day}</p>
+                  <p className="font-display text-sm font-bold text-[#22202A] dark:text-white">{currentGallery.label}</p>
                   <p className="text-[11px] font-medium text-[#6B6874] dark:text-[#A39EB8]">Foto dokumentasi {image.number}</p>
                 </div>
                 <a
@@ -173,7 +190,7 @@ export const GalleryTab: React.FC = () => {
             <div className="flex items-center justify-between gap-3 border-b border-[#5B2BBE]/15 bg-[#5B2BBE]/8 p-4 dark:border-[#5B2BBE]/25 dark:bg-[#5B2BBE]/15">
               <div className="min-w-0">
                 <h3 className="truncate font-display text-base font-black text-[#22202A] sm:text-lg dark:text-white">
-                  Dokumentasi Hari {selectedImage.day}
+                  Dokumentasi {DAY_LABELS[selectedImage.day - 1]}
                 </h3>
                 <p className="text-xs font-medium text-[#6B6874] dark:text-[#A39EB8]">Foto {selectedImage.number} dari 4</p>
               </div>
