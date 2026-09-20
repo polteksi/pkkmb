@@ -164,16 +164,6 @@ export const GalleryTab: React.FC = () => {
           ))}
         </div>
 
-        <a
-          href={GOOGLE_DRIVE_GALLERY_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#5B2BBE] px-5 py-3 text-sm font-extrabold text-white shadow-sm transition-all hover:bg-[#43208F] active:scale-[0.99] dark:hover:bg-[#7D3BD6] sm:mx-auto sm:w-auto sm:min-w-56"
-        >
-          <span className="material-symbols-outlined text-[20px]">photo_library</span>
-          <span>Lihat Semua di Google Drive</span>
-          <span className="material-symbols-outlined text-[18px]">open_in_new</span>
-        </a>
       </section>
 
       {selectedImage && createPortal(
