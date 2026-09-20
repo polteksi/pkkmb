@@ -6,6 +6,7 @@ import { HomeTab } from './components/HomeTab';
 import { ScheduleTab } from './components/ScheduleTab';
 import { GroupTab } from './components/GroupTab';
 import { AtributTab } from './components/AtributTab';
+import { MaterialsTab } from './components/MaterialsTab';
 import { GalleryTab } from './components/GalleryTab';
 import { GuidebookTab } from './components/GuidebookTab';
 import { FaqTab } from './components/FaqTab';
@@ -82,6 +83,7 @@ export default function App() {
     jadwal: 'Jadwal 7 Hari',
     kelompok: 'Daftar Kelompok',
     atribut: 'Atribut PKKMB',
+    materi: 'Materi ORVOKS',
     galeri: 'Galeri ORVOKS',
     guidebook: 'Guidebook PKKMB',
     faq: 'Tanya Jawab (FAQ)',
@@ -155,6 +157,10 @@ export default function App() {
 
         {activeTab === 'atribut' && (
           <AtributTab />
+        )}
+
+        {activeTab === 'materi' && (
+          <MaterialsTab />
         )}
 
         {activeTab === 'galeri' && (

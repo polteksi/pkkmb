@@ -62,6 +62,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
               Atribut PKKMB
             </button>
             <button
+              onClick={() => onNavigateTab('materi')}
+              className="hover:text-[#5B2BBE] dark:hover:text-[#C39BFF] hover:underline text-left w-max transition-colors cursor-pointer"
+            >
+              Materi ORVOKS
+            </button>
+            <button
               onClick={() => onNavigateTab('galeri')}
               className="hover:text-[#5B2BBE] dark:hover:text-[#C39BFF] hover:underline text-left w-max transition-colors cursor-pointer"
             >
