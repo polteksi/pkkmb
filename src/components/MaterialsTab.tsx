@@ -65,7 +65,33 @@ const MATERIAL_DAYS: MaterialDay[] = [
       },
     ],
   },
-  { id: 'pkkmb-1', label: 'PKKMB Hari 1', shortLabel: 'PKKMB 1', topics: [] },
+  {
+    id: 'pkkmb-1',
+    label: 'PKKMB Hari 1',
+    shortLabel: 'PKKMB 1',
+    topics: [
+      {
+        title: 'Literasi Digital',
+        files: [
+          { name: 'CV Arief Setiawan', url: '/materi/pkkmb%201/materi%20literasi%20digital/CV-Arief%20Setiawan%2020260716.pdf', size: '138 KB', kind: 'pdf' },
+          { name: 'Literasi Digital & Pemanfaatan AI', url: '/materi/pkkmb%201/materi%20literasi%20digital/Literasi%20Digital%20%26%20Pemanfaatan%20AI.pdf', size: '1,2 MB', kind: 'pdf' },
+        ],
+      },
+      {
+        title: 'Safety Industry',
+        files: [
+          { name: 'Safety Induction Lingkungan Kampus Polteksi', url: '/materi/pkkmb%201/Materi%20safety%20industry/1.SAFETY%20INDUCTION%20LINGKUNGAN%20KAMPUS%20POLTEKSI_compressed%20(1).pdf', size: '2,8 MB', kind: 'pdf' },
+          { name: 'Video Safety Industry', url: '/materi/pkkmb%201/Materi%20safety%20industry/WhatsApp%20Video%202026-09-21%20at%2011.44.31.mp4', size: '1,8 MB', kind: 'video' },
+        ],
+      },
+      {
+        title: 'SDGs',
+        files: [
+          { name: 'SDGs Design Lab Mahasiswa Baru 2026', url: '/materi/pkkmb%201/materi%20SDGs/SDGS%20Design%20Lab_Mahasiswa%20Baru%202026i.pptx', size: '12,8 MB', kind: 'presentation' },
+        ],
+      },
+    ],
+  },
   { id: 'pkkmb-2', label: 'PKKMB Hari 2', shortLabel: 'PKKMB 2', topics: [] },
   { id: 'pkkmb-3', label: 'PKKMB Hari 3', shortLabel: 'PKKMB 3', topics: [] },
   { id: 'pkkmb-4', label: 'PKKMB Hari 4', shortLabel: 'PKKMB 4', topics: [] },

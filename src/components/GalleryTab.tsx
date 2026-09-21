@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { BrandDecoration } from './BrandDecoration';
 
-const GOOGLE_DRIVE_GALLERY_URL = 'https://drive.google.com/drive/folders/1JgRi1w24SbyDuVJ3xwEUb1pyzCDKBzc';
+const GOOGLE_DRIVE_GALLERY_URL = 'https://drive.google.com/drive/folders/1JgRi1w24SbyDuVJ3xwErUb1pyzCDKBzc?usp=sharing';
 const PLACEHOLDER_IMAGE = '/gallery/placeholder.webp';
 
 interface GalleryImage {
@@ -37,6 +37,13 @@ const PRA_PKKMB_DAY_2_IMAGES = [
   '/gallery/pra%20pkkmb%202/DSCF2954-01.jpeg',
 ];
 
+const PKKMB_DAY_2_IMAGES = [
+  '/gallery/pkkmb%202/DSC00017-01.jpeg',
+  '/gallery/pkkmb%202/DSC00056-01.jpeg',
+  '/gallery/pkkmb%202/DSC00103%20(1)-01.jpeg',
+  '/gallery/pkkmb%202/DSC00107-01.jpeg',
+];
+
 const GALLERY_DAYS = Array.from({ length: 7 }, (_, dayIndex) => {
   const day = dayIndex + 1;
   return {
@@ -46,7 +53,7 @@ const GALLERY_DAYS = Array.from({ length: 7 }, (_, dayIndex) => {
       id: `day-${day}-image-${imageIndex + 1}`,
       day,
       number: imageIndex + 1,
-      src: day === 1 ? PRA_PKKMB_DAY_1_IMAGES[imageIndex] : day === 2 ? PRA_PKKMB_DAY_2_IMAGES[imageIndex] : PLACEHOLDER_IMAGE,
+      src: day === 1 ? PRA_PKKMB_DAY_1_IMAGES[imageIndex] : day === 2 ? PRA_PKKMB_DAY_2_IMAGES[imageIndex] : day === 4 ? PKKMB_DAY_2_IMAGES[imageIndex] : PLACEHOLDER_IMAGE,
       alt: `Dokumentasi ${DAY_LABELS[dayIndex]}, foto ${imageIndex + 1}`,
     })),
   };
@@ -170,6 +177,17 @@ export const GalleryTab: React.FC = () => {
             </article>
           ))}
         </div>
+
+        <a
+          href={GOOGLE_DRIVE_GALLERY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#5B2BBE] px-5 py-3 text-sm font-extrabold text-white shadow-sm transition-all hover:bg-[#43208F] active:scale-[0.99] dark:hover:bg-[#7D3BD6] sm:mx-auto sm:w-auto sm:min-w-56"
+        >
+          <span className="material-symbols-outlined text-[20px]">photo_library</span>
+          <span>Lihat Semua di Google Drive</span>
+          <span className="material-symbols-outlined text-[18px]">open_in_new</span>
+        </a>
 
       </section>
 
