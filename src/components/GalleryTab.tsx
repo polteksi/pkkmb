@@ -37,11 +37,11 @@ const PRA_PKKMB_DAY_2_IMAGES = [
   '/gallery/pra%20pkkmb%202/DSCF2954-01.jpeg',
 ];
 
-const PKKMB_DAY_2_IMAGES = [
-  '/gallery/pkkmb%202/DSC00017-01.jpeg',
-  '/gallery/pkkmb%202/DSC00056-01.jpeg',
-  '/gallery/pkkmb%202/DSC00103%20(1)-01.jpeg',
-  '/gallery/pkkmb%202/DSC00107-01.jpeg',
+const PKKMB_DAY_1_IMAGES = [
+  '/gallery/pkkmb%201/DSC00017-01.jpeg',
+  '/gallery/pkkmb%201/DSC00056-01.jpeg',
+  '/gallery/pkkmb%201/DSC00103%20(1)-01.jpeg',
+  '/gallery/pkkmb%201/DSC00107-01.jpeg',
 ];
 
 const GALLERY_DAYS = Array.from({ length: 7 }, (_, dayIndex) => {
@@ -53,7 +53,7 @@ const GALLERY_DAYS = Array.from({ length: 7 }, (_, dayIndex) => {
       id: `day-${day}-image-${imageIndex + 1}`,
       day,
       number: imageIndex + 1,
-      src: day === 1 ? PRA_PKKMB_DAY_1_IMAGES[imageIndex] : day === 2 ? PRA_PKKMB_DAY_2_IMAGES[imageIndex] : day === 4 ? PKKMB_DAY_2_IMAGES[imageIndex] : PLACEHOLDER_IMAGE,
+      src: day === 1 ? PRA_PKKMB_DAY_1_IMAGES[imageIndex] : day === 2 ? PRA_PKKMB_DAY_2_IMAGES[imageIndex] : day === 3 ? PKKMB_DAY_1_IMAGES[imageIndex] : PLACEHOLDER_IMAGE,
       alt: `Dokumentasi ${DAY_LABELS[dayIndex]}, foto ${imageIndex + 1}`,
     })),
   };
