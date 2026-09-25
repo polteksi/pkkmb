@@ -92,9 +92,35 @@ const MATERIAL_DAYS: MaterialDay[] = [
       },
     ],
   },
-  { id: 'pkkmb-2', label: 'PKKMB Hari 2', shortLabel: 'PKKMB 2', topics: [] },
+  {
+    id: 'pkkmb-2',
+    label: 'PKKMB Hari 2',
+    shortLabel: 'PKKMB 2',
+    topics: [
+      {
+        title: 'Materi PKKMB Hari 2',
+        files: [
+          { name: 'Bela Negara dan Wawasan Kebangsaan', url: '/materi/pkkmb%202/BELNEG%20DAN%20WASBANG%20DANRAMIL%20.pptx', size: '7,2 MB', kind: 'presentation' },
+          { name: 'Etika Bermedia Sosial — Tyas Nastiti', url: '/materi/pkkmb%202/Etika%20Bermedia%20Sosial_Tyas%20Nastiti%20.pdf', size: '8,7 MB', kind: 'pdf' },
+          { name: 'Tips Tepat Jadi Mahasiswa Mantab', url: '/materi/pkkmb%202/Tips%20Tepat%20Jadi%20Mahasiswa%20Mantab.pdf', size: '2,4 MB', kind: 'pdf' },
+        ],
+      },
+    ],
+  },
   { id: 'pkkmb-3', label: 'PKKMB Hari 3', shortLabel: 'PKKMB 3', topics: [] },
-  { id: 'pkkmb-4', label: 'PKKMB Hari 4', shortLabel: 'PKKMB 4', topics: [] },
+  {
+    id: 'pkkmb-4',
+    label: 'PKKMB Hari 4',
+    shortLabel: 'PKKMB 4',
+    topics: [
+      {
+        title: 'Penerimaan Mahasiswa Baru',
+        files: [
+          { name: 'PPT Polteksi PMB Terbaru April 2026', url: '/materi/pkkmb%204/PPT%20POLTEKSI%20PMB%20TERBARU%20APRIL%202026.pptx', size: '18,7 MB', kind: 'presentation' },
+        ],
+      },
+    ],
+  },
   { id: 'pkkmb-5', label: 'PKKMB Hari 5', shortLabel: 'PKKMB 5', topics: [] },
 ];
 
