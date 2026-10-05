@@ -65,6 +65,13 @@ const PKKMB_DAY_4_IMAGES = [
   '/gallery/pkkmb%204/IMG_6599-01.jpeg',
 ];
 
+const PKKMB_DAY_5_IMAGES = [
+  '/gallery/pkkmb%205/day-5-01.jpeg',
+  '/gallery/pkkmb%205/day-5-02.jpeg',
+  '/gallery/pkkmb%205/day-5-03.jpeg',
+  '/gallery/pkkmb%205/day-5-04.jpeg',
+];
+
 const GALLERY_DAYS = Array.from({ length: 7 }, (_, dayIndex) => {
   const day = dayIndex + 1;
   return {
@@ -74,7 +81,7 @@ const GALLERY_DAYS = Array.from({ length: 7 }, (_, dayIndex) => {
       id: `day-${day}-image-${imageIndex + 1}`,
       day,
       number: imageIndex + 1,
-      src: day === 1 ? PRA_PKKMB_DAY_1_IMAGES[imageIndex] : day === 2 ? PRA_PKKMB_DAY_2_IMAGES[imageIndex] : day === 3 ? PKKMB_DAY_1_IMAGES[imageIndex] : day === 4 ? PKKMB_DAY_2_IMAGES[imageIndex] : day === 5 ? PKKMB_DAY_3_IMAGES[imageIndex] : day === 6 ? PKKMB_DAY_4_IMAGES[imageIndex] : PLACEHOLDER_IMAGE,
+      src: day === 1 ? PRA_PKKMB_DAY_1_IMAGES[imageIndex] : day === 2 ? PRA_PKKMB_DAY_2_IMAGES[imageIndex] : day === 3 ? PKKMB_DAY_1_IMAGES[imageIndex] : day === 4 ? PKKMB_DAY_2_IMAGES[imageIndex] : day === 5 ? PKKMB_DAY_3_IMAGES[imageIndex] : day === 6 ? PKKMB_DAY_4_IMAGES[imageIndex] : PKKMB_DAY_5_IMAGES[imageIndex],
       alt: `Dokumentasi ${DAY_LABELS[dayIndex]}, foto ${imageIndex + 1}`,
     })),
   };
