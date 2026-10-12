@@ -1,4 +1,4 @@
-export type TabType = 'beranda' | 'jadwal' | 'kelompok' | 'atribut' | 'materi' | 'galeri' | 'guidebook' | 'faq';
+export type TabType = 'beranda' | 'jadwal' | 'kelompok' | 'atribut' | 'materi' | 'galeri' | 'guidebook' | 'sertifikat' | 'faq';
 
 export interface DaySchedule {
   dayNumber: number;

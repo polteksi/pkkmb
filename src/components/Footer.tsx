@@ -80,6 +80,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
               Guidebook (PDF)
             </button>
             <button
+              onClick={() => onNavigateTab('sertifikat')}
+              className="hover:text-[#5B2BBE] dark:hover:text-[#C39BFF] hover:underline text-left w-max transition-colors cursor-pointer"
+            >
+              Sertifikat Kelulusan Orvoks
+            </button>
+            <button
               onClick={() => onNavigateTab('faq')}
               className="hover:text-[#5B2BBE] dark:hover:text-[#C39BFF] hover:underline text-left w-max transition-colors cursor-pointer"
             >

@@ -25,6 +25,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
     { id: 'materi', label: 'Materi', icon: 'school', desc: 'Materi pemateri Pra-PKKMB & PKKMB' },
     { id: 'galeri', label: 'Galeri', icon: 'photo_library', desc: 'Dokumentasi kegiatan Hari 1–7' },
     { id: 'guidebook', label: 'Guidebook', icon: 'menu_book', desc: 'Unduh panduan resmi format PDF' },
+    { id: 'sertifikat', label: 'Sertifikat', icon: 'workspace_premium', desc: 'Cari dan unduh sertifikat mahasiswa' },
     { id: 'faq', label: 'Tanya Jawab (FAQ)', icon: 'help', desc: 'Tata tertib, atribut & tanya jawab' },
   ];
 

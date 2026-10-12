@@ -9,6 +9,7 @@ import { AtributTab } from './components/AtributTab';
 import { MaterialsTab } from './components/MaterialsTab';
 import { GalleryTab } from './components/GalleryTab';
 import { GuidebookTab } from './components/GuidebookTab';
+import { CertificateTab } from './components/CertificateTab';
 import { FaqTab } from './components/FaqTab';
 import { Footer } from './components/Footer';
 import { ScheduleModal } from './components/ScheduleModal';
@@ -86,6 +87,7 @@ export default function App() {
     materi: 'Materi ORVOKS',
     galeri: 'Galeri ORVOKS',
     guidebook: 'Guidebook PKKMB',
+    sertifikat: 'Sertifikat Kelulusan Orvoks',
     faq: 'Tanya Jawab (FAQ)',
   };
 
@@ -169,6 +171,10 @@ export default function App() {
 
         {activeTab === 'guidebook' && (
           <GuidebookTab />
+        )}
+
+        {activeTab === 'sertifikat' && (
+          <CertificateTab />
         )}
 
         {activeTab === 'faq' && (
